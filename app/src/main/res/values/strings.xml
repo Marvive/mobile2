@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">WGU Term Tracker</string>
-    <string name="title_activity_main">WGU Term Tracker</string>
+    <string name="app_name">Michael Term Creator</string>
+    <string name="title_activity_main">Michael Term Creator</string>
     <string name="no_active_term_set">No active term has been set. Set an active term from any term page.</string>
     <string name="start_date">Start Date:  </string>
     <string name="end_date">End Date: </string>
