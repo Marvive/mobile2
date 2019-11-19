@@ -10,7 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +20,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import java.io.File;
 import java.util.Date;
@@ -58,8 +58,8 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
                 intent.setAction(Intent.ACTION_VIEW);
                 File file = new File(getExternalFilesDir(null) + "/term_tracker_images" + image.timestamp + ".jpg");
                 intent.setDataAndType(FileProvider.getUriForFile(ImageListActivity.this, ImageListActivity.this
-                        .getApplicationContext().getPackageName() + ".tk.tedcook.wgutermtracker.provider", file), "image/*");
-                Toast.makeText(ImageListActivity.this, FileProvider.getUriForFile(ImageListActivity.this, ImageListActivity.this.getApplicationContext().getPackageName() + ".tk.tedcook.wgutermtracker.provider", file).toString(), Toast.LENGTH_LONG).show();
+                        .getApplicationContext().getPackageName() + ".com.mmarvive.wgumobileproject.provider", file), "image/*");
+                Toast.makeText(ImageListActivity.this, FileProvider.getUriForFile(ImageListActivity.this, ImageListActivity.this.getApplicationContext().getPackageName() + ".com.mmarvive.wgumobileproject.provider", file).toString(), Toast.LENGTH_LONG).show();
                 //intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
             }

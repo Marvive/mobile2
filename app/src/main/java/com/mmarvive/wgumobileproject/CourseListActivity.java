@@ -8,13 +8,15 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CourseListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -109,7 +111,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         getLoaderManager().restartLoader(0, null, this);
     }
 
-    public class MySimpleCursorAdapter extends android.support.v4.widget.SimpleCursorAdapter {
+    public class MySimpleCursorAdapter extends android.widget.SimpleCursorAdapter {
 
         public MySimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
             super(context, layout, c, from, to);

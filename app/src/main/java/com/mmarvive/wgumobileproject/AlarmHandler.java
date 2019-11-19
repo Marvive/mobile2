@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 
 import androidx.core.app.NotificationCompat;
-import tk.tedcook.wgutermtracker.R;
 
 public class AlarmHandler extends BroadcastReceiver {
 

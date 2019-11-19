@@ -10,7 +10,7 @@ import android.net.Uri;
 public class DataProvider extends ContentProvider {
 
     // Authority and path strings
-    private static final String AUTHORITY = "tk.tedcook.wgutermtracker.dataprovider";
+    private static final String AUTHORITY = "com.mmarvive.wgumobileproject.dataprovider";
     private static final String TERMS_PATH = "terms";
     private static final String COURSES_PATH = "courses";
     private static final String COURSE_NOTES_PATH = "courseNotes";

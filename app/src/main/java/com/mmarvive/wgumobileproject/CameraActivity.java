@@ -7,9 +7,10 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.Toolbar;
+
+import androidx.appcompat.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,7 +47,7 @@ public class CameraActivity extends AppCompatActivity {
 
         File file = new File(picturePath);
         Uri outputFileUri = FileProvider.getUriForFile(this, this.getApplicationContext()
-                .getPackageName() + ".tk.tedcook.wgutermtracker.provider", file);
+                .getPackageName() + ".com.mmarvive.wgumobileproject.provider", file);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
         startActivityForResult(intent, 0);
@@ -54,6 +55,7 @@ public class CameraActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case 0:
                 setResult(RESULT_CANCELED);

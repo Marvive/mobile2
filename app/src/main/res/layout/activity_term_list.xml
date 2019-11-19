@@ -5,7 +5,7 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="true"
-                                                 tools:context="tk.tedcook.wgutermtracker.TermListActivity">
+                                                 tools:context="com.mmarvive.wgumobileproject.TermListActivity">
 
     <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"

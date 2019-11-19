@@ -21,11 +21,9 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.GregorianCalendar;
-
-import tk.tedcook.wgutermtracker.R;
 
 import static android.app.Activity.RESULT_OK;
 
