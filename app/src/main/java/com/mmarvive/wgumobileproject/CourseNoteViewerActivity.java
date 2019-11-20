@@ -17,6 +17,10 @@ import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
+/**
+ * Activity for Course Notes View
+ * */
+
 public class CourseNoteViewerActivity extends AppCompatActivity {
 
     private static final int COURSE_NOTE_EDITOR_ACTIVITY_CODE = 11111;
@@ -31,10 +35,10 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_note_viewer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tvCourseNoteText = (TextView) findViewById(R.id.tvCourseNoteText);
+        tvCourseNoteText = findViewById(R.id.tvCourseNoteText);
         courseNoteUri = getIntent().getParcelableExtra(DataProvider.COURSE_NOTE_CONTENT_TYPE);
 
         if (courseNoteUri != null) {

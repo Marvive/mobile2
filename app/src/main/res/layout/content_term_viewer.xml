@@ -54,7 +54,7 @@
                         android:layout_margin="2dp"
                         android:layout_toEndOf="@+id/textView3"
                         android:layout_toRightOf="@+id/textView3"
-                        android:text="2018-01-01"
+                        android:text="2020-01-01"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -65,7 +65,7 @@
                         android:layout_margin="2dp"
                         android:layout_toEndOf="@+id/textView3"
                         android:layout_toRightOf="@+id/textView3"
-                        android:text="2018-06-30"
+                        android:text="2020-06-30"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <GridLayout

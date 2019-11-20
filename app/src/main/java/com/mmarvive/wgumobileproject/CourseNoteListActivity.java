@@ -7,14 +7,20 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+/**
+ * Activity Class for course notes
+ * */
 
 public class CourseNoteListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -29,7 +35,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_note_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -37,7 +43,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
         courseId = Long.parseLong(courseUri.getLastPathSegment());
         bindCourseNoteList();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +61,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.course_note_list_item, null, from, to, 0);
         DataProvider database = new DataProvider();
 
-        ListView list = (ListView) findViewById(R.id.courseNoteListView);
+        ListView list = findViewById(R.id.courseNoteListView);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

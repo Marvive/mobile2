@@ -4,6 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+/**
+ * Term Base Class
+ * */
+
 public class Term {
     public long termId;
     public String name;

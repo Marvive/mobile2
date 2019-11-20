@@ -6,12 +6,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 
-    // Constants for database name and version number
+    /**
+     * Database Name and Version
+     * */
     private static final String DATABASE_NAME = "wgu_terms.db";
     private static final int DATABASE_VERSION = 1;
 
-    // Constants for database tables and columns
-    // Terms table
+    /**
+     * These are the constants for each Table and column
+     * */
+
+//    Terms Table
     public static final String TABLE_TERMS = "terms";
     public static final String TERMS_TABLE_ID = "_id";
     public static final String TERM_NAME = "termName";
@@ -21,7 +26,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public static final String TERM_CREATED = "termCreated";
     public static final String[] TERMS_COLUMNS = {TERMS_TABLE_ID, TERM_NAME, TERM_START, TERM_END, TERM_ACTIVE, TERM_CREATED};
 
-    // Courses table
+//    Courses Table
     public static final String TABLE_COURSES = "courses";
     public static final String COURSES_TABLE_ID = "_id";
     public static final String COURSE_TERM_ID = "courseTermId";
@@ -39,7 +44,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             COURSE_START, COURSE_END, COURSE_STATUS, COURSE_MENTOR, COURSE_MENTOR_PHONE, COURSE_MENTOR_EMAIL,
             COURSE_NOTIFICATIONS, COURSE_CREATED};
 
-    // Course Notes table
+//    Course Notes Table
     public static final String TABLE_COURSE_NOTES = "courseNotes";
     public static final String COURSE_NOTES_TABLE_ID = "_id";
     public static final String COURSE_NOTE_COURSE_ID = "courseNoteCourseId";
@@ -49,7 +54,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public static final String[] COURSE_NOTES_COLUMNS = {COURSE_NOTES_TABLE_ID, COURSE_NOTE_COURSE_ID, COURSE_NOTE_TEXT,
             COURSE_NOTE_IMAGE_URI, COURSE_NOTE_CREATED};
 
-    // Assessments table
+//     Assessments Table
     public static final String TABLE_ASSESSMENTS = "assessments";
     public static final String ASSESSMENTS_TABLE_ID = "_id";
     public static final String ASSESSMENT_COURSE_ID = "assessmentCourseId";
@@ -62,7 +67,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public static final String[] ASSESSMENTS_COLUMNS = {ASSESSMENTS_TABLE_ID, ASSESSMENT_COURSE_ID, ASSESSMENT_CODE,
             ASSESSMENT_NAME, ASSESSMENT_DESCRIPTION, ASSESSMENT_DATETIME, ASSESSMENT_NOTIFICATIONS, ASSESSMENT_CREATED};
 
-    // Assessment Notes table
+//     Assessment Notes Table
     public static final String TABLE_ASSESSMENT_NOTES = "assessmentNotes";
     public static final String ASSESSMENT_NOTES_TABLE_ID = "_id";
     public static final String ASSESSMENT_NOTE_ASSESSMENT_ID = "assessmentNoteAssessmentId";
@@ -72,7 +77,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public static final String[] ASSESSMENT_NOTES_COLUMNS = {ASSESSMENT_NOTES_TABLE_ID, ASSESSMENT_NOTE_ASSESSMENT_ID,
             ASSESSMENT_NOTE_TEXT, ASSESSMENT_NOTE_IMAGE_URI, ASSESSMENT_NOTE_CREATED};
 
-    // Images table
+//     Images Table
     public static final String TABLE_IMAGES = "images";
     public static final String IMAGES_TABLE_ID = "_id";
     public static final String IMAGE_PARENT_URI = "imageUri";
@@ -81,8 +86,11 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public static final String[] IMAGES_COLUMNS = {IMAGES_TABLE_ID, IMAGE_PARENT_URI, IMAGE_TIMESTAMP,
             IMAGE_CREATED};
 
-    // Create strings for SQLite commands
-    // Terms table
+
+    /**
+     * Strings for SQLite commands
+     * */
+//     Terms Table
     private static final String TERMS_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE_TERMS + " (" +
                     TERMS_TABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -93,7 +101,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     TERM_CREATED + " TEXT default CURRENT_TIMESTAMP" +
                     ")";
 
-    // Courses table
+//     Courses Table
     private static final String COURSES_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE_COURSES + " (" +
                     COURSES_TABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -111,7 +119,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(" + COURSE_TERM_ID + ") REFERENCES " + TABLE_TERMS + "(" + TERMS_TABLE_ID + ")" +
                     ")";
 
-    // Course Notes table
+//     Course Notes Table
     private static final String COURSE_NOTES_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE_COURSE_NOTES + " (" +
                     COURSE_NOTES_TABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -122,7 +130,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(" + COURSE_NOTE_COURSE_ID + ") REFERENCES " + TABLE_COURSES + "(" + COURSES_TABLE_ID + ")" +
                     ")";
 
-    // Assessments table
+//     Assessments Table
     private static final String ASSESSMENTS_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE_ASSESSMENTS + " (" +
                     ASSESSMENTS_TABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -136,7 +144,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(" + ASSESSMENT_COURSE_ID + ") REFERENCES " + TABLE_COURSES + "(" + COURSES_TABLE_ID + ")" +
                     ")";
 
-    // Assessment Notes table
+//     Assessment Notes Table
     private static final String ASSESSMENT_NOTES_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE_ASSESSMENT_NOTES + " (" +
                     ASSESSMENT_NOTES_TABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -147,7 +155,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(" + ASSESSMENT_NOTE_ASSESSMENT_ID + ") REFERENCES " + TABLE_ASSESSMENTS + "(" + ASSESSMENTS_TABLE_ID + ")" +
                     ")";
 
-    // Images table
+//     Images Table
     private static final String IMAGES_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE_IMAGES + " (" +
                     IMAGES_TABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

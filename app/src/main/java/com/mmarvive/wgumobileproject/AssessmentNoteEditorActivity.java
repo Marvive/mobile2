@@ -3,10 +3,11 @@ package com.mmarvive.wgumobileproject;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class AssessmentNoteEditorActivity extends AppCompatActivity {
 
@@ -22,10 +23,10 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_note_editor);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        assessmentNoteTextField = (EditText) findViewById(R.id.etAssessmentNoteText);
+        assessmentNoteTextField = findViewById(R.id.etAssessmentNoteText);
         assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri == null) {
             setTitle(R.string.enter_new_note);

@@ -12,7 +12,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,11 +20,11 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import java.util.GregorianCalendar;
 
-import static android.app.Activity.RESULT_OK;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class TermListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -39,7 +38,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -49,7 +48,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.term_list_item, null, from, to, 0);
         database = new DataProvider();
 
-        ListView list = (ListView) findViewById(android.R.id.list);
+        ListView list = findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,25 +93,25 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
     }
 
     private boolean createSampleData() {
-        Uri term1Uri = DataManager.insertTerm(this, "Spring 2018", "2018-01-01", "2018-06-30", 1);
-        Uri term2Uri = DataManager.insertTerm(this, "Fall 2018", "2018-07-01", "2018-12-31", 0);
-        Uri term3Uri = DataManager.insertTerm(this, "Spring 2019", "2019-01-01", "2019-06-30", 0);
-        Uri term4Uri = DataManager.insertTerm(this, "Fall 2019", "2019-07-01", "2019-12-31", 0);
-        Uri term5Uri = DataManager.insertTerm(this, "Spring 2020", "2020-01-01", "2020-06-30", 0);
-        Uri term6Uri = DataManager.insertTerm(this, "Fall 2020", "2020-07-01", "2020-12-31", 0);
+        Uri term1Uri = DataManager.insertTerm(this, "Spring 2020", "2020-01-01", "2020-06-30", 1);
+        Uri term2Uri = DataManager.insertTerm(this, "Fall 2020", "2020-07-01", "2020-12-31", 0);
+        Uri term3Uri = DataManager.insertTerm(this, "Spring 2021", "2021-01-01", "2021-06-30", 0);
+        Uri term4Uri = DataManager.insertTerm(this, "Fall 2021", "2021-07-01", "2021-12-31", 0);
+        Uri term5Uri = DataManager.insertTerm(this, "Spring 2022", "2022-01-01", "2022-06-30", 0);
+        Uri term6Uri = DataManager.insertTerm(this, "Fall 2022", "2022-07-01", "2022-12-31", 0);
 
         Uri course1Uri = DataManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
-                "C196: Mobile Application Development", "2018-01-01", "2018-02-01",
+                "C196: Mobile Application Development", "2020-01-01", "2020-02-01",
                 "Pubali Banerjee", "(801) 924-4710", "pubali.banerjee@wgu.edu",
                 CourseStatus.IN_PROGRESS);
 
         DataManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
-                "C193: Client-Server Application Development", "2018-02-01", "2018-03-01",
+                "C193: Client-Server Application Development", "2020-02-01", "2020-03-01",
                 "Course Mentor Group", " ", "cmprogramming@wgu.edu",
                 CourseStatus.PLANNED);
 
         DataManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
-                "C195: Software II - Advanced Java Concepts", "2018-03-01", "2018-06-30",
+                "C195: Software II - Advanced Java Concepts", "2020-03-01", "2020-06-30",
                 "Course Mentor Group", "", "cmprogramming@wgu.edu",
                 CourseStatus.PLANNED);
 
@@ -132,10 +131,10 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
                         "assessment(s) associated with each course. The application will allow students to enter, edit, " +
                         "and delete term, course, and assessment data. It should provide summary and detailed views of " +
                         "courses for each term and provide alerts for upcoming performance and objective assessments. " +
-                        "This application will use a SQLite database.", "2018-10-01 2:30 PM");
+                        "This application will use a SQLite database.", "2020-10-01 2:30 PM");
 
         Uri ass2Uri = DataManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "ABC3", "Second Assessment, although this one has a name that won't fit on the grid",
-                "Assessment Description",  "2018-10-01 10:30 AM");
+                "Assessment Description",  "2020-10-01 10:30 AM");
 
         DataManager.insertAssessmentNote(this, Long.parseLong(ass1Uri.getLastPathSegment()),
                 "Assessment #1 Note #1");

@@ -5,9 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -16,6 +13,12 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+/**
+ * Inherits AppCompatActivity and implements the View.OnClickListener Interface
+ * */
 
 public class AssessmentEditorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,13 +36,13 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_editor);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        etAssessmentCode = (EditText) findViewById(R.id.etAssessmentCode);
-        etAssessmentName = (EditText) findViewById(R.id.etAssessmentName);
-        etAssessmentDescription = (EditText) findViewById(R.id.etAssessmentDescription);
-        etAssessmentDatetime = (EditText) findViewById(R.id.etAssessmentDatetime);
+        etAssessmentCode = findViewById(R.id.etAssessmentCode);
+        etAssessmentName = findViewById(R.id.etAssessmentName);
+        etAssessmentDescription = findViewById(R.id.etAssessmentDescription);
+        etAssessmentDatetime = findViewById(R.id.etAssessmentDatetime);
 
         Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
         if (assessmentUri == null) {

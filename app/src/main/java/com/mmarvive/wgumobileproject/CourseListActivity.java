@@ -12,12 +12,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+/**
+ * Course List Activity
+ * */
 public class CourseListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int COURSE_VIEWER_ACTIVITY_CODE = 11111;
@@ -32,10 +35,10 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +75,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         cursorAdapter = new MySimpleCursorAdapter(this, R.layout.course_list_item, null, from, to);
         DataProvider database = new DataProvider();
 
-        ListView list = (ListView) findViewById(android.R.id.list);
+        ListView list = findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

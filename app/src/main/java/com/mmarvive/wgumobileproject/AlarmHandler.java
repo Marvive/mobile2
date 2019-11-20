@@ -12,6 +12,11 @@ import android.net.Uri;
 
 import androidx.core.app.NotificationCompat;
 
+
+/**
+ * Alarm Handler. Creates alarms for the different terms.
+ * */
+
 public class AlarmHandler extends BroadcastReceiver {
 
     public static final String courseAlarmFile = "courseAlarms";

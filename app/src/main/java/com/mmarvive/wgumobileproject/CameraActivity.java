@@ -7,10 +7,6 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.appcompat.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +14,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
+
+/**
+ * ??? TODO
+ * */
 public class CameraActivity extends AppCompatActivity {
 
     private ImageView cameraFrame;
@@ -33,7 +37,7 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         parentUri = getIntent().getParcelableExtra("PARENT_URI");
         folder = getExternalFilesDir(null) + "/term_tracker_images/";
@@ -103,7 +107,7 @@ public class CameraActivity extends AppCompatActivity {
         finish();
     }
 
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(PICTURE_TAKEN, pictureTaken);
     }

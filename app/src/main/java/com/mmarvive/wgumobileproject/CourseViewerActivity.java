@@ -13,10 +13,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+/**
+ * Activity for Course Viewer
+ * */
 
 public class CourseViewerActivity extends AppCompatActivity {
 
@@ -38,7 +40,7 @@ public class CourseViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_viewer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -52,7 +54,7 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void setStatusLabel() {
-        tvStatus = (TextView) findViewById(R.id.tvStatus);
+        tvStatus = findViewById(R.id.tvStatus);
         String status = "";
         switch (course.status.toString()) {
             case "PLANNED":
@@ -72,11 +74,11 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void findElements() {
-        tvCourseName = (TextView) findViewById(R.id.tvCourseName);
+        tvCourseName = findViewById(R.id.tvCourseName);
         tvCourseName.setText(course.name);
-        tvStartDate = (TextView) findViewById(R.id.tvCourseStart);
+        tvStartDate = findViewById(R.id.tvCourseStart);
         tvStartDate.setText(course.start);
-        tvEndDate = (TextView) findViewById(R.id.tvCourseEnd);
+        tvEndDate = findViewById(R.id.tvCourseEnd);
         tvEndDate.setText(course.end);
     }
 
@@ -202,6 +204,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    TODO
     private boolean enableNotifications() {
         long now = DateUtil.todayLong();
 

@@ -1,13 +1,11 @@
 package com.mmarvive.wgumobileproject;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class TermViewerActivity extends AppCompatActivity {
 
@@ -38,7 +39,7 @@ public class TermViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_viewer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
@@ -48,9 +49,9 @@ public class TermViewerActivity extends AppCompatActivity {
     }
 
     private void findElements() {
-        tv_title = (TextView) findViewById(R.id.tvTermViewTermTitle);
-        tv_start = (TextView) findViewById(R.id.tvTermViewStartDate);
-        tv_end = (TextView) findViewById(R.id.tvTermViewEndDate);
+        tv_title = findViewById(R.id.tvTermViewTermTitle);
+        tv_start = findViewById(R.id.tvTermViewStartDate);
+        tv_end = findViewById(R.id.tvTermViewEndDate);
     }
 
     private void loadTermData() {

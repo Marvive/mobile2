@@ -3,6 +3,11 @@ package com.mmarvive.wgumobileproject;
 import android.content.ContentValues;
 import android.content.Context;
 
+
+/**
+ * Assessment Object
+ * */
+
 public class Assessment {
     public long assessmentId;
     public long courseId;

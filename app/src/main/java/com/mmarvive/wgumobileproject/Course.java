@@ -3,6 +3,11 @@ package com.mmarvive.wgumobileproject;
 import android.content.ContentValues;
 import android.content.Context;
 
+
+/**
+ * Base Course Class
+ * */
+
 public class Course {
     public long courseId;
     public long termId;

@@ -7,14 +7,20 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+/**
+ * Class for the button used to create notes
+ * */
 
 public class AssessmentNoteListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -29,13 +35,13 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_note_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
         assessmentId = Long.parseLong(assessmentUri.getLastPathSegment());
         bindAssessmentNoteList();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +58,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
         int[] to = {R.id.tvAssessmentNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_note_list_item, null, from, to, 0);
         DataProvider database = new DataProvider();
-        ListView list = (ListView) findViewById(R.id.assessmentNoteListView);
+        ListView list = findViewById(R.id.assessmentNoteListView);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

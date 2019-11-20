@@ -7,9 +7,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+/**
+ * Grabs information from database
+ * TODO change texts
+ * */
+
 public class DataProvider extends ContentProvider {
 
-    // Authority and path strings
+//     Authority and path strings
     private static final String AUTHORITY = "com.mmarvive.wgumobileproject.dataprovider";
     private static final String TERMS_PATH = "terms";
     private static final String COURSES_PATH = "courses";
@@ -18,7 +23,7 @@ public class DataProvider extends ContentProvider {
     private static final String ASSESSMENT_NOTES_PATH = "assessmentNotes";
     private static final String IMAGES_PATH = "images";
 
-    // Path URIs
+//     Path URIs
     public static final Uri TERMS_URI = Uri.parse("content://" + AUTHORITY + "/" + TERMS_PATH);
     public static final Uri COURSES_URI = Uri.parse("content://" + AUTHORITY + "/" + COURSES_PATH);
     public static final Uri COURSE_NOTES_URI = Uri.parse("content://" + AUTHORITY + "/" + COURSE_NOTES_PATH);
@@ -26,7 +31,7 @@ public class DataProvider extends ContentProvider {
     public static final Uri ASSESSMENT_NOTES_URI = Uri.parse("content://" + AUTHORITY + "/" + ASSESSMENT_NOTES_PATH);
     public static final Uri IMAGES_URI = Uri.parse("content://" + AUTHORITY + "/" + IMAGES_PATH);
 
-    // Constant to identify the requested operation
+//     Constant to identify the requested operation
     private static final int TERMS = 1;
     private static final int TERMS_ID = 2;
     private static final int COURSES = 3;
@@ -40,7 +45,7 @@ public class DataProvider extends ContentProvider {
     private static final int IMAGES = 11;
     private static final int IMAGES_ID = 12;
 
-    // UriMatcher initialization
+//     UriMatcher initialization
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
         uriMatcher.addURI(AUTHORITY, TERMS_PATH, TERMS);

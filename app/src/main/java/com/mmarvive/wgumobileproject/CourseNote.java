@@ -3,6 +3,10 @@ package com.mmarvive.wgumobileproject;
 import android.content.ContentValues;
 import android.content.Context;
 
+/**
+ * Base Course Note Class
+ * */
+
 public class CourseNote {
     public long courseNoteId;
     public long courseId;

@@ -5,9 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+/**
+ * Database Manager Class
+ * */
+
 public class DataManager {
 
-    // Terms
+//     Terms Section
     public static Uri insertTerm(Context context, String termName, String termStart, String termEnd, int termActive) {
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.TERM_NAME, termName);
@@ -36,7 +40,7 @@ public class DataManager {
         return t;
     }
 
-    // Courses
+//     Courses Section
     public static Uri insertCourse(Context context, long termId, String courseName, String courseStart, String courseEnd,
                                    String courseMentor, String courseMentorPhone, String courseMentorEmail, CourseStatus status) {
         ContentValues values = new ContentValues();
@@ -94,7 +98,7 @@ public class DataManager {
         return true;
     }
 
-    // Course Notes
+//     Course Notes Section
     public static Uri insertCourseNote(Context context, long courseId, String text) {
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.COURSE_NOTE_COURSE_ID, courseId);
@@ -198,7 +202,7 @@ public class DataManager {
         return true;
     }
 
-    // Images
+//     Images
     public static Uri insertImage(Context context, Uri parentUri, long timestamp) {
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.IMAGE_PARENT_URI, parentUri.toString());

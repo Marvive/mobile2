@@ -37,16 +37,16 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_editor);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         database = new DataProvider();
 
-        termNameField = (EditText) findViewById(R.id.termNameEditText);
-        termStartDateField = (EditText) findViewById(R.id.termStartDateEditText);
+        termNameField = findViewById(R.id.termNameEditText);
+        termStartDateField = findViewById(R.id.termStartDateEditText);
         termStartDateField.setInputType(InputType.TYPE_NULL);
-        termEndDateField = (EditText) findViewById(R.id.termEndDateEditText);
+        termEndDateField = findViewById(R.id.termEndDateEditText);
         termEndDateField.setInputType(InputType.TYPE_NULL);
 
         dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);

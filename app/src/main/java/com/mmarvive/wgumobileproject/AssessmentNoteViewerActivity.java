@@ -5,19 +5,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
-
-
-import androidx.appcompat.widget.ShareActionProvider;
-import androidx.appcompat.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
+
+/**
+ * Class to show activity on the assessment notes
+ * */
 
 public class AssessmentNoteViewerActivity extends AppCompatActivity {
 
@@ -33,10 +35,10 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_note_viewer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tvAssessmentNoteText = (TextView) findViewById(R.id.tvAssessmentNoteText);
+        tvAssessmentNoteText = findViewById(R.id.tvAssessmentNoteText);
         assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri != null) {
             assessmentNoteId = Long.parseLong(assessmentNoteUri.getLastPathSegment());
@@ -79,12 +81,10 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.action_delete_assessment_note:
-                return deleteAssessmentNote();
-            default:
-                return super.onOptionsItemSelected(item);
+        if (id == R.id.action_delete_assessment_note) {
+            return deleteAssessmentNote();
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean deleteAssessmentNote() {

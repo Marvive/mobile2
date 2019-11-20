@@ -4,13 +4,18 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+/**
+ * Class for Tracking Course editor activity
+ * */
 
 public class CourseEditorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,7 +37,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_editor);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         findViews();
@@ -55,12 +60,12 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void findViews() {
-        etCourseName = (EditText) findViewById(R.id.etCourseName);
-        etCourseStart = (EditText) findViewById(R.id.etCourseStart);
-        etCourseEnd = (EditText) findViewById(R.id.etCourseEnd);
-        etCourseMentor = (EditText) findViewById(R.id.etCourseMentor);
-        etCourseMentorPhone = (EditText) findViewById(R.id.etCourseMentorPhone);
-        etCourseMentorEmail = (EditText) findViewById(R.id.etCourseMentorEmail);
+        etCourseName = findViewById(R.id.etCourseName);
+        etCourseStart = findViewById(R.id.etCourseStart);
+        etCourseEnd = findViewById(R.id.etCourseEnd);
+        etCourseMentor = findViewById(R.id.etCourseMentor);
+        etCourseMentorPhone = findViewById(R.id.etCourseMentorPhone);
+        etCourseMentorEmail = findViewById(R.id.etCourseMentorEmail);
     }
 
     private void fillCourseForm(Course course) {

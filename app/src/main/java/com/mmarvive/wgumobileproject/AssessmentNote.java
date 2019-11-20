@@ -3,6 +3,10 @@ package com.mmarvive.wgumobileproject;
 import android.content.ContentValues;
 import android.content.Context;
 
+/**
+ * Class that gets created when you hit the add note button for the assessment
+ * */
+
 public class AssessmentNote {
     public long assessmentNoteId;
     public long assessmentId;

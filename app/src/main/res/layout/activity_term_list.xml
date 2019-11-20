@@ -23,7 +23,7 @@
 
     <include layout="@layout/content_term_list" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="@dimen/fab_layout_width"
             android:layout_height="@dimen/fab_layout_height"

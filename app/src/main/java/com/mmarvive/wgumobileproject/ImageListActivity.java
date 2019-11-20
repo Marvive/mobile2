@@ -10,8 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
@@ -20,10 +18,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 import java.io.File;
 import java.util.Date;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 
 public class ImageListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -35,7 +36,7 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         parentUri = getIntent().getParcelableExtra("ParentUri");
@@ -48,7 +49,7 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
         int[] to = {R.id.imageView, R.id.imageText};
         cursorAdapter = new MySimpleCursorAdapter(this, R.layout.image_list_item, null, from, to);
         DataProvider database = new DataProvider();
-        ListView list = (ListView) findViewById(R.id.lvImages);
+        ListView list = findViewById(R.id.lvImages);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,7 +61,6 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
                 intent.setDataAndType(FileProvider.getUriForFile(ImageListActivity.this, ImageListActivity.this
                         .getApplicationContext().getPackageName() + ".com.mmarvive.wgumobileproject.provider", file), "image/*");
                 Toast.makeText(ImageListActivity.this, FileProvider.getUriForFile(ImageListActivity.this, ImageListActivity.this.getApplicationContext().getPackageName() + ".com.mmarvive.wgumobileproject.provider", file).toString(), Toast.LENGTH_LONG).show();
-                //intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
             }
         });

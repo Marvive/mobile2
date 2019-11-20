@@ -5,14 +5,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+/**
+ * Class to track activity on the AssessmentViewer
+ * */
 
 public class AssessmentViewerActivity extends AppCompatActivity {
 
@@ -30,9 +36,9 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_viewer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,9 +56,9 @@ public class AssessmentViewerActivity extends AppCompatActivity {
         Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
         assessmentId = Long.parseLong(assessmentUri.getLastPathSegment());
         assessment = DataManager.getAssessment(this, assessmentId);
-        tvAssessmentTitle = (TextView) findViewById(R.id.tvAssessmentTitle);
-        tvAssessmentDescription = (TextView) findViewById(R.id.tvAssessmentDescription);
-        tvAssessmentDatetime = (TextView) findViewById(R.id.tvAssessmentDatetime);
+        tvAssessmentTitle = findViewById(R.id.tvAssessmentTitle);
+        tvAssessmentDescription = findViewById(R.id.tvAssessmentDescription);
+        tvAssessmentDatetime = findViewById(R.id.tvAssessmentDatetime);
         tvAssessmentTitle.setText(assessment.code + ": " + assessment.name);
         tvAssessmentDescription.setText(assessment.description);
         tvAssessmentDatetime.setText(assessment.datetime);
