@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public void openCurrentTerm(View view) {
         Cursor c = getContentResolver().query(DataProvider.TERMS_URI, null, DBOpenHelper.TERM_ACTIVE
                 + " =1", null, null);
+        assert c != null;
         while (c.moveToNext()) {
             Intent intent = new Intent(this, TermViewerActivity.class);
             long id = c.getLong(c.getColumnIndex(DBOpenHelper.TERMS_TABLE_ID));

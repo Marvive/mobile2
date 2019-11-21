@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.TimeZone;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_assessment_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         etAssessmentCode = findViewById(R.id.etAssessmentCode);
         etAssessmentName = findViewById(R.id.etAssessmentName);
         etAssessmentDescription = findViewById(R.id.etAssessmentDescription);
@@ -49,13 +50,13 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
             setTitle(getString(R.string.new_assessment));
             action = Intent.ACTION_INSERT;
             Uri courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
-            courseId = Long.parseLong(courseUri.getLastPathSegment());
+            courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
             assessment = new Assessment();
         }
         else {
             setTitle(getString(R.string.edit_assessment));
             action = Intent.ACTION_EDIT;
-            Long assessmentId = Long.parseLong(assessmentUri.getLastPathSegment());
+            Long assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
             assessment = DataManager.getAssessment(this, assessmentId);
             courseId = assessment.courseId;
             fillAssessmentForm();

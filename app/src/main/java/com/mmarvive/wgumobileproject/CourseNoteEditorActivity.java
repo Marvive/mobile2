@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -25,19 +27,19 @@ public class CourseNoteEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_note_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         noteTextField = findViewById(R.id.etCourseNoteText);
         courseNoteUri = getIntent().getParcelableExtra(DataProvider.COURSE_NOTE_CONTENT_TYPE);
 
         if (courseNoteUri == null) {
             setTitle(getString(R.string.enter_new_note));
             courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
-            courseId = Long.parseLong(courseUri.getLastPathSegment());
+            courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
             action = Intent.ACTION_INSERT;
         }
         else {
             setTitle(getString(R.string.edit_note));
-            courseNoteId = Long.parseLong(courseNoteUri.getLastPathSegment());
+            courseNoteId = Long.parseLong(Objects.requireNonNull(courseNoteUri.getLastPathSegment()));
             courseNote = DataManager.getCourseNote(this, courseNoteId);
             courseId = courseNote.courseId;
             noteTextField.setText(courseNote.text);

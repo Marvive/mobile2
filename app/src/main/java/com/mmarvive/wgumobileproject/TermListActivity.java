@@ -22,6 +22,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -44,7 +45,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         setContentView(R.layout.activity_term_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         String[] from = {DBOpenHelper.TERM_NAME, DBOpenHelper.TERM_START, DBOpenHelper.TERM_END};
         int[] to = {R.id.tvTerm, R.id.tvTermStartDate, R.id.tvTermEndDate};
@@ -140,13 +141,13 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         Uri ass2Uri = DataManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "ABC3", "Second Assessment, although this one has a name that won't fit on the grid",
                 "Assessment Description",  "2020-10-01 10:30 AM");
 
-        DataManager.insertAssessmentNote(this, Long.parseLong(ass1Uri.getLastPathSegment()),
+        DataManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass1Uri.getLastPathSegment())),
                 "Assessment #1 Note #1");
 
         DataManager.insertAssessmentNote(this, Long.parseLong(ass1Uri.getLastPathSegment()),
                 "Assessment #1 Note #2");
 
-        DataManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),
+        DataManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass2Uri.getLastPathSegment())),
                 "Assessment #2 Note #1");
 
         DataManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),

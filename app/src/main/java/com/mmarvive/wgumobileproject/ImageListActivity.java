@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.Date;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,7 +43,7 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
         setContentView(R.layout.activity_image_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         parentUri = getIntent().getParcelableExtra("ParentUri");
         bindImagesList();
         getLoaderManager().initLoader(0, null, this);

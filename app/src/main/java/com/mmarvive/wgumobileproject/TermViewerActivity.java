@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -45,7 +46,7 @@ public class TermViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_viewer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
         findElements();
@@ -64,7 +65,7 @@ public class TermViewerActivity extends AppCompatActivity {
             finish();
         }
         else {
-            termId = Long.parseLong(termUri.getLastPathSegment());
+            termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
             term = DataManager.getTerm(this, termId);
 
             setTitle(getString(R.string.view_term));
@@ -105,6 +106,7 @@ public class TermViewerActivity extends AppCompatActivity {
     private boolean markTermActive() {
         Cursor cursor = getContentResolver().query(DataProvider.TERMS_URI, null, null, null, null);
         ArrayList<Term> termList = new ArrayList<>();
+        assert cursor != null;
         while (cursor.moveToNext()) {
             termList.add(DataManager.getTerm(this, cursor.getLong(cursor.getColumnIndex(DBOpenHelper.TERMS_TABLE_ID))));
         }

@@ -15,6 +15,8 @@ import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -37,9 +39,9 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
         setContentView(R.layout.activity_assessment_note_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
-        assessmentId = Long.parseLong(assessmentUri.getLastPathSegment());
+        assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
         bindAssessmentNoteList();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

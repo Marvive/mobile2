@@ -15,6 +15,8 @@ import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -37,10 +39,10 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
         setContentView(R.layout.activity_course_note_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
-        courseId = Long.parseLong(courseUri.getLastPathSegment());
+        courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
         bindCourseNoteList();
 
         FloatingActionButton fab = findViewById(R.id.fab);

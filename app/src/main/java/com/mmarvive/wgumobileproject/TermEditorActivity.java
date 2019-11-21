@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -44,7 +45,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_term_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         database = new DataProvider();
 
@@ -62,11 +63,10 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         if (uri == null) {
             action = intent.ACTION_INSERT;
             setTitle(getString(R.string.add_new_term));
-        }
-        else {
+        } else {
             action = Intent.ACTION_EDIT;
             setTitle(getString(R.string.edit_term_title));
-            long termId = Long.parseLong(uri.getLastPathSegment());
+            long termId = Long.parseLong(Objects.requireNonNull(uri.getLastPathSegment()));
             term = DataManager.getTerm(this, termId);
             fillTermForm(term);
         }

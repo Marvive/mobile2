@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -48,7 +50,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
         loadTermData();
@@ -62,7 +64,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
             finish();
         }
         else {
-            termId = Long.parseLong(termUri.getLastPathSegment());
+            termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
             term = DataManager.getTerm(this, termId);
             setTitle(getString(R.string.courses));
         }

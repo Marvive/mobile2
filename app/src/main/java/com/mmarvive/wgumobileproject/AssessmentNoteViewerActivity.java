@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
@@ -37,11 +39,11 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assessment_note_viewer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         tvAssessmentNoteText = findViewById(R.id.tvAssessmentNoteText);
         assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri != null) {
-            assessmentNoteId = Long.parseLong(assessmentNoteUri.getLastPathSegment());
+            assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
             setTitle(getString(R.string.view_assessment_note));
             loadNote();
         }

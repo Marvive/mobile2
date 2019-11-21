@@ -19,8 +19,7 @@ public class DateUtil {
         try {
             Date date = DateUtil.dateFormat.parse(dateInput + TimeZone.getDefault().getDisplayName());
             return date.getTime();
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             return 0;
         }
     }

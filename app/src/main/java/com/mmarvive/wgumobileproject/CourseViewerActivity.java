@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -42,11 +44,11 @@ public class CourseViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_viewer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
-        courseId = Long.parseLong(courseUri.getLastPathSegment());
+        courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
         course = DataManager.getCourse(this, courseId);
 
         setStatusLabel();
@@ -140,10 +142,6 @@ public class CourseViewerActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_mark_course_completed).setVisible(true);
                 break;
             case "COMPLETED":
-                menu.findItem(R.id.action_drop_course).setVisible(false);
-                menu.findItem(R.id.action_start_course).setVisible(false);
-                menu.findItem(R.id.action_mark_course_completed).setVisible(false);
-                break;
             case "DROPPED":
                 menu.findItem(R.id.action_drop_course).setVisible(false);
                 menu.findItem(R.id.action_start_course).setVisible(false);
@@ -204,32 +202,25 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
-//    TODO
     private boolean enableNotifications() {
         long now = DateUtil.todayLong();
 
         if (now <= DateUtil.getDateTimestamp(course.start)) {
             AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.start),
                     "Course starts today!", course.name + " begins on " + course.start);
-        }
-        if (now <= DateUtil.getDateTimestamp(course.start) - 3 * 24 * 60 * 60 * 1000) {
+        } else if (now <= DateUtil.getDateTimestamp(course.start) - 3 * 24 * 60 * 60 * 1000) {
             AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.start),
                     "Course starts in three days!", course.name + " begins on " + course.start);
-        }
-        if (now <= DateUtil.getDateTimestamp(course.start) - 21 * 24 * 60 * 60 * 1000) {
+        } else if (now <= DateUtil.getDateTimestamp(course.start) - 21 * 24 * 60 * 60 * 1000) {
             AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.start),
                     "Course starts in three weeks!", course.name + " begins on " + course.start);
-        }
-
-        if (now <= DateUtil.getDateTimestamp(course.end)) {
+        } else if (now <= DateUtil.getDateTimestamp(course.end)) {
             AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.end),
                     "Course ends today!", course.name + " ends on " + course.start);
-        }
-        if (now <= DateUtil.getDateTimestamp(course.end) - 3 * 24 * 60 * 60 * 1000) {
+        } else if (now <= DateUtil.getDateTimestamp(course.end) - 3 * 24 * 60 * 60 * 1000) {
             AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.end),
                     "Course ends in three days!", course.name + " ends on " + course.start);
-        }
-        if (now <= DateUtil.getDateTimestamp(course.end) - 21 * 24 * 60 * 60 * 1000) {
+        } else if (now <= DateUtil.getDateTimestamp(course.end) - 21 * 24 * 60 * 60 * 1000) {
             AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.end),
                     "Course ends in three weeks!", course.name + " ends on " + course.start);
         }

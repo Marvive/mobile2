@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -48,13 +50,13 @@ public class AssessmentViewerActivity extends AppCompatActivity {
                 startActivityForResult(intent, ASSESSMENT_EDITOR_ACTIVITY_CODE);
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         loadAssessment();
     }
 
     private void loadAssessment() {
         Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
-        assessmentId = Long.parseLong(assessmentUri.getLastPathSegment());
+        assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
         assessment = DataManager.getAssessment(this, assessmentId);
         tvAssessmentTitle = findViewById(R.id.tvAssessmentTitle);
         tvAssessmentDescription = findViewById(R.id.tvAssessmentDescription);

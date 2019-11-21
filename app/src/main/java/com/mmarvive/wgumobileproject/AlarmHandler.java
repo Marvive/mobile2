@@ -124,8 +124,7 @@ public class AlarmHandler extends BroadcastReceiver {
     private static int getNextAlarmId(Context context) {
         SharedPreferences alarmPrefs;
         alarmPrefs = context.getSharedPreferences(alarmFile, Context.MODE_PRIVATE);
-        int nextAlarmId = alarmPrefs.getInt(nextAlarmField, 1);
-        return nextAlarmId;
+        return alarmPrefs.getInt(nextAlarmField, 1);
     }
 
     private static void incrementNextAlarmId(Context context) {

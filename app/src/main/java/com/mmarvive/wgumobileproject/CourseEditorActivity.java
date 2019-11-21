@@ -9,6 +9,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -39,7 +40,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_course_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         findViews();
         Intent intent = getIntent();
         courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
@@ -121,7 +122,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
 
     public void saveCourseChanges(View view) {
         if (action == Intent.ACTION_INSERT) {
-            long termId = Long.parseLong(termUri.getLastPathSegment());
+            long termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
             DataManager.insertCourse(this, termId,
                     etCourseName.getText().toString().trim(),
                     etCourseStart.getText().toString().trim(),
