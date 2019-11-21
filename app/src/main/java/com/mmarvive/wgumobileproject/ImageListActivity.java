@@ -26,6 +26,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
+/**
+ * Activity manager for images
+ * */
+
 public class ImageListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private CursorAdapter cursorAdapter;

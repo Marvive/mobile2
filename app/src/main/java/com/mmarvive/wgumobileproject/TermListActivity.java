@@ -26,6 +26,10 @@ import java.util.GregorianCalendar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+/**
+ * Activity for Term List
+ * */
+
 public class TermListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final int TERM_EDITOR_ACTIVITY_CODE = 11111;

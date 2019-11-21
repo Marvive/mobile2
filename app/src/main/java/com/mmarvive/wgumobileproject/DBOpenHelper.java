@@ -6,15 +6,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 
-    /**
-     * Database Name and Version
-     * */
+/**
+ * Database Name and Version
+ * */
+
     private static final String DATABASE_NAME = "wgu_terms.db";
     private static final int DATABASE_VERSION = 1;
 
-    /**
-     * These are the constants for each Table and column
-     * */
+/**
+ * These are the constants for each Table and column
+ * */
 
 //    Terms Table
     public static final String TABLE_TERMS = "terms";

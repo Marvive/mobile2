@@ -10,6 +10,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+/**
+ * Startup Main
+ * */
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int TERM_VIEWER_ACTIVITY_CODE = 11111;

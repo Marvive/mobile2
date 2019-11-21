@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+/**
+ * Activity for Term View
+ * */
+
 public class TermViewerActivity extends AppCompatActivity {
 
     private static final int TERM_EDITOR_ACTIVITY_CODE = 11111;
