@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.DatabasePackage;
+package com.mmarvive.wgumobileproject.databasepackage;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

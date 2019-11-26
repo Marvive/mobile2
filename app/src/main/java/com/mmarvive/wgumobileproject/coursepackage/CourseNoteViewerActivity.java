@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.CoursePackage;
+package com.mmarvive.wgumobileproject.coursepackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,9 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.CameraActivity;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
-import com.mmarvive.wgumobileproject.ImagePackage.ImageListActivity;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.imagepackage.ImageListActivity;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;

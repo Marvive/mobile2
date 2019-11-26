@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.TermPackage;
+package com.mmarvive.wgumobileproject.termpackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,10 +12,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mmarvive.wgumobileproject.CoursePackage.CourseListActivity;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.coursepackage.CourseListActivity;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.ArrayList;

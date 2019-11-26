@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.AssessmentPackage;
+package com.mmarvive.wgumobileproject.assessmentpackage;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;

@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.TermPackage.TermListActivity;
-import com.mmarvive.wgumobileproject.TermPackage.TermViewerActivity;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.termpackage.TermListActivity;
+import com.mmarvive.wgumobileproject.termpackage.TermViewerActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

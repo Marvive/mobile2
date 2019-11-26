@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.ImagePackage;
+package com.mmarvive.wgumobileproject.imagepackage;
 
 import android.net.Uri;
 

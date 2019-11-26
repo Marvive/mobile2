@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.CoursePackage;
+package com.mmarvive.wgumobileproject.coursepackage;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 

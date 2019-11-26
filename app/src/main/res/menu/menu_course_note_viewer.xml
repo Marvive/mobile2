@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".CoursePackage.CourseNoteViewerActivity">
+      tools:context=".coursepackage.CourseNoteViewerActivity">
     <item
             android:id="@+id/action_add_picture"
             android:orderInCategory="100"

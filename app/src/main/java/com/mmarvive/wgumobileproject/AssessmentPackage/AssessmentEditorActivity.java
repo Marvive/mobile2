@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.AssessmentPackage;
+package com.mmarvive.wgumobileproject.assessmentpackage;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -10,10 +10,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 
 import java.util.Calendar;
 import java.util.Objects;

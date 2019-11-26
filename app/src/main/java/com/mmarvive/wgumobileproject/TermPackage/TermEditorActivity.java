@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.TermPackage;
+package com.mmarvive.wgumobileproject.termpackage;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.text.SimpleDateFormat;

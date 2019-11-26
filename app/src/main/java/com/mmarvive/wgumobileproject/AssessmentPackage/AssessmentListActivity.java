@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.AssessmentPackage;
+package com.mmarvive.wgumobileproject.assessmentpackage;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -14,8 +14,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;

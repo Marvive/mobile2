@@ -10,12 +10,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
-import com.mmarvive.wgumobileproject.AssessmentPackage.Assessment;
-import com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentViewerActivity;
-import com.mmarvive.wgumobileproject.CoursePackage.Course;
-import com.mmarvive.wgumobileproject.CoursePackage.CourseViewerActivity;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.assessmentpackage.Assessment;
+import com.mmarvive.wgumobileproject.assessmentpackage.AssessmentViewerActivity;
+import com.mmarvive.wgumobileproject.coursepackage.Course;
+import com.mmarvive.wgumobileproject.coursepackage.CourseViewerActivity;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
 
 import androidx.core.app.NotificationCompat;
 

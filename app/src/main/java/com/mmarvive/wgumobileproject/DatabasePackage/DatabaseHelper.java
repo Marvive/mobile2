@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.DatabasePackage;
+package com.mmarvive.wgumobileproject.databasepackage;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

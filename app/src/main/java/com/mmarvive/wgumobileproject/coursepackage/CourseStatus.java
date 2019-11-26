@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.CoursePackage;
+package com.mmarvive.wgumobileproject.coursepackage;
 
 /**
  * Enumeration for Course Status TODO

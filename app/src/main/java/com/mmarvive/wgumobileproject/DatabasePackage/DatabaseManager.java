@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.DatabasePackage;
+package com.mmarvive.wgumobileproject.databasepackage;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -6,13 +6,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.mmarvive.wgumobileproject.AssessmentPackage.Assessment;
-import com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentNote;
-import com.mmarvive.wgumobileproject.CoursePackage.Course;
-import com.mmarvive.wgumobileproject.CoursePackage.CourseNote;
-import com.mmarvive.wgumobileproject.CoursePackage.CourseStatus;
-import com.mmarvive.wgumobileproject.ImagePackage.Image;
-import com.mmarvive.wgumobileproject.TermPackage.Term;
+import com.mmarvive.wgumobileproject.assessmentpackage.Assessment;
+import com.mmarvive.wgumobileproject.assessmentpackage.AssessmentNote;
+import com.mmarvive.wgumobileproject.coursepackage.Course;
+import com.mmarvive.wgumobileproject.coursepackage.CourseNote;
+import com.mmarvive.wgumobileproject.coursepackage.CourseStatus;
+import com.mmarvive.wgumobileproject.imagepackage.Image;
+import com.mmarvive.wgumobileproject.termpackage.Term;
 
 /**
  * Database Manager Class

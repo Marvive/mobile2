@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.TermPackage;
+package com.mmarvive.wgumobileproject.termpackage;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -22,10 +22,10 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.Alarm;
-import com.mmarvive.wgumobileproject.CoursePackage.CourseStatus;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.coursepackage.CourseStatus;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.GregorianCalendar;

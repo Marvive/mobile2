@@ -13,7 +13,7 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.mmarvive.wgumobileproject.CoursePackage.CourseNoteViewerActivity"
+                tools:context="com.mmarvive.wgumobileproject.coursepackage.CourseNoteViewerActivity"
                 tools:showIn="@layout/activity_course_note_viewer">
 
 
