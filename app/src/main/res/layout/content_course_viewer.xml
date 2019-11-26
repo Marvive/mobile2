@@ -29,7 +29,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textViewCourseName"
-            android:text="Start Date" />
+            android:text="@string/start_date_no_colon" />
 
     <TextView
             android:id="@+id/textView11"
@@ -38,7 +38,7 @@
             android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/textViewCourseStart"
             android:layout_toRightOf="@+id/textViewCourseStart"
-            android:text=" - " />
+            android:text="@string/dash_test" />
 
     <TextView
             android:id="@+id/textViewCourseEnd"
@@ -47,7 +47,7 @@
             android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/textView11"
             android:layout_toRightOf="@+id/textView11"
-            android:text="End Date" />
+            android:text="@string/end_date_no_colon" />
 
     <TextView
             android:id="@+id/textViewStatus"

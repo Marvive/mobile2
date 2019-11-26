@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Michael Term Creator</string>
-    <string name="title_activity_main">Michael Term Creator</string>
+    <string name="app_name">Michael\'s Term Creator</string>
+    <string name="title_activity_main">Michael\'s Term Creator</string>
     <string name="no_active_term_set">No active term has been set. Set an active term from any term page.</string>
     <string name="start_date">Start Date:  </string>
     <string name="end_date">End Date: </string>
@@ -71,14 +71,14 @@
     <string name="courses">Courses</string>
     <string name="enter_new_note">Enter New Note</string>
     <string name="edit_note">Edit Note</string>
-    <string name="note_text_hint">Enter note text here...</string>
+    <string name="note_text_hint">Enter note text here…</string>
     <string name="save_note">Save Note</string>
     <string name="view_course_note">View Course Note</string>
     <string name="view_images">View Images</string>
     <string name="add_image">Add Image</string>
     <string name="add_picture_from_camera">Add picture from camera</string>
     <string name="delete_note">Delete note</string>
-    <string name="share">Share...</string>
+    <string name="share">Share…</string>
     <string name="note_deleted">Note deleted</string>
     <string name="confirm_delete_note">Confirm Delete Note</string>
     <string name="delete_assessment">Delete assessment</string>
@@ -112,4 +112,21 @@
     <string name="date_time"><![CDATA[Date & Time]]></string>
     <string name="description">Description</string>
     <string name="title_activity_image_viewer">ImageViewerActivity</string>
+    <string name="course_status_indicator">Course Status Indicator</string>
+    <string name="test_course_number">C001</string>
+    <string name="test_assessment_name">Test Assessment Name</string>
+    <string name="colon_test_assessment">:</string>
+    <string name="assessment_list_test_date">2020-01-01 12:00:00</string>
+    <string name="test_term_name">Test Term Name</string>
+    <string name="startdate_test">StartDate</string>
+    <string name="enddate_test">EndDate</string>
+    <string name="dash_test">-</string>
+    <string name="term_status_indicator">Term Status Indicator</string>
+    <string name="image_string_test">Taken:</string>
+    <string name="note_image">Note Image</string>
+    <string name="course_image">Course Image</string>
+    <string name="status_example_test">Status: example</string>
+    <string name="test_class_name">Test Class Name</string>
+    <string name="start_date_no_colon">Start Date</string>
+    <string name="end_date_no_colon">End Date</string>
 </resources>

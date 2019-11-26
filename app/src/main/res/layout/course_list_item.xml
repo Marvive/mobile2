@@ -8,7 +8,8 @@
             android:id="@+id/imageDocIcon"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_calendar_clock" />
+            android:src="@drawable/ic_calendar_clock"
+            android:contentDescription="@string/course_image" />
 
 
     <TextView
@@ -21,7 +22,7 @@
             android:layout_toEndOf="@+id/imageDocIcon"
             android:layout_toRightOf="@+id/imageDocIcon"
             android:singleLine="true"
-            android:text="Dummy Class Name"
+            android:text="@string/test_class_name"
             android:textColor="@color/list_item_text"
             android:textSize="18sp" />
 
@@ -45,7 +46,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/imageDocIcon"
-                android:text="Start Date" />
+                android:text="@string/start_date" />
 
         <TextView
                 android:layout_width="wrap_content"
@@ -56,7 +57,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/imageDocIcon"
-                android:text=" - " />
+                android:text="@string/dash_test" />
 
         <TextView
                 android:id="@+id/textViewCourseEndDate"
@@ -68,7 +69,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/imageDocIcon"
-                android:text="End Date" />
+                android:text="@string/end_date" />
 
     </LinearLayout>
 
@@ -80,5 +81,5 @@
             android:layout_marginTop="16dp"
             android:layout_marginLeft="55dp"
             android:layout_marginBottom="8dp"
-            android:text="Status: asdasdasdasd" />
+            android:text="@string/status_example_test" />
 </RelativeLayout>

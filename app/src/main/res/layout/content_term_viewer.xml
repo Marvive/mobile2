@@ -17,7 +17,7 @@
                         android:id="@+id/textViewTermViewTermTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dummy Term Name"
+                        android:text="@string/test_term_name"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/text_size_large"
                         android:layout_alignParentTop="true"

@@ -32,6 +32,6 @@
             android:src="@drawable/ic_plus_white_48dp"
             app:layout_anchor="@+id/include"
             app:layout_anchorGravity="bottom|right"
-            android:layout_gravity="top|left" />
+            android:layout_gravity="top|start" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
