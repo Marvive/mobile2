@@ -10,8 +10,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.text.SimpleDateFormat;
@@ -65,7 +65,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
             action = Intent.ACTION_EDIT;
             setTitle(getString(R.string.edit_term_title));
             long termId = Long.parseLong(Objects.requireNonNull(uri.getLastPathSegment()));
-            term = DataManager.getTerm(this, termId);
+            term = DatabaseManager.getTerm(this, termId);
             fillTermForm(term);
         }
         setupDatePickers();
@@ -120,7 +120,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
             term = new Term();
             getTermFromForm();
 
-            DataManager.insertTerm(this, term.name, term.start, term.end, term.active);
+            DatabaseManager.insertTerm(this, term.name, term.start, term.end, term.active);
             Toast.makeText(this, getString(R.string.term_saved), Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
         }

@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -44,7 +44,7 @@ public class CourseNoteEditorActivity extends AppCompatActivity {
         else {
             setTitle(getString(R.string.edit_note));
             courseNoteId = Long.parseLong(Objects.requireNonNull(courseNoteUri.getLastPathSegment()));
-            courseNote = DataManager.getCourseNote(this, courseNoteId);
+            courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
             courseId = courseNote.courseId;
             noteTextField.setText(courseNote.text);
             action = Intent.ACTION_EDIT;
@@ -53,7 +53,7 @@ public class CourseNoteEditorActivity extends AppCompatActivity {
 
     public void saveCourseNote(View view) {
         if (action.equals(Intent.ACTION_INSERT)) {
-            DataManager.insertCourseNote(this, courseId, noteTextField.getText().toString().trim());
+            DatabaseManager.insertCourseNote(this, courseId, noteTextField.getText().toString().trim());
             setResult(RESULT_OK);
             finish();
         }

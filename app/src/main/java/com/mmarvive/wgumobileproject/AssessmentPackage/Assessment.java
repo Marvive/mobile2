@@ -3,8 +3,8 @@ package com.mmarvive.wgumobileproject.AssessmentPackage;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 
 
 /**
@@ -22,13 +22,13 @@ public class Assessment {
 
     public void saveChanges(Context context) {
         ContentValues values = new ContentValues();
-        values.put(DBOpenHelper.ASSESSMENT_COURSE_ID, courseId);
-        values.put(DBOpenHelper.ASSESSMENT_CODE, code);
-        values.put(DBOpenHelper.ASSESSMENT_NAME, name);
-        values.put(DBOpenHelper.ASSESSMENT_DESCRIPTION, description);
-        values.put(DBOpenHelper.ASSESSMENT_DATETIME, datetime);
-        values.put(DBOpenHelper.ASSESSMENT_NOTIFICATIONS, notifications);
-        context.getContentResolver().update(DataProvider.ASSESSMENTS_URI, values, DBOpenHelper.ASSESSMENTS_TABLE_ID
+        values.put(DatabaseHelper.ASSESSMENT_COURSE_ID, courseId);
+        values.put(DatabaseHelper.ASSESSMENT_CODE, code);
+        values.put(DatabaseHelper.ASSESSMENT_NAME, name);
+        values.put(DatabaseHelper.ASSESSMENT_DESCRIPTION, description);
+        values.put(DatabaseHelper.ASSESSMENT_DATETIME, datetime);
+        values.put(DatabaseHelper.ASSESSMENT_NOTIFICATIONS, notifications);
+        context.getContentResolver().update(DataProvider.ASSESSMENTS_URI, values, DatabaseHelper.ASSESSMENTS_TABLE_ID
                 + " = " + assessmentId, null);
     }
 }

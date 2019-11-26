@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -40,7 +40,7 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
         else {
             setTitle(R.string.edit_note);
             long assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
-            assessmentNote = DataManager.getAssessmentNote(this, assessmentNoteId);
+            assessmentNote = DatabaseManager.getAssessmentNote(this, assessmentNoteId);
             assessmentId = assessmentNote.assessmentId;
             assessmentNoteTextField.setText(assessmentNote.text);
             action = Intent.ACTION_EDIT;
@@ -49,7 +49,7 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
 
     public void saveAssessmentNote(View view) {
         if (action.equals(Intent.ACTION_INSERT)) {
-            DataManager.insertAssessmentNote(this, assessmentId, assessmentNoteTextField.getText().toString().trim());
+            DatabaseManager.insertAssessmentNote(this, assessmentId, assessmentNoteTextField.getText().toString().trim());
             setResult(RESULT_OK);
             finish();
         }

@@ -3,8 +3,8 @@ package com.mmarvive.wgumobileproject.CoursePackage;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 
 /**
  * Base Course Note Class
@@ -17,9 +17,9 @@ public class CourseNote {
 
     public void saveChanges(Context context) {
         ContentValues values = new ContentValues();
-        values.put(DBOpenHelper.COURSE_NOTE_COURSE_ID, courseId);
-        values.put(DBOpenHelper.COURSE_NOTE_TEXT, text);
-        context.getContentResolver().update(DataProvider.COURSE_NOTES_URI, values, DBOpenHelper.COURSE_NOTES_TABLE_ID
+        values.put(DatabaseHelper.COURSE_NOTE_COURSE_ID, courseId);
+        values.put(DatabaseHelper.COURSE_NOTE_TEXT, text);
+        context.getContentResolver().update(DataProvider.COURSE_NOTES_URI, values, DatabaseHelper.COURSE_NOTES_TABLE_ID
                 + " = " + courseNoteId, null);
     }
 }

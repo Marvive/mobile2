@@ -14,8 +14,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -56,7 +56,7 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
     }
 
     protected void bindAssessmentList() {
-        String[] from = {DBOpenHelper.ASSESSMENT_CODE, DBOpenHelper.ASSESSMENT_NAME, DBOpenHelper.ASSESSMENT_DATETIME};
+        String[] from = {DatabaseHelper.ASSESSMENT_CODE, DatabaseHelper.ASSESSMENT_NAME, DatabaseHelper.ASSESSMENT_DATETIME};
         int[] to = {R.id.textViewAssessmentCode, R.id.textViewAssessmentName, R.id.textViewAssessmentDatetime};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_list_item, null, from, to, 0);
 //        DataProvider database = new DataProvider();
@@ -75,8 +75,8 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.ASSESSMENTS_URI, DBOpenHelper.ASSESSMENTS_COLUMNS,
-                DBOpenHelper.ASSESSMENT_COURSE_ID + " = " + this.courseId, null, null);
+        return new CursorLoader(this, DataProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_COLUMNS,
+                DatabaseHelper.ASSESSMENT_COURSE_ID + " = " + this.courseId, null, null);
     }
 
     @Override

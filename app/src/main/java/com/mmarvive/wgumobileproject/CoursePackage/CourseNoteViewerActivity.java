@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.CameraActivity;
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.ImagePackage.ImageListActivity;
 import com.mmarvive.wgumobileproject.R;
 
@@ -56,7 +56,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
     }
 
     private void loadNote() {
-        CourseNote courseNote = DataManager.getCourseNote(this, courseNoteId);
+        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
         textViewCourseNoteText.setText(courseNote.text);
         textViewCourseNoteText.setMovementMethod(new ScrollingMovementMethod());
     }
@@ -74,8 +74,8 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_course_note_viewer, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
         ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-        CourseNote courseNote = DataManager.getCourseNote(this, courseNoteId);
-        Course course = DataManager.getCourse(this, courseNote.courseId);
+        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
+        Course course = DatabaseManager.getCourse(this, courseNote.courseId);
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
@@ -105,7 +105,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    DataManager.deleteCourseNote(CourseNoteViewerActivity.this, courseNoteId);
+                    DatabaseManager.deleteCourseNote(CourseNoteViewerActivity.this, courseNoteId);
                     setResult(RESULT_OK);
                     finish();
                     Toast.makeText(CourseNoteViewerActivity.this, getString(R.string.note_deleted), Toast.LENGTH_SHORT).show();

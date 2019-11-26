@@ -14,8 +14,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -61,7 +61,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
     }
 
     private void bindCourseNoteList() {
-        String[] from = {DBOpenHelper.COURSE_NOTE_TEXT};
+        String[] from = {DatabaseHelper.COURSE_NOTE_TEXT};
         int[] to = {R.id.textViewCourseNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.course_note_list_item, null, from, to, 0);
 
@@ -81,7 +81,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.COURSE_NOTES_URI, DBOpenHelper.COURSE_NOTES_COLUMNS, DBOpenHelper.COURSE_NOTE_COURSE_ID + " = " + this.courseId, null, null);
+        return new CursorLoader(this, DataProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_COLUMNS, DatabaseHelper.COURSE_NOTE_COURSE_ID + " = " + this.courseId, null, null);
     }
 
     @Override

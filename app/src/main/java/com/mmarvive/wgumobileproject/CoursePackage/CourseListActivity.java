@@ -14,8 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -72,7 +72,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
     }
 
     private void bindClassList() {
-        String[] from = {DBOpenHelper.COURSE_NAME, DBOpenHelper.COURSE_START, DBOpenHelper.COURSE_END, DBOpenHelper.COURSE_STATUS};
+        String[] from = {DatabaseHelper.COURSE_NAME, DatabaseHelper.COURSE_START, DatabaseHelper.COURSE_END, DatabaseHelper.COURSE_STATUS};
         int[] to = {R.id.textViewCourseName, R.id.textViewCourseStartDate, R.id.textViewCourseEndDate, R.id.textViewCourseStatus};
 
         cursorAdapter = new MySimpleCursorAdapter(this, R.layout.course_list_item, null, from, to);
@@ -92,7 +92,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.COURSES_URI, DBOpenHelper.COURSES_COLUMNS, DBOpenHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
+        return new CursorLoader(this, DataProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS, DatabaseHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
     }
 
     @Override

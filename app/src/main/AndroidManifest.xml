@@ -15,7 +15,7 @@
 
         <!-- Database Provider -->
         <provider
-            android:name=".DataProvider"
+            android:name=".DatabasePackage.DataProvider"
             android:authorities="com.mmarvive.wgumobileproject.dataprovider"
             android:exported="false" />
         <!-- Image File Provider -->

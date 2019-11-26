@@ -14,6 +14,8 @@ import com.mmarvive.wgumobileproject.AssessmentPackage.Assessment;
 import com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentViewerActivity;
 import com.mmarvive.wgumobileproject.CoursePackage.Course;
 import com.mmarvive.wgumobileproject.CoursePackage.CourseViewerActivity;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
 
 import androidx.core.app.NotificationCompat;
 
@@ -50,7 +52,7 @@ public class Alarm extends BroadcastReceiver {
 
         switch (destination) {
             case "course":
-                Course course = DataManager.getCourse(context, id);
+                Course course = DatabaseManager.getCourse(context, id);
                 if (course != null && course.notifications == 1) {
                     resultIntent = new Intent(context, CourseViewerActivity.class);
                     uri = Uri.parse(DataProvider.COURSES_URI + "/" + id);
@@ -61,7 +63,7 @@ public class Alarm extends BroadcastReceiver {
                 }
                 break;
             case "assessment":
-                Assessment assessment = DataManager.getAssessment(context, id);
+                Assessment assessment = DatabaseManager.getAssessment(context, id);
                 if (assessment != null && assessment.notifications == 1) {
                     resultIntent = new Intent(context, AssessmentViewerActivity.class);
                     uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + id);

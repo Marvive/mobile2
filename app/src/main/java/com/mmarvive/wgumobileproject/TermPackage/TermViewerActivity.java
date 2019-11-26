@@ -13,9 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.CoursePackage.CourseListActivity;
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class TermViewerActivity extends AppCompatActivity {
         }
         else {
             termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
-            term = DataManager.getTerm(this, termId);
+            term = DatabaseManager.getTerm(this, termId);
 
             setTitle(getString(R.string.view_term));
             textView_title.setText(term.name);
@@ -110,7 +110,7 @@ public class TermViewerActivity extends AppCompatActivity {
         ArrayList<Term> termList = new ArrayList<>();
         assert cursor != null;
         while (cursor.moveToNext()) {
-            termList.add(DataManager.getTerm(this, cursor.getLong(cursor.getColumnIndex(DBOpenHelper.TERMS_TABLE_ID))));
+            termList.add(DatabaseManager.getTerm(this, cursor.getLong(cursor.getColumnIndex(DatabaseHelper.TERMS_TABLE_ID))));
         }
 
         for (Term term : termList) {
@@ -131,7 +131,7 @@ public class TermViewerActivity extends AppCompatActivity {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
                     long classCount = term.getClassCount(TermViewerActivity.this);
                     if (classCount == 0) {
-                        getContentResolver().delete(DataProvider.TERMS_URI, DBOpenHelper.TERMS_TABLE_ID + " = " + termId, null);
+                        getContentResolver().delete(DataProvider.TERMS_URI, DatabaseHelper.TERMS_TABLE_ID + " = " + termId, null);
 
                         Toast.makeText(TermViewerActivity.this, getString(R.string.term_deleted), Toast.LENGTH_SHORT).show();
                         setResult(RESULT_OK);

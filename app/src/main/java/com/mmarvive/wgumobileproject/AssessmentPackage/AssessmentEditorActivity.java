@@ -10,8 +10,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -62,7 +62,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
             setTitle(getString(R.string.edit_assessment));
             action = Intent.ACTION_EDIT;
             Long assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
-            assessment = DataManager.getAssessment(this, assessmentId);
+            assessment = DatabaseManager.getAssessment(this, assessmentId);
             courseId = assessment.courseId;
             fillAssessmentForm();
         }
@@ -132,7 +132,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
         getValuesFromFields();
         switch (action) {
             case Intent.ACTION_INSERT:
-                DataManager.insertAssessment(this, courseId, assessment.code, assessment.name, assessment.description,
+                DatabaseManager.insertAssessment(this, courseId, assessment.code, assessment.name, assessment.description,
                         assessment.datetime);
                 setResult(RESULT_OK);
                 finish();

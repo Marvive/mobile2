@@ -3,8 +3,8 @@ package com.mmarvive.wgumobileproject.CoursePackage;
 import android.content.ContentValues;
 import android.content.Context;
 
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 
 
 /**
@@ -26,17 +26,17 @@ public class Course {
 
     public void saveChanges(Context context) {
         ContentValues values = new ContentValues();
-        values.put(DBOpenHelper.COURSE_TERM_ID, termId);
-        values.put(DBOpenHelper.COURSE_NAME, name);
-        values.put(DBOpenHelper.COURSE_DESCRIPTION, description);
-        values.put(DBOpenHelper.COURSE_START, start);
-        values.put(DBOpenHelper.COURSE_END, end);
-        values.put(DBOpenHelper.COURSE_STATUS, status.toString());
-        values.put(DBOpenHelper.COURSE_MENTOR, mentor);
-        values.put(DBOpenHelper.COURSE_MENTOR_PHONE, mentorPhone);
-        values.put(DBOpenHelper.COURSE_MENTOR_EMAIL, mentorEmail);
-        values.put(DBOpenHelper.COURSE_NOTIFICATIONS, notifications);
-        context.getContentResolver().update(DataProvider.COURSES_URI, values, DBOpenHelper.COURSES_TABLE_ID
+        values.put(DatabaseHelper.COURSE_TERM_ID, termId);
+        values.put(DatabaseHelper.COURSE_NAME, name);
+        values.put(DatabaseHelper.COURSE_DESCRIPTION, description);
+        values.put(DatabaseHelper.COURSE_START, start);
+        values.put(DatabaseHelper.COURSE_END, end);
+        values.put(DatabaseHelper.COURSE_STATUS, status.toString());
+        values.put(DatabaseHelper.COURSE_MENTOR, mentor);
+        values.put(DatabaseHelper.COURSE_MENTOR_PHONE, mentorPhone);
+        values.put(DatabaseHelper.COURSE_MENTOR_EMAIL, mentorEmail);
+        values.put(DatabaseHelper.COURSE_NOTIFICATIONS, notifications);
+        context.getContentResolver().update(DataProvider.COURSES_URI, values, DatabaseHelper.COURSES_TABLE_ID
                 + " = " + courseId, null);
     }
 }

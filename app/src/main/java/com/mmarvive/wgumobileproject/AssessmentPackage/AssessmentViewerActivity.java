@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mmarvive.wgumobileproject.Alarm;
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -59,7 +59,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     private void loadAssessment() {
         Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
         assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
-        assessment = DataManager.getAssessment(this, assessmentId);
+        assessment = DatabaseManager.getAssessment(this, assessmentId);
         TextView textViewAssessmentTitle = findViewById(R.id.textViewAssessmentTitle);
         TextView textViewAssessmentDescription = findViewById(R.id.textViewAssessmentDescription);
         TextView textViewAssessmentDatetime = findViewById(R.id.textViewAssessmentDatetime);
@@ -111,7 +111,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    DataManager.deleteAssessment(AssessmentViewerActivity.this, assessmentId);
+                    DatabaseManager.deleteAssessment(AssessmentViewerActivity.this, assessmentId);
                     setResult(RESULT_OK);
                     finish();
                     Toast.makeText(AssessmentViewerActivity.this, getString(R.string.assessment_deleted), Toast.LENGTH_SHORT).show();

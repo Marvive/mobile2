@@ -19,9 +19,9 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -55,7 +55,7 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
     }
 
     private void bindImagesList() {
-        String[] from = {DBOpenHelper.IMAGE_TIMESTAMP, DBOpenHelper.IMAGE_TIMESTAMP};
+        String[] from = {DatabaseHelper.IMAGE_TIMESTAMP, DatabaseHelper.IMAGE_TIMESTAMP};
         int[] to = {R.id.imageView, R.id.imageText};
         cursorAdapter = new MySimpleCursorAdapter(this, R.layout.image_list_item, null, from, to);
         DataProvider database = new DataProvider();
@@ -64,7 +64,7 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Image image = DataManager.getImage(ImageListActivity.this, id);
+                Image image = DatabaseManager.getImage(ImageListActivity.this, id);
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 File file = new File(getExternalFilesDir(null) + "/term_tracker_images" + image.timestamp + ".jpg");
@@ -84,8 +84,8 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.IMAGES_URI, DBOpenHelper.IMAGES_COLUMNS,
-                DBOpenHelper.IMAGE_PARENT_URI + " = " + "'" + parentUri + "'", null, null);
+        return new CursorLoader(this, DataProvider.IMAGES_URI, DatabaseHelper.IMAGES_COLUMNS,
+                DatabaseHelper.IMAGE_PARENT_URI + " = " + "'" + parentUri + "'", null, null);
     }
 
     @Override

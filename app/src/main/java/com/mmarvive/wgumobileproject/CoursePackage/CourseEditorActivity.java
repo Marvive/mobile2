@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -58,7 +58,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             action = Intent.ACTION_EDIT;
             setTitle(getString(R.string.edit_course_title));
             long classId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
-            course = DataManager.getCourse(this, classId);
+            course = DatabaseManager.getCourse(this, classId);
             fillCourseForm(course);
         }
         setupDatePickers();
@@ -127,7 +127,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
     public void saveCourseChanges(View view) {
         if (action.equals(Intent.ACTION_INSERT)) {
             long termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
-            DataManager.insertCourse(this, termId,
+            DatabaseManager.insertCourse(this, termId,
                     etCourseName.getText().toString().trim(),
                     etCourseStart.getText().toString().trim(),
                     etCourseEnd.getText().toString().trim(),

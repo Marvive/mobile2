@@ -4,8 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 
 /**
  * Term Base Class
@@ -20,17 +20,17 @@ public class Term {
 
     public void saveChanges(Context context) {
         ContentValues values = new ContentValues();
-        values.put(DBOpenHelper.TERM_NAME, name);
-        values.put(DBOpenHelper.TERM_START, start);
-        values.put(DBOpenHelper.TERM_END, end);
-        values.put(DBOpenHelper.TERM_ACTIVE, active);
-        context.getContentResolver().update(DataProvider.TERMS_URI, values, DBOpenHelper.TERMS_TABLE_ID
+        values.put(DatabaseHelper.TERM_NAME, name);
+        values.put(DatabaseHelper.TERM_START, start);
+        values.put(DatabaseHelper.TERM_END, end);
+        values.put(DatabaseHelper.TERM_ACTIVE, active);
+        context.getContentResolver().update(DataProvider.TERMS_URI, values, DatabaseHelper.TERMS_TABLE_ID
                 + " = " + termId, null);
     }
 
     public long getClassCount(Context context) {
-        Cursor cursor = context.getContentResolver().query(DataProvider.COURSES_URI, DBOpenHelper.COURSES_COLUMNS,
-                DBOpenHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
+        Cursor cursor = context.getContentResolver().query(DataProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS,
+                DatabaseHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
         assert cursor != null;
         return cursor.getCount();
     }

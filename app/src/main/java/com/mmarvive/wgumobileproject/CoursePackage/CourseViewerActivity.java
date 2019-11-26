@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.Alarm;
 import com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentListActivity;
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -52,7 +52,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
         courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
-        course = DataManager.getCourse(this, courseId);
+        course = DatabaseManager.getCourse(this, courseId);
 
         setStatusLabel();
         findElements();
@@ -88,7 +88,7 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void updateElements() {
-        course = DataManager.getCourse(this, courseId);
+        course = DatabaseManager.getCourse(this, courseId);
         textViewCourseName.setText(course.name);
         textViewStartDate.setText(course.start);
         textViewEndDate.setText(course.end);
@@ -188,7 +188,7 @@ public class CourseViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    DataManager.deleteCourse(CourseViewerActivity.this, courseId);
+                    DatabaseManager.deleteCourse(CourseViewerActivity.this, courseId);
                     setResult(RESULT_OK);
                     finish();
                     Toast.makeText(CourseViewerActivity.this, getString(R.string.course_deleted), Toast.LENGTH_SHORT).show();

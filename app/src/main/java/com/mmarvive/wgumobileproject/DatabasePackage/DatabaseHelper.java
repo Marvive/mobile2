@@ -1,10 +1,10 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.DatabasePackage;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBOpenHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
 /**
  * Database Name and Version
@@ -166,7 +166,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     IMAGE_CREATED + " TEXT default CURRENT_TIMESTAMP" +
                     ")";
 
-    public DBOpenHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

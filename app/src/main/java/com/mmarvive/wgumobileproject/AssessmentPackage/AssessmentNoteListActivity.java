@@ -14,8 +14,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -59,7 +59,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
     }
 
     private void bindAssessmentNoteList() {
-        String[] from = {DBOpenHelper.ASSESSMENT_NOTE_TEXT};
+        String[] from = {DatabaseHelper.ASSESSMENT_NOTE_TEXT};
         int[] to = {R.id.textViewAssessmentNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_note_list_item, null, from, to, 0);
 //        DataProvider database = new DataProvider();
@@ -78,7 +78,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.ASSESSMENT_NOTES_URI, DBOpenHelper.ASSESSMENT_NOTES_COLUMNS, DBOpenHelper.ASSESSMENT_NOTE_ASSESSMENT_ID + " = " + this.assessmentId, null, null);
+        return new CursorLoader(this, DataProvider.ASSESSMENT_NOTES_URI, DatabaseHelper.ASSESSMENT_NOTES_COLUMNS, DatabaseHelper.ASSESSMENT_NOTE_ASSESSMENT_ID + " = " + this.assessmentId, null, null);
     }
 
     @Override

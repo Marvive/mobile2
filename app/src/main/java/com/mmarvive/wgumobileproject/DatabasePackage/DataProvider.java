@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.DatabasePackage;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -74,7 +74,7 @@ public class DataProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        DBOpenHelper helper = new DBOpenHelper(getContext());
+        DatabaseHelper helper = new DatabaseHelper(getContext());
         database = helper.getWritableDatabase();
         return true;
     }
@@ -83,27 +83,27 @@ public class DataProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         switch (uriMatcher.match(uri)) {
             case TERMS:
-                return database.query(DBOpenHelper.TABLE_TERMS, DBOpenHelper.TERMS_COLUMNS, selection, null,
-                        null, null, DBOpenHelper.TERMS_TABLE_ID + " ASC");
+                return database.query(DatabaseHelper.TABLE_TERMS, DatabaseHelper.TERMS_COLUMNS, selection, null,
+                        null, null, DatabaseHelper.TERMS_TABLE_ID + " ASC");
             case COURSES:
-                return database.query(DBOpenHelper.TABLE_COURSES, DBOpenHelper.COURSES_COLUMNS, selection, null,
-                        null, null, DBOpenHelper.COURSES_TABLE_ID + " ASC");
+                return database.query(DatabaseHelper.TABLE_COURSES, DatabaseHelper.COURSES_COLUMNS, selection, null,
+                        null, null, DatabaseHelper.COURSES_TABLE_ID + " ASC");
             case COURSES_ID:
-                return database.query(DBOpenHelper.TABLE_COURSES, DBOpenHelper.COURSES_COLUMNS,
-                        DBOpenHelper.COURSES_TABLE_ID + "=" + uri.getLastPathSegment(), null,
-                        null, null, DBOpenHelper.COURSES_TABLE_ID + " ASC" );
+                return database.query(DatabaseHelper.TABLE_COURSES, DatabaseHelper.COURSES_COLUMNS,
+                        DatabaseHelper.COURSES_TABLE_ID + "=" + uri.getLastPathSegment(), null,
+                        null, null, DatabaseHelper.COURSES_TABLE_ID + " ASC" );
             case COURSE_NOTES:
-                return database.query(DBOpenHelper.TABLE_COURSE_NOTES, DBOpenHelper.COURSE_NOTES_COLUMNS, selection, null,
-                        null, null, DBOpenHelper.COURSE_NOTES_TABLE_ID + " ASC");
+                return database.query(DatabaseHelper.TABLE_COURSE_NOTES, DatabaseHelper.COURSE_NOTES_COLUMNS, selection, null,
+                        null, null, DatabaseHelper.COURSE_NOTES_TABLE_ID + " ASC");
             case ASSESSMENTS:
-                return database.query(DBOpenHelper.TABLE_ASSESSMENTS, DBOpenHelper.ASSESSMENTS_COLUMNS, selection, null,
-                        null, null, DBOpenHelper.ASSESSMENTS_TABLE_ID + " ASC");
+                return database.query(DatabaseHelper.TABLE_ASSESSMENTS, DatabaseHelper.ASSESSMENTS_COLUMNS, selection, null,
+                        null, null, DatabaseHelper.ASSESSMENTS_TABLE_ID + " ASC");
             case ASSESSMENT_NOTES:
-                return database.query(DBOpenHelper.TABLE_ASSESSMENT_NOTES, DBOpenHelper.ASSESSMENT_NOTES_COLUMNS, selection, null,
-                        null, null, DBOpenHelper.ASSESSMENT_NOTES_TABLE_ID + " ASC");
+                return database.query(DatabaseHelper.TABLE_ASSESSMENT_NOTES, DatabaseHelper.ASSESSMENT_NOTES_COLUMNS, selection, null,
+                        null, null, DatabaseHelper.ASSESSMENT_NOTES_TABLE_ID + " ASC");
             case IMAGES:
-                return database.query(DBOpenHelper.TABLE_IMAGES, DBOpenHelper.IMAGES_COLUMNS, selection, null,
-                        null, null, DBOpenHelper.IMAGES_TABLE_ID + " ASC");
+                return database.query(DatabaseHelper.TABLE_IMAGES, DatabaseHelper.IMAGES_COLUMNS, selection, null,
+                        null, null, DatabaseHelper.IMAGES_TABLE_ID + " ASC");
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
@@ -119,22 +119,22 @@ public class DataProvider extends ContentProvider {
         long id;
         switch (uriMatcher.match(uri)) {
             case TERMS:
-                id = database.insert(DBOpenHelper.TABLE_TERMS, null, values);
+                id = database.insert(DatabaseHelper.TABLE_TERMS, null, values);
                 return uri.parse(TERMS_PATH + "/" + id);
             case COURSES:
-                id = database.insert(DBOpenHelper.TABLE_COURSES, null, values);
+                id = database.insert(DatabaseHelper.TABLE_COURSES, null, values);
                 return uri.parse(COURSES_PATH + "/" + id);
             case COURSE_NOTES:
-                id = database.insert(DBOpenHelper.TABLE_COURSE_NOTES, null, values);
+                id = database.insert(DatabaseHelper.TABLE_COURSE_NOTES, null, values);
                 return uri.parse(COURSE_NOTES_PATH + "/" + id);
             case ASSESSMENTS:
-                id = database.insert(DBOpenHelper.TABLE_ASSESSMENTS, null, values);
+                id = database.insert(DatabaseHelper.TABLE_ASSESSMENTS, null, values);
                 return uri.parse(ASSESSMENTS_PATH + "/" + id);
             case ASSESSMENT_NOTES:
-                id = database.insert(DBOpenHelper.TABLE_ASSESSMENT_NOTES, null, values);
+                id = database.insert(DatabaseHelper.TABLE_ASSESSMENT_NOTES, null, values);
                 return uri.parse(ASSESSMENT_NOTES_PATH + "/" + id);
             case IMAGES:
-                id = database.insert(DBOpenHelper.TABLE_IMAGES, null, values);
+                id = database.insert(DatabaseHelper.TABLE_IMAGES, null, values);
                 return uri.parse(IMAGES_PATH + "/" + id);
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
@@ -145,17 +145,17 @@ public class DataProvider extends ContentProvider {
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         switch (uriMatcher.match(uri)) {
             case TERMS:
-                return database.delete(DBOpenHelper.TABLE_TERMS, selection, selectionArgs);
+                return database.delete(DatabaseHelper.TABLE_TERMS, selection, selectionArgs);
             case COURSES:
-                return database.delete(DBOpenHelper.TABLE_COURSES, selection, selectionArgs);
+                return database.delete(DatabaseHelper.TABLE_COURSES, selection, selectionArgs);
             case COURSE_NOTES:
-                return database.delete(DBOpenHelper.TABLE_COURSE_NOTES, selection, selectionArgs);
+                return database.delete(DatabaseHelper.TABLE_COURSE_NOTES, selection, selectionArgs);
             case ASSESSMENTS:
-                return database.delete(DBOpenHelper.TABLE_ASSESSMENTS, selection, selectionArgs);
+                return database.delete(DatabaseHelper.TABLE_ASSESSMENTS, selection, selectionArgs);
             case ASSESSMENT_NOTES:
-                return database.delete(DBOpenHelper.TABLE_ASSESSMENT_NOTES, selection, selectionArgs);
+                return database.delete(DatabaseHelper.TABLE_ASSESSMENT_NOTES, selection, selectionArgs);
             default:
-                throw new IllegalArgumentException("Unsupported URI: " + uri);
+                throw new IllegalArgumentException("This URI is not supported: " + uri);
         }
     }
 
@@ -163,17 +163,17 @@ public class DataProvider extends ContentProvider {
     public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         switch (uriMatcher.match(uri)) {
             case TERMS:
-                return database.update(DBOpenHelper.TABLE_TERMS, values, selection, selectionArgs);
+                return database.update(DatabaseHelper.TABLE_TERMS, values, selection, selectionArgs);
             case COURSES:
-                return database.update(DBOpenHelper.TABLE_COURSES, values, selection, selectionArgs);
+                return database.update(DatabaseHelper.TABLE_COURSES, values, selection, selectionArgs);
             case COURSE_NOTES:
-                return database.update(DBOpenHelper.TABLE_COURSE_NOTES, values, selection, selectionArgs);
+                return database.update(DatabaseHelper.TABLE_COURSE_NOTES, values, selection, selectionArgs);
             case ASSESSMENTS:
-                return database.update(DBOpenHelper.TABLE_ASSESSMENTS, values, selection, selectionArgs);
+                return database.update(DatabaseHelper.TABLE_ASSESSMENTS, values, selection, selectionArgs);
             case ASSESSMENT_NOTES:
-                return database.update(DBOpenHelper.TABLE_ASSESSMENT_NOTES, values, selection, selectionArgs);
+                return database.update(DatabaseHelper.TABLE_ASSESSMENT_NOTES, values, selection, selectionArgs);
             default:
-                throw new IllegalArgumentException("Unsupported URI: " + uri);
+                throw new IllegalArgumentException("This URI is not supported: " + uri);
         }
     }
 }

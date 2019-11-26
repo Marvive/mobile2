@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -77,7 +79,7 @@ public class CameraActivity extends AppCompatActivity {
             finish();
             return;
         }
-        DataManager.insertImage(this, parentUri, now);
+        DatabaseManager.insertImage(this, parentUri, now);
         Bitmap thumb = ThumbnailUtils.extractThumbnail(src, (src.getWidth() / 5), (src.getHeight() / 5));
         FileOutputStream out = null;
         try {

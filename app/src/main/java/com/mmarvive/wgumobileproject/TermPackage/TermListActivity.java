@@ -23,9 +23,9 @@ import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.Alarm;
 import com.mmarvive.wgumobileproject.CoursePackage.CourseStatus;
-import com.mmarvive.wgumobileproject.DBOpenHelper;
-import com.mmarvive.wgumobileproject.DataManager;
-import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseHelper;
+import com.mmarvive.wgumobileproject.DatabasePackage.DatabaseManager;
+import com.mmarvive.wgumobileproject.DatabasePackage.DataProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.GregorianCalendar;
@@ -53,7 +53,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        String[] from = {DBOpenHelper.TERM_NAME, DBOpenHelper.TERM_START, DBOpenHelper.TERM_END};
+        String[] from = {DatabaseHelper.TERM_NAME, DatabaseHelper.TERM_START, DatabaseHelper.TERM_END};
         int[] to = {R.id.textViewTerm, R.id.textViewTermStartDate, R.id.textViewTermEndDate};
 
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.term_list_item, null, from, to, 0);
@@ -103,35 +103,35 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
     }
 
     private boolean createSampleData() {
-        Uri term1Uri = DataManager.insertTerm(this, "Spring 2020", "2020-01-01", "2020-06-30", 1);
-        Uri term2Uri = DataManager.insertTerm(this, "Fall 2020", "2020-07-01", "2020-12-31", 0);
-        Uri term3Uri = DataManager.insertTerm(this, "Spring 2021", "2021-01-01", "2021-06-30", 0);
-        Uri term4Uri = DataManager.insertTerm(this, "Fall 2021", "2021-07-01", "2021-12-31", 0);
-        Uri term5Uri = DataManager.insertTerm(this, "Spring 2022", "2022-01-01", "2022-06-30", 0);
-        Uri term6Uri = DataManager.insertTerm(this, "Fall 2022", "2022-07-01", "2022-12-31", 0);
+        Uri term1Uri = DatabaseManager.insertTerm(this, "Spring 2020", "2020-01-01", "2020-06-30", 1);
+        Uri term2Uri = DatabaseManager.insertTerm(this, "Fall 2020", "2020-07-01", "2020-12-31", 0);
+        Uri term3Uri = DatabaseManager.insertTerm(this, "Spring 2021", "2021-01-01", "2021-06-30", 0);
+        Uri term4Uri = DatabaseManager.insertTerm(this, "Fall 2021", "2021-07-01", "2021-12-31", 0);
+        Uri term5Uri = DatabaseManager.insertTerm(this, "Spring 2022", "2022-01-01", "2022-06-30", 0);
+        Uri term6Uri = DatabaseManager.insertTerm(this, "Fall 2022", "2022-07-01", "2022-12-31", 0);
 
-        Uri course1Uri = DataManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
+        Uri course1Uri = DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
                 "C196: Mobile Application Development", "2020-01-01", "2020-02-01",
                 "Pubali Banerjee", "(801) 924-4710", "pubali.banerjee@wgu.edu",
                 CourseStatus.IN_PROGRESS);
 
-        DataManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
+        DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
                 "C193: Client-Server Application Development", "2020-02-01", "2020-03-01",
                 "Course Mentor Group", " ", "cmprogramming@wgu.edu",
                 CourseStatus.PLANNED);
 
-        DataManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
+        DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
                 "C195: Software II - Advanced Java Concepts", "2020-03-01", "2020-06-30",
                 "Course Mentor Group", "", "cmprogramming@wgu.edu",
                 CourseStatus.PLANNED);
 
-        DataManager.insertCourseNote(this, Long.parseLong(course1Uri.getLastPathSegment()),
+        DatabaseManager.insertCourseNote(this, Long.parseLong(course1Uri.getLastPathSegment()),
                 "This is a short test note");
 
-        DataManager.insertCourseNote(this, Long.parseLong(course1Uri.getLastPathSegment()),
+        DatabaseManager.insertCourseNote(this, Long.parseLong(course1Uri.getLastPathSegment()),
                 getString(R.string.long_test_note));
 
-        Uri ass1Uri = DataManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "CLP1", "Mobile Application Development",
+        Uri ass1Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "CLP1", "Mobile Application Development",
                 "As a competent mobile application developer, your understanding of mobile application structure " +
                         "and design will help you to develop applications to meet customer requirements. The following " +
                         "project to develop a student scheduler/student progress tracking application, will help you to " +
@@ -143,22 +143,22 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
                         "courses for each term and provide alerts for upcoming performance and objective assessments. " +
                         "This application will use a SQLite database.", "2020-10-01 2:30 PM");
 
-        Uri ass2Uri = DataManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "ABC3", "Second Assessment, although this one has a name that won't fit on the grid",
+        Uri ass2Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "ABC3", "Second Assessment, although this one has a name that won't fit on the grid",
                 "Assessment Description",  "2020-10-01 10:30 AM");
 
-        DataManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass1Uri.getLastPathSegment())),
+        DatabaseManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass1Uri.getLastPathSegment())),
                 "Assessment #1 Note #1");
 
-        DataManager.insertAssessmentNote(this, Long.parseLong(ass1Uri.getLastPathSegment()),
+        DatabaseManager.insertAssessmentNote(this, Long.parseLong(ass1Uri.getLastPathSegment()),
                 "Assessment #1 Note #2");
 
-        DataManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass2Uri.getLastPathSegment())),
+        DatabaseManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass2Uri.getLastPathSegment())),
                 "Assessment #2 Note #1");
 
-        DataManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),
+        DatabaseManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),
                 "Assessment #2 Note #2");
 
-        DataManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),
+        DatabaseManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),
                 "Assessment #2 Note #3");
 
         restartLoader();
