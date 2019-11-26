@@ -185,7 +185,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
     }
 
     private boolean createTestAlarm() {
-        // Sets alarm for 5 seconds in the future
+//         Sets alarm for 5 seconds in the future
         Long time = new GregorianCalendar().getTimeInMillis() + 5000;
 
         Intent intent = new Intent(this, AlarmHandler.class);

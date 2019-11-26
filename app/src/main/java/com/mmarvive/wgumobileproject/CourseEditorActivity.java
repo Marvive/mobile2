@@ -21,7 +21,6 @@ import androidx.appcompat.widget.Toolbar;
 public class CourseEditorActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String action;
-    private Uri courseUri;
     private Uri termUri;
     private Course course;
 
@@ -43,7 +42,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         findViews();
         Intent intent = getIntent();
-        courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
+        Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
         termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
 
         if (courseUri == null) {
@@ -53,7 +52,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         else {
             action = Intent.ACTION_EDIT;
             setTitle(getString(R.string.edit_course_title));
-            long classId = Long.parseLong(courseUri.getLastPathSegment());
+            long classId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
             course = DataManager.getCourse(this, classId);
             fillCourseForm(course);
         }
@@ -121,7 +120,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void saveCourseChanges(View view) {
-        if (action == Intent.ACTION_INSERT) {
+        if (action.equals(Intent.ACTION_INSERT)) {
             long termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
             DataManager.insertCourse(this, termId,
                     etCourseName.getText().toString().trim(),
@@ -132,7 +131,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
                     etCourseMentorEmail.getText().toString().trim(),
                     CourseStatus.PLANNED);
         }
-        else if (action == Intent.ACTION_EDIT) {
+        else if (action.equals(Intent.ACTION_EDIT)) {
             course.name = etCourseName.getText().toString().trim();
             course.start = etCourseStart.getText().toString().trim();
             course.end = etCourseEnd.getText().toString().trim();

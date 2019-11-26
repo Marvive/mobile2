@@ -24,8 +24,6 @@ import androidx.core.content.FileProvider;
  * */
 public class CameraActivity extends AppCompatActivity {
 
-    private ImageView cameraFrame;
-    private TextView cameraStatus;
     private boolean pictureCaptured = false;
     protected boolean pictureTaken;
     protected static final String PICTURE_TAKEN = "photo_taken";

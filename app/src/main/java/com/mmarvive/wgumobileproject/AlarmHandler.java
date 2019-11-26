@@ -42,7 +42,6 @@ public class AlarmHandler extends BroadcastReceiver {
                 .setContentText(alarmText);
         Intent resultIntent;
         Uri uri;
-        SharedPreferences sharedPreferences;
 
         switch (destination) {
             case "course":
@@ -81,7 +80,7 @@ public class AlarmHandler extends BroadcastReceiver {
         notificationManager.notify(nextAlarmId, builder.build());
     }
 
-    public static boolean scheduleCourseAlarm(Context context, long id, long time, String title, String text) {
+    public static void scheduleCourseAlarm(Context context, long id, long time, String title, String text) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         int nextAlarmId = getNextAlarmId(context);
         Intent intentAlarm = new Intent(context, AlarmHandler.class);
@@ -95,13 +94,12 @@ public class AlarmHandler extends BroadcastReceiver {
         SharedPreferences sp = context.getSharedPreferences(courseAlarmFile, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt(Long.toString(id), nextAlarmId);
-        editor.commit();
+        editor.apply();
 
         incrementNextAlarmId(context);
-        return true;
     }
 
-    public static boolean scheduleAssessmentAlarm(Context context, int id, long time, String tile, String text) {
+    public static void scheduleAssessmentAlarm(Context context, int id, long time, String tile, String text) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         int nextAlarmId = getNextAlarmId(context);
         Intent intentAlarm = new Intent(context, AlarmHandler.class);
@@ -115,10 +113,9 @@ public class AlarmHandler extends BroadcastReceiver {
         SharedPreferences sp = context.getSharedPreferences(assessmentAlarmFile, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt(Long.toString(id), nextAlarmId);
-        editor.commit();
+        editor.apply();
 
         incrementNextAlarmId(context);
-        return true;
     }
 
     private static int getNextAlarmId(Context context) {
@@ -133,7 +130,7 @@ public class AlarmHandler extends BroadcastReceiver {
         int nextAlarmId = alarmPrefs.getInt(nextAlarmField, 1);
         SharedPreferences.Editor alarmEditor = alarmPrefs.edit();
         alarmEditor.putInt(nextAlarmField, nextAlarmId + 1);
-        alarmEditor.commit();
+        alarmEditor.apply();
     }
 
     private static int getAndIncrementNextAlarmId(Context context) {

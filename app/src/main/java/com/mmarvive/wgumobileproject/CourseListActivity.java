@@ -50,7 +50,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
         loadTermData();

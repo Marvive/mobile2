@@ -56,7 +56,7 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
         String[] from = {DBOpenHelper.ASSESSMENT_CODE, DBOpenHelper.ASSESSMENT_NAME, DBOpenHelper.ASSESSMENT_DATETIME};
         int[] to = {R.id.tvAssessmentCode, R.id.tvAssessmentName, R.id.tvAssessmentDatetime};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_list_item, null, from, to, 0);
-        DataProvider database = new DataProvider();
+//        DataProvider database = new DataProvider();
         ListView list = findViewById(R.id.assessmentListView);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

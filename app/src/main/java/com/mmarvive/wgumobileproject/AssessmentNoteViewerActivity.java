@@ -109,11 +109,10 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean addPicture() {
+    private void addPicture() {
         Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra("PARENT_URI", assessmentNoteUri);
         startActivityForResult(intent, CAMERA_ACTIVITY_CODE);
-        return true;
     }
 
     public void handleEditNote(View view) {

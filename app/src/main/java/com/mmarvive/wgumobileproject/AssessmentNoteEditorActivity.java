@@ -47,12 +47,12 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
     }
 
     public void saveAssessmentNote(View view) {
-        if (action == Intent.ACTION_INSERT) {
+        if (action.equals(Intent.ACTION_INSERT)) {
             DataManager.insertAssessmentNote(this, assessmentId, assessmentNoteTextField.getText().toString().trim());
             setResult(RESULT_OK);
             finish();
         }
-        if (action == Intent.ACTION_EDIT) {
+        if (action.equals(Intent.ACTION_EDIT)) {
             assessmentNote.text = assessmentNoteTextField.getText().toString().trim();
             assessmentNote.saveChanges(this);
             setResult(RESULT_OK);

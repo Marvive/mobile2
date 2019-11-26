@@ -59,7 +59,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
         String[] from = {DBOpenHelper.ASSESSMENT_NOTE_TEXT};
         int[] to = {R.id.tvAssessmentNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_note_list_item, null, from, to, 0);
-        DataProvider database = new DataProvider();
+//        DataProvider database = new DataProvider();
         ListView list = findViewById(R.id.assessmentNoteListView);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
