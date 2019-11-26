@@ -31,7 +31,6 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
     private long courseNoteId;
     private Uri courseNoteUri;
     private TextView tvCourseNoteText;
-    private ShareActionProvider shareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +67,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_course_note_viewer, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
         CourseNote courseNote = DataManager.getCourseNote(this, courseNoteId);
         Course course = DataManager.getCourse(this, courseNote.courseId);
 

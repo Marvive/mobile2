@@ -1,10 +1,8 @@
 package com.mmarvive.wgumobileproject;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,14 +27,12 @@ public class CourseViewerActivity extends AppCompatActivity {
     private static final int COURSE_EDITOR_ACTIVITY_CODE = 33333;
 
     private Menu menu;
-    private Uri courseUri;
     private long courseId;
     private Course course;
 
     private TextView tvCourseName;
     private TextView tvStartDate;
     private TextView tvEndDate;
-    private TextView tvStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +43,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
+        Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
         courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
         course = DataManager.getCourse(this, courseId);
 
@@ -56,7 +52,7 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void setStatusLabel() {
-        tvStatus = findViewById(R.id.tvStatus);
+        TextView tvStatus = findViewById(R.id.tvStatus);
         String status = "";
         switch (course.status.toString()) {
             case "PLANNED":
@@ -114,7 +110,6 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void showAppropriateMenuOptions() {
-        SharedPreferences sp = getSharedPreferences(AlarmHandler.courseAlarmFile, Context.MODE_PRIVATE);
         menu.findItem(R.id.action_enable_notifications).setVisible(true);
         menu.findItem(R.id.action_disable_notifications).setVisible(true);
 
@@ -203,25 +198,25 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private boolean enableNotifications() {
-        long now = DateUtil.todayLong();
+        long now = DateUtility.todayLong();
 
-        if (now <= DateUtil.getDateTimestamp(course.start)) {
-            AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.start),
+        if (now <= DateUtility.getDateTimestamp(course.start)) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.start),
                     "Course starts today!", course.name + " begins on " + course.start);
-        } else if (now <= DateUtil.getDateTimestamp(course.start) - 3 * 24 * 60 * 60 * 1000) {
-            AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.start),
+        } else if (now <= DateUtility.getDateTimestamp(course.start) - 3 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.start),
                     "Course starts in three days!", course.name + " begins on " + course.start);
-        } else if (now <= DateUtil.getDateTimestamp(course.start) - 21 * 24 * 60 * 60 * 1000) {
-            AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.start),
+        } else if (now <= DateUtility.getDateTimestamp(course.start) - 21 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.start),
                     "Course starts in three weeks!", course.name + " begins on " + course.start);
-        } else if (now <= DateUtil.getDateTimestamp(course.end)) {
-            AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.end),
+        } else if (now <= DateUtility.getDateTimestamp(course.end)) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.end),
                     "Course ends today!", course.name + " ends on " + course.start);
-        } else if (now <= DateUtil.getDateTimestamp(course.end) - 3 * 24 * 60 * 60 * 1000) {
-            AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.end),
+        } else if (now <= DateUtility.getDateTimestamp(course.end) - 3 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.end),
                     "Course ends in three days!", course.name + " ends on " + course.start);
-        } else if (now <= DateUtil.getDateTimestamp(course.end) - 21 * 24 * 60 * 60 * 1000) {
-            AlarmHandler.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtil.getDateTimestamp(course.end),
+        } else if (now <= DateUtility.getDateTimestamp(course.end) - 21 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.end),
                     "Course ends in three weeks!", course.name + " ends on " + course.start);
         }
         course.notifications = 1;

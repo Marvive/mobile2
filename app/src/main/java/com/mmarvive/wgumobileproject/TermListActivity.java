@@ -37,7 +37,6 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
     public static final int TERM_VIEWER_ACTIVITY_CODE = 22222;
 
     private CursorAdapter cursorAdapter;
-    private DataProvider database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         int[] to = {R.id.tvTerm, R.id.tvTermStartDate, R.id.tvTermEndDate};
 
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.term_list_item, null, from, to, 0);
-        database = new DataProvider();
 
         ListView list = findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);
@@ -188,7 +186,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
 //         Sets alarm for 5 seconds in the future
         Long time = new GregorianCalendar().getTimeInMillis() + 5000;
 
-        Intent intent = new Intent(this, AlarmHandler.class);
+        Intent intent = new Intent(this, Alarm.class);
         intent.putExtra("title", "Test Alarm");
         intent.putExtra("text", "This is a test alarm.");
 

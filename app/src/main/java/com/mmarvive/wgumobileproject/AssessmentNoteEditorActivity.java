@@ -13,11 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 
 public class AssessmentNoteEditorActivity extends AppCompatActivity {
 
-    private long assessmentNoteId;
-    private Uri assessmentNoteUri;
     private AssessmentNote assessmentNote;
     private long assessmentId;
-    private Uri assessmentUri;
     private EditText assessmentNoteTextField;
     private String action;
 
@@ -29,16 +26,16 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         assessmentNoteTextField = findViewById(R.id.etAssessmentNoteText);
-        assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
+        Uri assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri == null) {
             setTitle(R.string.enter_new_note);
-            assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
+            Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
             assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
             action = Intent.ACTION_INSERT;
         }
         else {
             setTitle(R.string.edit_note);
-            assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
+            long assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
             assessmentNote = DataManager.getAssessmentNote(this, assessmentNoteId);
             assessmentId = assessmentNote.assessmentId;
             assessmentNoteTextField.setText(assessmentNote.text);

@@ -1,5 +1,6 @@
 package com.mmarvive.wgumobileproject;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -58,6 +59,7 @@ public class DataManager {
     public static Course getCourse(Context context, long courseId) {
         Cursor cursor = context.getContentResolver().query(DataProvider.COURSES_URI, DBOpenHelper.COURSES_COLUMNS,
                 DBOpenHelper.COURSES_TABLE_ID + " = " + courseId, null, null);
+        assert cursor != null;
         cursor.moveToFirst();
         Long termId = cursor.getLong(cursor.getColumnIndex(DBOpenHelper.COURSE_TERM_ID));
         String courseName = cursor.getString(cursor.getColumnIndex(DBOpenHelper.COURSE_NAME));
@@ -85,7 +87,7 @@ public class DataManager {
         return c;
     }
 
-    public static boolean deleteCourse(Context context, long courseId) {
+    public static void deleteCourse(Context context, long courseId) {
         Cursor notesCursor = context.getContentResolver().query(DataProvider.COURSE_NOTES_URI,
                 DBOpenHelper.COURSE_NOTES_COLUMNS, DBOpenHelper.COURSE_NOTE_COURSE_ID + " = " + courseId,
                 null, null);
@@ -95,15 +97,14 @@ public class DataManager {
         }
         context.getContentResolver().delete(DataProvider.COURSES_URI, DBOpenHelper.COURSES_TABLE_ID + " = "
                 + courseId, null);
-        return true;
     }
 
 //     Course Notes Section
-    public static Uri insertCourseNote(Context context, long courseId, String text) {
+    public static void insertCourseNote(Context context, long courseId, String text) {
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.COURSE_NOTE_COURSE_ID, courseId);
         values.put(DBOpenHelper.COURSE_NOTE_TEXT, text);
-        return context.getContentResolver().insert(DataProvider.COURSE_NOTES_URI, values);
+        context.getContentResolver().insert(DataProvider.COURSE_NOTES_URI, values);
     }
 
     public static CourseNote getCourseNote(Context context, long courseNoteId) {
@@ -121,12 +122,11 @@ public class DataManager {
         return c;
     }
 
-    public static boolean deleteCourseNote(Context context, long courseNoteId) {
+    public static void deleteCourseNote(Context context, long courseNoteId) {
         context.getContentResolver().delete(DataProvider.COURSE_NOTES_URI, DBOpenHelper.COURSE_NOTES_TABLE_ID + " = " + courseNoteId, null);
-        return true;
     }
 
-    // Assessments
+//     Assessments
     public static Uri insertAssessment(Context context, long courseId, String code, String name, String description, String datetime) {
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.ASSESSMENT_COURSE_ID, courseId);
@@ -160,7 +160,7 @@ public class DataManager {
         return a;
     }
 
-    public static boolean deleteAssessment(Context context, long assessmentId) {
+    public static void deleteAssessment(Context context, long assessmentId) {
         Cursor notesCursor = context.getContentResolver().query(DataProvider.ASSESSMENT_NOTES_URI,
                 DBOpenHelper.ASSESSMENT_NOTES_COLUMNS, DBOpenHelper.ASSESSMENT_NOTE_ASSESSMENT_ID + " = " +
                         assessmentId, null, null);
@@ -170,21 +170,21 @@ public class DataManager {
         }
         context.getContentResolver().delete(DataProvider.ASSESSMENTS_URI, DBOpenHelper.ASSESSMENTS_TABLE_ID
                 + " = " + assessmentId, null);
-        return true;
     }
 
-    // Assessment Notes
-    public static Uri insertAssessmentNote(Context context, long assessmentId, String text) {
+//     Assessment Notes
+    public static void insertAssessmentNote(Context context, long assessmentId, String text) {
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.ASSESSMENT_NOTE_ASSESSMENT_ID, assessmentId);
         values.put(DBOpenHelper.ASSESSMENT_NOTE_TEXT, text);
-        return context.getContentResolver().insert(DataProvider.ASSESSMENT_NOTES_URI, values);
+        context.getContentResolver().insert(DataProvider.ASSESSMENT_NOTES_URI, values);
     }
 
     public static AssessmentNote getAssessmentNote(Context context, long assessmentNoteId) {
         Cursor cursor = context.getContentResolver().query(DataProvider.ASSESSMENT_NOTES_URI,
                 DBOpenHelper.ASSESSMENT_NOTES_COLUMNS, DBOpenHelper.ASSESSMENT_NOTES_TABLE_ID + " = "
                         + assessmentNoteId, null, null);
+        assert cursor != null;
         cursor.moveToFirst();
         long assessmentId = cursor.getLong(cursor.getColumnIndex(DBOpenHelper.ASSESSMENT_NOTE_ASSESSMENT_ID));
         String text = cursor.getString(cursor.getColumnIndex(DBOpenHelper.ASSESSMENT_NOTE_TEXT));
@@ -196,23 +196,21 @@ public class DataManager {
         return a;
     }
 
-    public static boolean deleteAssessmentNote(Context context, long assessmentNoteId) {
+    public static void deleteAssessmentNote(Context context, long assessmentNoteId) {
         context.getContentResolver().delete(DataProvider.ASSESSMENT_NOTES_URI, DBOpenHelper.ASSESSMENT_NOTES_TABLE_ID
                 + " = " + assessmentNoteId, null);
-        return true;
     }
 
 //     Images
-    public static Uri insertImage(Context context, Uri parentUri, long timestamp) {
+    public static void insertImage(Context context, Uri parentUri, long timestamp) {
         ContentValues values = new ContentValues();
         values.put(DBOpenHelper.IMAGE_PARENT_URI, parentUri.toString());
         values.put(DBOpenHelper.IMAGE_TIMESTAMP, timestamp);
-        Uri imageUri = context.getContentResolver().insert(DataProvider.IMAGES_URI, values);
-        return imageUri;
+        context.getContentResolver().insert(DataProvider.IMAGES_URI, values);
     }
 
     public static Image getImage(Context context, long imageId) {
-        Cursor cursor = context.getContentResolver().query(DataProvider.IMAGES_URI, DBOpenHelper.IMAGES_COLUMNS, DBOpenHelper.IMAGES_TABLE_ID + " = " + imageId, null, null);
+        @SuppressLint("Recycle") Cursor cursor = context.getContentResolver().query(DataProvider.IMAGES_URI, DBOpenHelper.IMAGES_COLUMNS, DBOpenHelper.IMAGES_TABLE_ID + " = " + imageId, null, null);
         assert cursor != null;
         cursor.moveToFirst();
         Uri parentUri = Uri.parse(cursor.getString(cursor.getColumnIndex(DBOpenHelper.IMAGE_PARENT_URI)));

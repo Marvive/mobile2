@@ -14,7 +14,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
 /**
- * These are the constants for each Table and column
+ * These are the constants for each Table and column. Allows for easy management of the different
+ * data pulled from each class table.
  * */
 
 //    Terms Table

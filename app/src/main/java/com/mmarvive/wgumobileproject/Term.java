@@ -28,6 +28,7 @@ public class Term {
     public long getClassCount(Context context) {
         Cursor cursor = context.getContentResolver().query(DataProvider.COURSES_URI, DBOpenHelper.COURSES_COLUMNS,
                 DBOpenHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
+        assert cursor != null;
         return cursor.getCount();
     }
 

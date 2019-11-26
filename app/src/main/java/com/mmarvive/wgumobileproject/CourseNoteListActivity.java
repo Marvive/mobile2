@@ -61,7 +61,6 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
         String[] from = {DBOpenHelper.COURSE_NOTE_TEXT};
         int[] to = {R.id.tvCourseNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.course_note_list_item, null, from, to, 0);
-        DataProvider database = new DataProvider();
 
         ListView list = findViewById(R.id.courseNoteListView);
         list.setAdapter(cursorAdapter);

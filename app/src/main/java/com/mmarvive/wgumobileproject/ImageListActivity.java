@@ -34,7 +34,6 @@ import androidx.core.content.FileProvider;
 public class ImageListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private CursorAdapter cursorAdapter;
-    private ListView listView;
     private Uri parentUri;
 
     @Override
@@ -105,9 +104,9 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
 
         @Override
         public void setViewText(TextView textView, String text) {
-            Long timestamp = Long.parseLong(text);
+            long timestamp = Long.parseLong(text);
             Date date = new Date(timestamp);
-            textView.setText("Taken: " + DateUtil.dateTimeFormat.format(date));
+            textView.setText("Taken: " + DateUtility.dateTimeFormat.format(date));
         }
 
         @Override

@@ -87,7 +87,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, month, dayOfMonth);
-                etCourseStart.setText(DateUtil.dateFormat.format(newDate.getTime()));
+                etCourseStart.setText(DateUtility.dateFormat.format(newDate.getTime()));
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
@@ -96,7 +96,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, month, dayOfMonth);
-                etCourseEnd.setText(DateUtil.dateFormat.format(newDate.getTime()));
+                etCourseEnd.setText(DateUtility.dateFormat.format(newDate.getTime()));
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 

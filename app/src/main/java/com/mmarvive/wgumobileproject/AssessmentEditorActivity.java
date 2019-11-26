@@ -83,7 +83,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
                 Calendar calendar2 = Calendar.getInstance();
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, month, dayOfMonth);
-                etAssessmentDatetime.setText(DateUtil.dateFormat.format(newDate.getTime()));
+                etAssessmentDatetime.setText(DateUtility.dateFormat.format(newDate.getTime()));
                 assessmentTimeDialog = new TimePickerDialog(AssessmentEditorActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -96,8 +96,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
                         }
                         if (hourOfDay > 12) {
                             hourOfDay = hourOfDay - 12;
-                        }
-                        if (hourOfDay == 0) {
+                        } else if (hourOfDay == 0) {
                             hourOfDay = 12;
                         }
                         String minuteString = Integer.toString(minute);

@@ -30,7 +30,6 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 
     private long termId;
     private Uri termUri;
-    private Term term;
     private MySimpleCursorAdapter cursorAdapter;
 
     @Override
@@ -50,7 +49,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
         loadTermData();
@@ -65,7 +64,6 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         }
         else {
             termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
-            term = DataManager.getTerm(this, termId);
             setTitle(getString(R.string.courses));
         }
     }
@@ -75,7 +73,6 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         int[] to = {R.id.tvCourseName, R.id.tvCourseStartDate, R.id.tvCourseEndDate, R.id.tvCourseStatus};
 
         cursorAdapter = new MySimpleCursorAdapter(this, R.layout.course_list_item, null, from, to);
-        DataProvider database = new DataProvider();
 
         ListView list = findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);

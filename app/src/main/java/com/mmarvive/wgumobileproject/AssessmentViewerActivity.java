@@ -125,18 +125,18 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     }
 
     private boolean enableNotifications() {
-        long now = DateUtil.todayLong();
+        long now = DateUtility.todayLong();
 
-        AlarmHandler.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, System.currentTimeMillis()
+        Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, System.currentTimeMillis()
                 + 1000, "Assessment is today!", assessment.name + " takes place on " + assessment.datetime);
-        if (now <= DateUtil.getDateTimestamp(assessment.datetime)) {
-            AlarmHandler.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtil.getDateTimestamp(assessment.datetime), "Assessment is today!", assessment.name + " takes place on " + assessment.datetime);
+        if (now <= DateUtility.getDateTimestamp(assessment.datetime)) {
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime), "Assessment is today!", assessment.name + " takes place on " + assessment.datetime);
         }
-        if (now <= DateUtil.getDateTimestamp(assessment.datetime) - 3 * 24 * 60 * 60 * 1000) {
-            AlarmHandler.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtil.getDateTimestamp(assessment.datetime) - 3 * 24 * 60 * 60 * 1000, "Assessment is in three days!", assessment.name + " takes place on " + assessment.datetime);
+        if (now <= DateUtility.getDateTimestamp(assessment.datetime) - 3 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime) - 3 * 24 * 60 * 60 * 1000, "Assessment is in three days!", assessment.name + " takes place on " + assessment.datetime);
         }
-        if (now <= DateUtil.getDateTimestamp(assessment.datetime) - 21 * 24 * 60 * 60 * 1000) {
-            AlarmHandler.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtil.getDateTimestamp(assessment.datetime) - 21 * 24 * 60 * 60 * 1000, "Assessment is in three weeks!", assessment.name + " takes place on " + assessment.datetime);
+        if (now <= DateUtility.getDateTimestamp(assessment.datetime) - 21 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime) - 21 * 24 * 60 * 60 * 1000, "Assessment is in three weeks!", assessment.name + " takes place on " + assessment.datetime);
         }
 
         assessment.notifications = 1;

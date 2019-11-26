@@ -30,7 +30,7 @@
         </provider>
 
         <!-- Alarm Provider -->
-        <receiver android:name=".AlarmHandler" />
+        <receiver android:name=".Alarm" />
 
         <!-- Activities -->
         <activity

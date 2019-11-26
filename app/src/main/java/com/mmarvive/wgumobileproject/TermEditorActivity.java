@@ -24,9 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class TermEditorActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int MAIN_ACTIVITY_CODE = 1;
     private String action;
-    private String termFilter;
     private Term term;
 
     private EditText termNameField;
@@ -37,8 +35,6 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
     private DatePickerDialog termEndDateDialog;
     private SimpleDateFormat dateFormat;
 
-    private DataProvider database;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +42,6 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        database = new DataProvider();
 
         termNameField = findViewById(R.id.termNameEditText);
         termStartDateField = findViewById(R.id.termStartDateEditText);
@@ -118,7 +112,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void saveTermChanges(View view) {
-        if (action == Intent.ACTION_INSERT) {
+        if (action.equals(Intent.ACTION_INSERT)) {
             term = new Term();
             getTermFromForm();
 
@@ -126,7 +120,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(this, getString(R.string.term_saved), Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
         }
-        else if (action == Intent.ACTION_EDIT) {
+        else if (action.equals(Intent.ACTION_EDIT)) {
             getTermFromForm();
             term.saveChanges(this);
             Toast.makeText(this, getString(R.string.term_updated), Toast.LENGTH_SHORT).show();

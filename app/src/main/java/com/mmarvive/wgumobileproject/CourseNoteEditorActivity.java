@@ -48,12 +48,12 @@ public class CourseNoteEditorActivity extends AppCompatActivity {
     }
 
     public void saveCourseNote(View view) {
-        if (action == Intent.ACTION_INSERT) {
+        if (action.equals(Intent.ACTION_INSERT)) {
             DataManager.insertCourseNote(this, courseId, noteTextField.getText().toString().trim());
             setResult(RESULT_OK);
             finish();
         }
-        if (action == Intent.ACTION_EDIT) {
+        if (action.equals(Intent.ACTION_EDIT)) {
             courseNote.text = noteTextField.getText().toString().trim();
             courseNote.saveChanges(this);
             setResult(RESULT_OK);

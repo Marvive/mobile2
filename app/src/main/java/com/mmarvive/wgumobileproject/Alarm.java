@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat;
  * Alarm Handler. Creates alarms for the different terms.
  * */
 
-public class AlarmHandler extends BroadcastReceiver {
+public class Alarm extends BroadcastReceiver {
 
     public static final String courseAlarmFile = "courseAlarms";
     public static final String assessmentAlarmFile = "assessmentAlarms";
@@ -83,7 +83,7 @@ public class AlarmHandler extends BroadcastReceiver {
     public static void scheduleCourseAlarm(Context context, long id, long time, String title, String text) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         int nextAlarmId = getNextAlarmId(context);
-        Intent intentAlarm = new Intent(context, AlarmHandler.class);
+        Intent intentAlarm = new Intent(context, Alarm.class);
         intentAlarm.putExtra("id", id);
         intentAlarm.putExtra("title", title);
         intentAlarm.putExtra("text", text);
@@ -102,7 +102,7 @@ public class AlarmHandler extends BroadcastReceiver {
     public static void scheduleAssessmentAlarm(Context context, int id, long time, String tile, String text) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         int nextAlarmId = getNextAlarmId(context);
-        Intent intentAlarm = new Intent(context, AlarmHandler.class);
+        Intent intentAlarm = new Intent(context, Alarm.class);
         intentAlarm.putExtra("id", id);
         intentAlarm.putExtra("title", tile);
         intentAlarm.putExtra("text", text);

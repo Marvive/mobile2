@@ -7,8 +7,6 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -71,7 +69,7 @@ public class CameraActivity extends AppCompatActivity {
     protected void onPictureTaken() {
         pictureTaken = true;
         pictureCaptured = true;
-        long now = DateUtil.todayLongWithTime();
+        long now = DateUtility.todayLongWithTime();
         File from = new File(picturePath);
         File to = new File(folder + now + ".jpg");
         from.renameTo(to);

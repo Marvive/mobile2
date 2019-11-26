@@ -10,14 +10,14 @@ import java.util.TimeZone;
  * Utility to set the date
  * */
 
-public class DateUtil {
+public class DateUtility {
 
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     public static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd h:mm a z", Locale.getDefault());
 
     public static long getDateTimestamp(String dateInput) {
         try {
-            Date date = DateUtil.dateFormat.parse(dateInput + TimeZone.getDefault().getDisplayName());
+            Date date = DateUtility.dateFormat.parse(dateInput + TimeZone.getDefault().getDisplayName());
             return date.getTime();
         } catch (ParseException e) {
             return 0;
@@ -25,7 +25,7 @@ public class DateUtil {
     }
 
     public static long todayLong() {
-        String currentDate = DateUtil.dateFormat.format(new Date());
+        String currentDate = DateUtility.dateFormat.format(new Date());
         return getDateTimestamp(currentDate);
     }
 

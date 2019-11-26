@@ -5,7 +5,7 @@ import android.content.Context;
 
 
 /**
- * Assessment Object
+ * Assessment Class
  * */
 
 public class Assessment {
