@@ -20,7 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
 /**
- * ??? TODO
+ * Camera Handler
  * */
 public class CameraActivity extends AppCompatActivity {
 
