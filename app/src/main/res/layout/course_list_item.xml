@@ -24,7 +24,7 @@
             android:singleLine="true"
             android:text="@string/test_class_name"
             android:textColor="@color/list_item_text"
-            android:textSize="18sp" />
+            android:textSize="@dimen/standard_text" />
 
 
     <LinearLayout

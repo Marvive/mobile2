@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_calendar_clock" />
+            android:src="@drawable/ic_plus_white_48dp" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

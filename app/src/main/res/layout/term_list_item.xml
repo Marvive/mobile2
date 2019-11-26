@@ -18,14 +18,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_margin="4dp"
             android:layout_toEndOf="@+id/imageDocIcon"
-            android:layout_toRightOf="@+id/imageDocIcon"
             android:maxLines="1"
             android:text="@string/test_term_name"
             android:textColor="@color/list_item_text"
-            android:textSize="18sp" />
+            android:textSize="@dimen/standard_text" />
 
 
     <LinearLayout
@@ -33,42 +31,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/textViewTerm"
-            android:layout_toRightOf="@+id/imageDocIcon"
             android:layout_toEndOf="@+id/imageDocIcon">
 
             <TextView
                 android:id="@+id/textViewTermStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewTerm"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
-                android:layout_toRightOf="@+id/imageDocIcon"
                 android:text="@string/startdate_test" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewTerm"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
-                android:layout_toRightOf="@+id/imageDocIcon"
                 android:text="@string/dash_test" />
 
             <TextView
                 android:id="@+id/textViewTermEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewTerm"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
-                android:layout_toRightOf="@+id/imageDocIcon"
                 android:text="@string/enddate_test" />
 
     </LinearLayout>

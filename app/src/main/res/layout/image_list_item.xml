@@ -16,7 +16,6 @@
             android:contentDescription="@string/image_list" />
 
     <TextView
-            android:layout_toRightOf="@+id/imageView"
             android:id="@+id/imageText"
             android:text="@string/image_string_test"
             android:textAlignment="center"

@@ -58,7 +58,6 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
         String[] from = {DatabaseHelper.IMAGE_TIMESTAMP, DatabaseHelper.IMAGE_TIMESTAMP};
         int[] to = {R.id.imageView, R.id.imageText};
         cursorAdapter = new MySimpleCursorAdapter(this, R.layout.image_list_item, null, from, to);
-        DataProvider database = new DataProvider();
         ListView list = findViewById(R.id.lvImages);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
