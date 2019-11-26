@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.CoursePackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,6 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mmarvive.wgumobileproject.Alarm;
+import com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentListActivity;
+import com.mmarvive.wgumobileproject.DataManager;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DateUtility;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -30,9 +37,9 @@ public class CourseViewerActivity extends AppCompatActivity {
     private long courseId;
     private Course course;
 
-    private TextView tvCourseName;
-    private TextView tvStartDate;
-    private TextView tvEndDate;
+    private TextView textViewCourseName;
+    private TextView textViewStartDate;
+    private TextView textViewEndDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,7 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void setStatusLabel() {
-        TextView tvStatus = findViewById(R.id.tvStatus);
+        TextView textViewStatus = findViewById(R.id.textViewStatus);
         String status = "";
         switch (course.status.toString()) {
             case "PLANNED":
@@ -68,23 +75,23 @@ public class CourseViewerActivity extends AppCompatActivity {
                 status = "Dropped";
                 break;
         }
-        tvStatus.setText("Status: " + status);
+        textViewStatus.setText("Status: " + status);
     }
 
     private void findElements() {
-        tvCourseName = findViewById(R.id.tvCourseName);
-        tvCourseName.setText(course.name);
-        tvStartDate = findViewById(R.id.tvCourseStart);
-        tvStartDate.setText(course.start);
-        tvEndDate = findViewById(R.id.tvCourseEnd);
-        tvEndDate.setText(course.end);
+        textViewCourseName = findViewById(R.id.textViewCourseName);
+        textViewCourseName.setText(course.name);
+        textViewStartDate = findViewById(R.id.textViewCourseStart);
+        textViewStartDate.setText(course.start);
+        textViewEndDate = findViewById(R.id.textViewCourseEnd);
+        textViewEndDate.setText(course.end);
     }
 
     private void updateElements() {
         course = DataManager.getCourse(this, courseId);
-        tvCourseName.setText(course.name);
-        tvStartDate.setText(course.start);
-        tvEndDate.setText(course.end);
+        textViewCourseName.setText(course.name);
+        textViewStartDate.setText(course.start);
+        textViewEndDate.setText(course.end);
     }
 
     public void openClassNotesList(View view) {

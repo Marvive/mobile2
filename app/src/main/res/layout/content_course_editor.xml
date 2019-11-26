@@ -9,7 +9,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.mmarvive.wgumobileproject.CourseEditorActivity"
+                tools:context="com.mmarvive.wgumobileproject.CoursePackage.CourseEditorActivity"
                 tools:showIn="@layout/activity_course_editor">
 
     <GridLayout
@@ -22,7 +22,7 @@
 
 
         <TextView
-                android:id="@+id/tvCourseName"
+                android:id="@+id/textViewCourseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -41,7 +41,7 @@
                 android:inputType="text"/>
 
         <TextView
-                android:id="@+id/tvCourseStart"
+                android:id="@+id/textViewCourseStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -59,7 +59,7 @@
                 android:inputType="date" />
 
         <TextView
-                android:id="@+id/tvCourseEnd"
+                android:id="@+id/textViewCourseEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -77,7 +77,7 @@
                 android:inputType="date" />
 
         <TextView
-                android:id="@+id/tvCourseMentor"
+                android:id="@+id/textViewCourseMentor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -95,7 +95,7 @@
                 android:inputType="text" />
 
         <TextView
-                android:id="@+id/tvCourseMentorPhone"
+                android:id="@+id/textViewCourseMentorPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -113,7 +113,7 @@
                 android:inputType="phone" />
 
         <TextView
-                android:id="@+id/tvCourseMentorEmail"
+                android:id="@+id/textViewCourseMentorEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"

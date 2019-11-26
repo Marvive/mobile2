@@ -10,11 +10,11 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.mmarvive.wgumobileproject.TermViewerActivity"
+                tools:context="com.mmarvive.wgumobileproject.TermPackage.TermViewerActivity"
                 tools:showIn="@layout/activity_term_viewer">
 
                 <TextView
-                        android:id="@+id/tvTermViewTermTitle"
+                        android:id="@+id/textViewTermViewTermTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Dummy Term Name"
@@ -30,7 +30,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:layout_below="@+id/tvTermViewTermTitle"
+                        android:layout_below="@+id/textViewTermViewTermTitle"
                         android:layout_margin="2dp"
                         android:text="@string/start_date"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -47,10 +47,10 @@
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
-                        android:id="@+id/tvTermViewStartDate"
+                        android:id="@+id/textViewTermViewStartDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvTermViewTermTitle"
+                        android:layout_below="@+id/textViewTermViewTermTitle"
                         android:layout_margin="2dp"
                         android:layout_toEndOf="@+id/textView3"
                         android:layout_toRightOf="@+id/textView3"
@@ -58,7 +58,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
-                        android:id="@+id/tvTermViewEndDate"
+                        android:id="@+id/textViewTermViewEndDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textView3"

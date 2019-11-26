@@ -13,7 +13,7 @@
 
 
     <TextView
-            android:id="@+id/tvTerm"
+            android:id="@+id/textViewTerm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -31,15 +31,15 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tvTerm"
+            android:layout_below="@+id/textViewTerm"
             android:layout_toRightOf="@+id/imageDocIcon"
             android:layout_toEndOf="@+id/imageDocIcon">
 
             <TextView
-                android:id="@+id/tvTermStartDate"
+                android:id="@+id/textViewTermStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTerm"
+                android:layout_below="@+id/textViewTerm"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTerm"
+                android:layout_below="@+id/textViewTerm"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
@@ -59,10 +59,10 @@
                 android:text=" - " />
 
             <TextView
-                android:id="@+id/tvTermEndDate"
+                android:id="@+id/textViewTermEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTerm"
+                android:layout_below="@+id/textViewTerm"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"

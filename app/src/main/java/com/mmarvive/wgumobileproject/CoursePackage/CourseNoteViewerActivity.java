@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.CoursePackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,6 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mmarvive.wgumobileproject.CameraActivity;
+import com.mmarvive.wgumobileproject.DataManager;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.ImagePackage.ImageListActivity;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -30,7 +36,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
 
     private long courseNoteId;
     private Uri courseNoteUri;
-    private TextView tvCourseNoteText;
+    private TextView textViewCourseNoteText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        tvCourseNoteText = findViewById(R.id.tvCourseNoteText);
+        textViewCourseNoteText = findViewById(R.id.textViewCourseNoteText);
         courseNoteUri = getIntent().getParcelableExtra(DataProvider.COURSE_NOTE_CONTENT_TYPE);
 
         if (courseNoteUri != null) {
@@ -51,8 +57,8 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
 
     private void loadNote() {
         CourseNote courseNote = DataManager.getCourseNote(this, courseNoteId);
-        tvCourseNoteText.setText(courseNote.text);
-        tvCourseNoteText.setMovementMethod(new ScrollingMovementMethod());
+        textViewCourseNoteText.setText(courseNote.text);
+        textViewCourseNoteText.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override

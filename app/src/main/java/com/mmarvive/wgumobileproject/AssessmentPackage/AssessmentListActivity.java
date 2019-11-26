@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.AssessmentPackage;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -14,6 +14,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -54,7 +57,7 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
 
     protected void bindAssessmentList() {
         String[] from = {DBOpenHelper.ASSESSMENT_CODE, DBOpenHelper.ASSESSMENT_NAME, DBOpenHelper.ASSESSMENT_DATETIME};
-        int[] to = {R.id.tvAssessmentCode, R.id.tvAssessmentName, R.id.tvAssessmentDatetime};
+        int[] to = {R.id.textViewAssessmentCode, R.id.textViewAssessmentName, R.id.textViewAssessmentDatetime};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_list_item, null, from, to, 0);
 //        DataProvider database = new DataProvider();
         ListView list = findViewById(R.id.assessmentListView);

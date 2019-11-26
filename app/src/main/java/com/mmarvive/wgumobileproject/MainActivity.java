@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mmarvive.wgumobileproject.TermPackage.TermListActivity;
+import com.mmarvive.wgumobileproject.TermPackage.TermViewerActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 

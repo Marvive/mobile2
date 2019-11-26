@@ -1,7 +1,10 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.AssessmentPackage;
 
 import android.content.ContentValues;
 import android.content.Context;
+
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataProvider;
 
 /**
  * Class that gets created when you hit the add note button for the assessment

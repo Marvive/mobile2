@@ -22,7 +22,6 @@ import androidx.core.content.FileProvider;
  * */
 public class CameraActivity extends AppCompatActivity {
 
-    private boolean pictureCaptured = false;
     protected boolean pictureTaken;
     protected static final String PICTURE_TAKEN = "photo_taken";
     protected String folder;
@@ -68,7 +67,6 @@ public class CameraActivity extends AppCompatActivity {
 
     protected void onPictureTaken() {
         pictureTaken = true;
-        pictureCaptured = true;
         long now = DateUtility.todayLongWithTime();
         File from = new File(picturePath);
         File to = new File(folder + now + ".jpg");

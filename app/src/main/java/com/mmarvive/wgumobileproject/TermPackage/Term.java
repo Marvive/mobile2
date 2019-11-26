@@ -1,8 +1,11 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.TermPackage;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataProvider;
 
 /**
  * Term Base Class

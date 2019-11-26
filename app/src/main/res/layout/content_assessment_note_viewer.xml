@@ -9,7 +9,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.mmarvive.wgumobileproject.AssessmentNoteViewerActivity"
+                tools:context="com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentNoteViewerActivity"
                 tools:showIn="@layout/activity_assessment_note_viewer">
 
     <RelativeLayout
@@ -19,7 +19,7 @@
             android:layout_above="@+id/buttonPanel">
 
         <TextView
-                android:id="@+id/tvAssessmentNoteText"
+                android:id="@+id/textViewAssessmentNoteText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:lineSpacingExtra="2dp"

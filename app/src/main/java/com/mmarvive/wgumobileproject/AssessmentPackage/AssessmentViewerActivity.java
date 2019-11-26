@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.AssessmentPackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,6 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mmarvive.wgumobileproject.Alarm;
+import com.mmarvive.wgumobileproject.DataManager;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.DateUtility;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -29,9 +34,6 @@ public class AssessmentViewerActivity extends AppCompatActivity {
 
     private long assessmentId;
     private Assessment assessment;
-    private TextView tvAssessmentTitle;
-    private TextView tvAssessmentDescription;
-    private TextView tvAssessmentDatetime;
     private Menu menu;
 
     @Override
@@ -58,12 +60,12 @@ public class AssessmentViewerActivity extends AppCompatActivity {
         Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
         assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
         assessment = DataManager.getAssessment(this, assessmentId);
-        tvAssessmentTitle = findViewById(R.id.tvAssessmentTitle);
-        tvAssessmentDescription = findViewById(R.id.tvAssessmentDescription);
-        tvAssessmentDatetime = findViewById(R.id.tvAssessmentDatetime);
-        tvAssessmentTitle.setText(assessment.code + ": " + assessment.name);
-        tvAssessmentDescription.setText(assessment.description);
-        tvAssessmentDatetime.setText(assessment.datetime);
+        TextView textViewAssessmentTitle = findViewById(R.id.textViewAssessmentTitle);
+        TextView textViewAssessmentDescription = findViewById(R.id.textViewAssessmentDescription);
+        TextView textViewAssessmentDatetime = findViewById(R.id.textViewAssessmentDatetime);
+        textViewAssessmentTitle.setText(assessment.code + ": " + assessment.name);
+        textViewAssessmentDescription.setText(assessment.description);
+        textViewAssessmentDatetime.setText(assessment.datetime);
     }
 
     @Override

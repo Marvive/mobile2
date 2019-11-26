@@ -6,6 +6,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.mmarvive.wgumobileproject.AssessmentPackage.Assessment;
+import com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentNote;
+import com.mmarvive.wgumobileproject.CoursePackage.Course;
+import com.mmarvive.wgumobileproject.CoursePackage.CourseNote;
+import com.mmarvive.wgumobileproject.CoursePackage.CourseStatus;
+import com.mmarvive.wgumobileproject.ImagePackage.Image;
+import com.mmarvive.wgumobileproject.TermPackage.Term;
+
 /**
  * Database Manager Class
  * */

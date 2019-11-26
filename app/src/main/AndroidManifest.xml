@@ -20,7 +20,7 @@
             android:exported="false" />
         <!-- Image File Provider -->
         <provider
-            android:name=".ImageFileProvider"
+            android:name=".ImagePackage.ImageFileProvider"
             android:authorities="${applicationId}.com.mmarvive.wgumobileproject.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TermListActivity"
+            android:name=".TermPackage.TermListActivity"
             android:label="@string/term_list"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
@@ -54,127 +54,127 @@
                 android:value="com.mmarvive.wgumobileproject.MainActivity" />
         </activity>
         <activity
-            android:name=".TermViewerActivity"
+            android:name=".TermPackage.TermViewerActivity"
             android:label="@string/term_viewer"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.TermListActivity" />
+                android:value="com.mmarvive.wgumobileproject.TermPackage.TermListActivity" />
         </activity>
         <activity
-            android:name=".TermEditorActivity"
+            android:name=".TermPackage.TermEditorActivity"
             android:label="@string/term_editor"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.TermViewerActivity" />
+                android:value="com.mmarvive.wgumobileproject.TermPackage.TermViewerActivity" />
         </activity>
         <activity
-            android:name=".CourseListActivity"
+            android:name=".CoursePackage.CourseListActivity"
             android:label="@string/course_list"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.TermViewerActivity" />
+                android:value="com.mmarvive.wgumobileproject.TermPackage.TermViewerActivity" />
         </activity>
         <activity
-            android:name=".CourseViewerActivity"
+            android:name=".CoursePackage.CourseViewerActivity"
             android:label="@string/course_viewer"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.CourseListActivity" />
+                android:value="com.mmarvive.wgumobileproject.CoursePackage.CourseListActivity" />
         </activity>
         <activity
-            android:name=".CourseEditorActivity"
+            android:name=".CoursePackage.CourseEditorActivity"
             android:label="@string/course_editor"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.CourseViewerActivity" />
+                android:value="com.mmarvive.wgumobileproject.CoursePackage.CourseViewerActivity" />
         </activity>
         <activity
-            android:name=".CourseNoteListActivity"
+            android:name=".CoursePackage.CourseNoteListActivity"
             android:label="@string/course_note_list"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.CourseViewerActivity" />
+                android:value="com.mmarvive.wgumobileproject.CoursePackage.CourseViewerActivity" />
         </activity>
         <activity
-            android:name=".AssessmentListActivity"
+            android:name=".AssessmentPackage.AssessmentListActivity"
             android:label="@string/assessment_list"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.CourseViewerActivity" />
+                android:value="com.mmarvive.wgumobileproject.CoursePackage.CourseViewerActivity" />
         </activity>
         <activity
-            android:name=".AssessmentViewerActivity"
+            android:name=".AssessmentPackage.AssessmentViewerActivity"
             android:label="@string/assessment_viewer"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.AssessmentListActivity" />
+                android:value="com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentListActivity" />
         </activity>
         <activity
-            android:name=".CourseNoteViewerActivity"
+            android:name=".CoursePackage.CourseNoteViewerActivity"
             android:label="@string/course_note_viewer"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.CourseNoteListActivity" />
+                android:value="com.mmarvive.wgumobileproject.CoursePackage.CourseNoteListActivity" />
         </activity>
         <activity
-            android:name=".AssessmentNoteListActivity"
+            android:name=".AssessmentPackage.AssessmentNoteListActivity"
             android:label="@string/assessment_note_list"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.AssessmentViewerActivity" />
+                android:value="com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentViewerActivity" />
         </activity>
         <activity
-            android:name=".AssessmentNoteViewerActivity"
+            android:name=".AssessmentPackage.AssessmentNoteViewerActivity"
             android:label="@string/assessment_note_viewer"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.AssessmentNoteListActivity" />
+                android:value="com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentNoteListActivity" />
         </activity>
         <activity
-            android:name=".AssessmentEditorActivity"
+            android:name=".AssessmentPackage.AssessmentEditorActivity"
             android:label="@string/assessment_editor"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.AssessmentViewerActivity" />
+                android:value="com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentViewerActivity" />
         </activity>
         <activity
-            android:name=".CourseNoteEditorActivity"
+            android:name=".CoursePackage.CourseNoteEditorActivity"
             android:label="@string/course_note_editor"
-            android:parentActivityName=".CourseNoteListActivity"
+            android:parentActivityName=".CoursePackage.CourseNoteListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.CourseNoteListActivity" />
+                android:value="com.mmarvive.wgumobileproject.CoursePackage.CourseNoteListActivity" />
         </activity>
         <activity
-            android:name=".AssessmentNoteEditorActivity"
+            android:name=".AssessmentPackage.AssessmentNoteEditorActivity"
             android:label="@string/assessment_note_editor"
-            android:parentActivityName=".AssessmentNoteListActivity"
+            android:parentActivityName=".AssessmentPackage.AssessmentNoteListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmarvive.wgumobileproject.AssessmentNoteListActivity" />
+                android:value="com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentNoteListActivity" />
         </activity>
         <activity
             android:name=".CameraActivity"
@@ -182,9 +182,9 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ImageListActivity"
+            android:name=".ImagePackage.ImageListActivity"
             android:label="@string/image_list"
-            android:parentActivityName=".CourseNoteViewerActivity"
+            android:parentActivityName=".CoursePackage.CourseNoteViewerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

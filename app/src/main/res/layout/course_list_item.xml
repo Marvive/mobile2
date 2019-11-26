@@ -12,7 +12,7 @@
 
 
     <TextView
-            android:id="@+id/tvCourseName"
+            android:id="@+id/textViewCourseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -30,16 +30,16 @@
             android:id="@+id/datesLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tvCourseName"
+            android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/imageDocIcon"
             android:layout_toRightOf="@+id/imageDocIcon"
             android:orientation="horizontal">
 
         <TextView
-                android:id="@+id/tvCourseStartDate"
+                android:id="@+id/textViewCourseStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvCourseName"
+                android:layout_below="@+id/textViewCourseName"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="19dp"
                 android:layout_marginRight="1dp"
@@ -50,7 +50,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvCourseName"
+                android:layout_below="@+id/textViewCourseName"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -59,10 +59,10 @@
                 android:text=" - " />
 
         <TextView
-                android:id="@+id/tvCourseEndDate"
+                android:id="@+id/textViewCourseEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvCourseName"
+                android:layout_below="@+id/textViewCourseName"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <TextView
-            android:id="@+id/tvCourseStatus"
+            android:id="@+id/textViewCourseStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageDocIcon"

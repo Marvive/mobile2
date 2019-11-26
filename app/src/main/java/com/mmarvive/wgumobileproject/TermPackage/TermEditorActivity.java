@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.TermPackage;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.mmarvive.wgumobileproject.DataManager;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

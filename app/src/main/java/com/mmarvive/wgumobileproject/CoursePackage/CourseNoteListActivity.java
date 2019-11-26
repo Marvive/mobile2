@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.CoursePackage;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -14,6 +14,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -59,7 +62,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
 
     private void bindCourseNoteList() {
         String[] from = {DBOpenHelper.COURSE_NOTE_TEXT};
-        int[] to = {R.id.tvCourseNoteText};
+        int[] to = {R.id.textViewCourseNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.course_note_list_item, null, from, to, 0);
 
         ListView list = findViewById(R.id.courseNoteListView);

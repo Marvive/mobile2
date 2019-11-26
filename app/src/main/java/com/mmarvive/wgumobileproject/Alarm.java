@@ -10,6 +10,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
+import com.mmarvive.wgumobileproject.AssessmentPackage.Assessment;
+import com.mmarvive.wgumobileproject.AssessmentPackage.AssessmentViewerActivity;
+import com.mmarvive.wgumobileproject.CoursePackage.Course;
+import com.mmarvive.wgumobileproject.CoursePackage.CourseViewerActivity;
+
 import androidx.core.app.NotificationCompat;
 
 

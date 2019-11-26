@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.AssessmentPackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,6 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mmarvive.wgumobileproject.CameraActivity;
+import com.mmarvive.wgumobileproject.DataManager;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.ImagePackage.ImageListActivity;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -30,8 +36,7 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
 
     private long assessmentNoteId;
     private Uri assessmentNoteUri;
-    private TextView tvAssessmentNoteText;
-    private ShareActionProvider shareActionProvider;
+    private TextView textViewAssessmentNoteText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,7 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        tvAssessmentNoteText = findViewById(R.id.tvAssessmentNoteText);
+        textViewAssessmentNoteText = findViewById(R.id.textViewAssessmentNoteText);
         assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri != null) {
             assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
@@ -51,8 +56,8 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
 
     private void loadNote() {
         AssessmentNote assessmentNote = DataManager.getAssessmentNote(this, assessmentNoteId);
-        tvAssessmentNoteText.setText(assessmentNote.text);
-        tvAssessmentNoteText.setMovementMethod(new ScrollingMovementMethod());
+        textViewAssessmentNoteText.setText(assessmentNote.text);
+        textViewAssessmentNoteText.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override
@@ -67,7 +72,7 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_assessment_note_viewer, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
         AssessmentNote assessmentNote = DataManager.getAssessmentNote(this, assessmentNoteId);
         Assessment assessment = DataManager.getAssessment(this, assessmentNote.assessmentId);
         Intent shareIntent = new Intent(Intent.ACTION_SEND);

@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.TermPackage;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -20,6 +20,13 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+
+import com.mmarvive.wgumobileproject.Alarm;
+import com.mmarvive.wgumobileproject.CoursePackage.CourseStatus;
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataManager;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.GregorianCalendar;
 import java.util.Objects;
@@ -47,7 +54,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         String[] from = {DBOpenHelper.TERM_NAME, DBOpenHelper.TERM_START, DBOpenHelper.TERM_END};
-        int[] to = {R.id.tvTerm, R.id.tvTermStartDate, R.id.tvTermEndDate};
+        int[] to = {R.id.textViewTerm, R.id.textViewTermStartDate, R.id.textViewTermEndDate};
 
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.term_list_item, null, from, to, 0);
 
@@ -183,7 +190,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
     }
 
     private boolean createTestAlarm() {
-//         Sets alarm for 5 seconds in the future
+//         Sets alarm for 5 seconds into the future
         Long time = new GregorianCalendar().getTimeInMillis() + 5000;
 
         Intent intent = new Intent(this, Alarm.class);

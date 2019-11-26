@@ -30,7 +30,7 @@
                 android:layout_alignBottom="@+id/imageDocIcon">
 
             <TextView
-                    android:id="@+id/tvAssessmentCode"
+                    android:id="@+id/textViewAssessmentCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -51,7 +51,7 @@
                     android:textSize="18sp" />
 
             <TextView
-                    android:id="@+id/tvAssessmentName"
+                    android:id="@+id/textViewAssessmentName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvAssessmentDatetime" />
+                android:id="@+id/textViewAssessmentDatetime" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.CoursePackage;
 
 import android.app.LoaderManager;
 import android.content.Context;
@@ -14,6 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -70,7 +73,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 
     private void bindClassList() {
         String[] from = {DBOpenHelper.COURSE_NAME, DBOpenHelper.COURSE_START, DBOpenHelper.COURSE_END, DBOpenHelper.COURSE_STATUS};
-        int[] to = {R.id.tvCourseName, R.id.tvCourseStartDate, R.id.tvCourseEndDate, R.id.tvCourseStatus};
+        int[] to = {R.id.textViewCourseName, R.id.textViewCourseStartDate, R.id.textViewCourseEndDate, R.id.textViewCourseStatus};
 
         cursorAdapter = new MySimpleCursorAdapter(this, R.layout.course_list_item, null, from, to);
 
@@ -121,7 +124,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 
         @Override
         public void setViewText(TextView view, String text) {
-            if (view.getId() == R.id.tvCourseStatus) {
+            if (view.getId() == R.id.textViewCourseStatus) {
                 String status = "";
                 switch (text) {
                     case "PLANNED":

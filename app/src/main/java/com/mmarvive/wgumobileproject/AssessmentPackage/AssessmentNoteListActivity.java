@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.AssessmentPackage;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -14,6 +14,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
 
@@ -57,7 +60,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
 
     private void bindAssessmentNoteList() {
         String[] from = {DBOpenHelper.ASSESSMENT_NOTE_TEXT};
-        int[] to = {R.id.tvAssessmentNoteText};
+        int[] to = {R.id.textViewAssessmentNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_note_list_item, null, from, to, 0);
 //        DataProvider database = new DataProvider();
         ListView list = findViewById(R.id.assessmentNoteListView);

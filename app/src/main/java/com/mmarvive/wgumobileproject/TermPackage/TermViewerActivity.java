@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.TermPackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,9 +9,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mmarvive.wgumobileproject.CoursePackage.CourseListActivity;
+import com.mmarvive.wgumobileproject.DBOpenHelper;
+import com.mmarvive.wgumobileproject.DataManager;
+import com.mmarvive.wgumobileproject.DataProvider;
+import com.mmarvive.wgumobileproject.R;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -30,12 +35,9 @@ public class TermViewerActivity extends AppCompatActivity {
 
     private Uri termUri;
     private Term term;
-
-    private CursorAdapter cursorAdapter;
-
-    private TextView tv_title;
-    private TextView tv_start;
-    private TextView tv_end;
+    private TextView textView_title;
+    private TextView textView_start;
+    private TextView textView_end;
     private Menu menu;
 
     private long termId;
@@ -54,9 +56,9 @@ public class TermViewerActivity extends AppCompatActivity {
     }
 
     private void findElements() {
-        tv_title = findViewById(R.id.tvTermViewTermTitle);
-        tv_start = findViewById(R.id.tvTermViewStartDate);
-        tv_end = findViewById(R.id.tvTermViewEndDate);
+        textView_title = findViewById(R.id.textViewTermViewTermTitle);
+        textView_start = findViewById(R.id.textViewTermViewStartDate);
+        textView_end = findViewById(R.id.textViewTermViewEndDate);
     }
 
     private void loadTermData() {
@@ -69,9 +71,9 @@ public class TermViewerActivity extends AppCompatActivity {
             term = DataManager.getTerm(this, termId);
 
             setTitle(getString(R.string.view_term));
-            tv_title.setText(term.name);
-            tv_start.setText(term.start);
-            tv_end.setText(term.end);
+            textView_title.setText(term.name);
+            textView_start.setText(term.start);
+            textView_end.setText(term.end);
         }
     }
 

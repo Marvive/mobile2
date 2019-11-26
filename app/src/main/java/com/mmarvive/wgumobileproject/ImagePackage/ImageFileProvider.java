@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject;
+package com.mmarvive.wgumobileproject.ImagePackage;
 
 import androidx.core.content.FileProvider;
 
