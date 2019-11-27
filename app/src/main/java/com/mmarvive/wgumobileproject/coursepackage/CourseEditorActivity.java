@@ -61,7 +61,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             course = DatabaseManager.getCourse(this, classId);
             fillCourseForm(course);
         }
-        setupDatePickers();
+        datePickerSet();
     }
 
     private void findViews() {
@@ -82,7 +82,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         etCourseMentorEmail.setText(course.mentorEmail);
     }
 
-    private void setupDatePickers() {
+    private void datePickerSet() {
         etCourseStart.setOnClickListener(this);
         etCourseEnd.setOnClickListener(this);
 
