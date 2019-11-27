@@ -21,11 +21,10 @@
             android:id="@+id/etAssessmentNoteText"
             android:hint="@string/note_text_hint"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            tools:ignore="Autofill,LabelFor"/>
 
     <RelativeLayout
             android:id="@+id/buttonPanel"

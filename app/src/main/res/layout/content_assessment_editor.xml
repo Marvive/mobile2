@@ -28,7 +28,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/gridLayout"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
         <TextView
@@ -37,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_row="0"
+                android:textSize="@dimen/small_text"
                 android:id="@+id/textViewAssessmentCode" />
 
         <EditText
@@ -46,7 +46,8 @@
                 android:layout_column="1"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/etAssessmentCode" />
+                android:id="@+id/etAssessmentCode"
+                tools:ignore="Autofill,LabelFor"/>
 
         <TextView
                 android:text="@string/name"
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_row="1"
+                android:textSize="@dimen/small_text"
                 android:id="@+id/textViewAssessmentName" />
 
         <EditText
@@ -64,7 +66,8 @@
                 android:inputType="text"
                 android:ems="10"
                 android:maxLines="1"
-                android:id="@+id/etAssessmentName" />
+                android:id="@+id/etAssessmentName"
+                tools:ignore="Autofill,LabelFor"/>
 
         <TextView
                 android:text="@string/date_time"
@@ -72,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_row="2"
+                android:textSize="@dimen/small_text"
                 android:id="@+id/textViewAssessmentDatetime" />
 
         <EditText
@@ -82,7 +86,8 @@
                 android:inputType="text"
                 android:maxLines="3"
                 android:ems="10"
-                android:id="@+id/etAssessmentDatetime" />
+                android:id="@+id/etAssessmentDatetime"
+                tools:ignore="Autofill,LabelFor"/>
 
         <TextView
                 android:text="@string/description"
@@ -90,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_row="3"
+                android:textSize="@dimen/small_text"
                 android:id="@+id/textViewAssessmentDescription" />
 
         <EditText
@@ -100,7 +106,8 @@
                 android:inputType="text"
                 android:maxLines="3"
                 android:ems="10"
-                android:id="@+id/etAssessmentDescription" />
+                android:id="@+id/etAssessmentDescription"
+                tools:ignore="Autofill,LabelFor"/>
 
     </GridLayout>
 
