@@ -93,7 +93,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         switch (id) {
             case R.id.action_delete_course_note:
                 return deleteCourseNote();
-            case R.id.action_add_picture:
+            case R.id.action_add_photo:
                 return addPicture();
             default:
                 return super.onOptionsItemSelected(item);

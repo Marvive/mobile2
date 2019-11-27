@@ -110,38 +110,29 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         Uri term5Uri = DatabaseManager.insertTerm(this, "Spring 2022", "2022-01-01", "2022-06-30", 0);
         Uri term6Uri = DatabaseManager.insertTerm(this, "Fall 2022", "2022-07-01", "2022-12-31", 0);
 
-        Uri course1Uri = DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
+        Uri course1Uri = DatabaseManager.insertCourse(this, Long.parseLong(Objects.requireNonNull(term1Uri.getLastPathSegment())),
                 "C196: Mobile Application Development", "2020-01-01", "2020-02-01",
-                "Pubali Banerjee", "(801) 924-4710", "pubali.banerjee@wgu.edu",
+                "Nolan Townshend", "(510) 555-5555", "nolan.townshend@wgu.edu",
                 CourseStatus.IN_PROGRESS);
 
         DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
                 "C193: Client-Server Application Development", "2020-02-01", "2020-03-01",
-                "Course Mentor Group", " ", "cmprogramming@wgu.edu",
+                "Bruce Banner", "(808) 555-5555", "bruce.banner@wgu.edu",
                 CourseStatus.PLANNED);
 
         DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
                 "C195: Software II - Advanced Java Concepts", "2020-03-01", "2020-06-30",
-                "Course Mentor Group", "", "cmprogramming@wgu.edu",
-                CourseStatus.PLANNED);
+                "Luke Skywalker", "(911) 555-5555", "luke.skywalker@wgu.edu",
+                CourseStatus.DROPPED);
+
+        DatabaseManager.insertCourseNote(this, Long.parseLong(Objects.requireNonNull(course1Uri.getLastPathSegment())),
+                getString(R.string.short_example_note));
 
         DatabaseManager.insertCourseNote(this, Long.parseLong(course1Uri.getLastPathSegment()),
-                "This is a short test note");
-
-        DatabaseManager.insertCourseNote(this, Long.parseLong(course1Uri.getLastPathSegment()),
-                getString(R.string.long_test_note));
+                getString(R.string.long_example_note));
 
         Uri ass1Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "CLP1", "Mobile Application Development",
-                "As a competent mobile application developer, your understanding of mobile application structure " +
-                        "and design will help you to develop applications to meet customer requirements. The following " +
-                        "project to develop a student scheduler/student progress tracking application, will help you to " +
-                        "apply these skills in a familiar, real-world scenario. This task will allow you to demonstrate " +
-                        "your ability to apply the skills learned in the course.\n \nYou will develop a multiple-screen " +
-                        "mobile application for WGU students to track their terms, courses associated with each term, and " +
-                        "assessment(s) associated with each course. The application will allow students to enter, edit, " +
-                        "and delete term, course, and assessment data. It should provide summary and detailed views of " +
-                        "courses for each term and provide alerts for upcoming performance and objective assessments. " +
-                        "This application will use a SQLite database.", "2020-10-01 2:30 PM");
+                "@string/long_test_note", "2020-10-01 2:30 PM");
 
         Uri ass2Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "ABC3", "Second Assessment, although this one has a name that won't fit on the grid",
                 "Assessment Description",  "2020-10-01 10:30 AM");
