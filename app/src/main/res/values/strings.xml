@@ -117,4 +117,7 @@
     <string name="courses_photo">Courses Photo</string>
     <string name="sample_date_1">2020-01-01</string>
     <string name="sample_date_2">2020-06-30</string>
+    <string name="course_name_no_dash">Course Name</string>
+    <string name="assessments_no_dash">Assessments</string>
+    <string name="assessment_image">Assessment Image</string>
 </resources>

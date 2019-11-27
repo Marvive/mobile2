@@ -8,7 +8,7 @@
             android:id="@+id/imageDocIcon"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_calendar_clock"
+            android:src="@drawable/ic_courses_photo"
             android:contentDescription="@string/course_image" />
 
 
@@ -17,10 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_margin="4dp"
             android:layout_toEndOf="@+id/imageDocIcon"
-            android:layout_toRightOf="@+id/imageDocIcon"
             android:singleLine="true"
             android:text="@string/test_class_name"
             android:textColor="@color/list_item_text"
@@ -33,42 +31,35 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/imageDocIcon"
-            android:layout_toRightOf="@+id/imageDocIcon"
             android:orientation="horizontal">
 
         <TextView
                 android:id="@+id/textViewCourseStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewCourseName"
                 android:layout_marginBottom="4dp"
-                android:layout_marginLeft="19dp"
-                android:layout_marginRight="1dp"
+                android:layout_marginStart="19dp"
+                android:layout_marginEnd="1dp"
                 android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/imageDocIcon"
                 android:text="@string/start_date" />
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewCourseName"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/imageDocIcon"
                 android:text="@string/dash_test" />
 
         <TextView
                 android:id="@+id/textViewCourseEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewCourseName"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/imageDocIcon"
                 android:text="@string/end_date" />
 
     </LinearLayout>
@@ -79,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageDocIcon"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="55dp"
+            android:layout_marginStart="55dp"
             android:layout_marginBottom="8dp"
             android:text="@string/status_example_test" />
 </RelativeLayout>

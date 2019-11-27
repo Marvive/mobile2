@@ -16,17 +16,15 @@
             android:id="@+id/textViewCourseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="Course Name"
+            android:text="@string/course_name_no_dash"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
             android:id="@+id/textViewCourseStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textViewCourseName"
             android:text="@string/start_date_no_colon" />
@@ -37,7 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/textViewCourseStart"
-            android:layout_toRightOf="@+id/textViewCourseStart"
             android:text="@string/dash_test" />
 
     <TextView
@@ -46,7 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/textView11"
-            android:layout_toRightOf="@+id/textView11"
             android:text="@string/end_date_no_colon" />
 
     <TextView
@@ -60,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_below="@+id/textViewStatus">
 
 
@@ -73,14 +68,14 @@
                 android:onClick="openClassNotesList"
                 android:padding="18dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_comment_text_outline_black_36dp" />
+                android:src="@drawable/ic_notes_photo" />
 
         <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_row="1"
                 android:onClick="openClassNotesList"
                 android:text="@string/notes"
@@ -94,16 +89,17 @@
                 android:onClick="openAssessments"
                 android:padding="18dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_query_builder_black_24dp" />
+                android:src="@drawable/ic_exam_photo"
+                android:contentDescription="@string/assessment_image" />
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_row="1"
                 android:onClick="openAssessments"
-                android:text="Assessments"
+                android:text="@string/assessments_no_dash"
                 android:textSize="16sp" />
     </GridLayout>
 

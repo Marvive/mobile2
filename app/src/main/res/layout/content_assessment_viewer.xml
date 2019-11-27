@@ -62,7 +62,7 @@
             android:onClick="openAssessmentNotesList"
             android:padding="18dp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_comment_text_outline_black_36dp" />
+            android:src="@drawable/ic_notes_photo" />
 
         <TextView
             android:id="@+id/textView6"

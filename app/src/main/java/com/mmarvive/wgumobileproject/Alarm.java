@@ -44,7 +44,7 @@ public class Alarm extends BroadcastReceiver {
         int nextAlarmId = intent.getIntExtra("nextAlarmId", getAndIncrementNextAlarmId(context));
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.ic_calendar_clock)
+                .setSmallIcon(R.drawable.ic_alarm_photo)
                 .setContentTitle(alarmTitle)
                 .setContentText(alarmText);
         Intent resultIntent;
