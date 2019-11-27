@@ -57,7 +57,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             action = Intent.ACTION_EDIT;
             setTitle(getString(R.string.edit_course_title));
             long classId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
-            course = DatabaseManager.geditTextCourse(this, classId);
+            course = DatabaseManager.getCourse(this, classId);
             fillCourseForm(course);
         }
         datePickerSet();

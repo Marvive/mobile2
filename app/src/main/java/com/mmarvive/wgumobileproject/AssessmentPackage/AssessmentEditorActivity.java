@@ -30,10 +30,10 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
 
     private Assessment assessment;
     private long courseId;
-    private EditText etAssessmentCode;
-    private EditText etAssessmentName;
-    private EditText etAssessmentDescription;
-    private EditText etAssessmentDatetime;
+    private EditText editTextAssessmentCode;
+    private EditText editTextAssessmentName;
+    private EditText editTextAssessmentDescription;
+    private EditText editTextAssessmentDatetime;
     private DatePickerDialog assessmentDateDialog;
     private TimePickerDialog assessmentTimeDialog;
     private String action;
@@ -45,10 +45,10 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        etAssessmentCode = findViewById(R.id.etAssessmentCode);
-        etAssessmentName = findViewById(R.id.etAssessmentName);
-        etAssessmentDescription = findViewById(R.id.etAssessmentDescription);
-        etAssessmentDatetime = findViewById(R.id.etAssessmentDatetime);
+        editTextAssessmentCode = findViewById(R.id.editTextAssessmentCode);
+        editTextAssessmentName = findViewById(R.id.editTextAssessmentName);
+        editTextAssessmentDescription = findViewById(R.id.editTextAssessmentDescription);
+        editTextAssessmentDatetime = findViewById(R.id.editTextAssessmentDatetime);
 
         Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
         if (assessmentUri == null) {
@@ -71,15 +71,15 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
 
     private void fillAssessmentForm() {
         if (assessment != null) {
-            etAssessmentCode.setText(assessment.code);
-            etAssessmentName.setText(assessment.name);
-            etAssessmentDescription.setText(assessment.description);
-            etAssessmentDatetime.setText(assessment.datetime);
+            editTextAssessmentCode.setText(assessment.code);
+            editTextAssessmentName.setText(assessment.name);
+            editTextAssessmentDescription.setText(assessment.description);
+            editTextAssessmentDatetime.setText(assessment.datetime);
         }
     }
 
     private void setupDateAndTimePickers() {
-        etAssessmentDatetime.setOnClickListener(this);
+        editTextAssessmentDatetime.setOnClickListener(this);
 
         Calendar calendar = Calendar.getInstance();
         assessmentDateDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -88,10 +88,11 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
                 Calendar calendar2 = Calendar.getInstance();
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, month, dayOfMonth);
-                etAssessmentDatetime.setText(DateUtility.dateFormat.format(newDate.getTime()));
+                editTextAssessmentDatetime.setText(DateUtility.dateFormat.format(newDate.getTime()));
                 assessmentTimeDialog = new TimePickerDialog(AssessmentEditorActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                       Changes format from military time to regular
                         String AM_PM;
                         if (hourOfDay < 12) {
                             AM_PM = "AM";
@@ -107,16 +108,16 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
                         if (minute < 10) {
                             minuteString = "0" + minuteString;
                         }
-                        String datetime = etAssessmentDatetime.getText().toString() + " " + hourOfDay + ":" + minuteString
+                        String datetime = editTextAssessmentDatetime.getText().toString() + " " + hourOfDay + ":" + minuteString
                                 + " " + AM_PM + " " + TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT);
-                        etAssessmentDatetime.setText(datetime);
+                        editTextAssessmentDatetime.setText(datetime);
                     }
                 }, calendar2.get(Calendar.HOUR_OF_DAY), calendar2.get(Calendar.MINUTE), false);
                 assessmentTimeDialog.show();
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-        etAssessmentDatetime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        editTextAssessmentDatetime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
@@ -126,6 +127,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
         });
     }
 
+//    Saves changes to database
 
     public void saveAssessmentChanges(View view) {
         getValuesFromFields();
@@ -147,15 +149,15 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
     }
 
     private void getValuesFromFields() {
-        assessment.code = etAssessmentCode.getText().toString().trim();
-        assessment.name = etAssessmentName.getText().toString().trim();
-        assessment.description = etAssessmentDescription.getText().toString().trim();
-        assessment.datetime = etAssessmentDatetime.getText().toString().trim();
+        assessment.code = editTextAssessmentCode.getText().toString().trim();
+        assessment.name = editTextAssessmentName.getText().toString().trim();
+        assessment.description = editTextAssessmentDescription.getText().toString().trim();
+        assessment.datetime = editTextAssessmentDatetime.getText().toString().trim();
     }
 
     @Override
     public void onClick(View view) {
-        if (view == etAssessmentDatetime) {
+        if (view == editTextAssessmentDatetime) {
             assessmentDateDialog.show();
         }
     }

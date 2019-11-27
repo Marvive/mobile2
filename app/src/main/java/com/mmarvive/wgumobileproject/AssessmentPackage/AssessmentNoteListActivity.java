@@ -29,13 +29,16 @@ import androidx.appcompat.widget.Toolbar;
 
 public class AssessmentNoteListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
+//    Constants
     private static final int ASSESSMENT_NOTE_EDITOR_ACTIVITY_CODE = 11111;
     private static final int ASSESSMENT_NOTE_VIEWER_ACTIVITY_CODE = 22222;
 
+//    Variables
     private long assessmentId;
     private Uri assessmentUri;
     private CursorAdapter cursorAdapter;
 
+//    Methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,6 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
         String[] from = {DatabaseHelper.ASSESSMENT_NOTE_TEXT};
         int[] to = {R.id.textViewAssessmentNoteText};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_note_list_item, null, from, to, 0);
-//        DataProvider database = new DataProvider();
         ListView list = findViewById(R.id.assessmentNoteListView);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

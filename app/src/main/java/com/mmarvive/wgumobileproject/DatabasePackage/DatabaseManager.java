@@ -64,7 +64,7 @@ public class DatabaseManager {
         return context.getContentResolver().insert(DataProvider.COURSES_URI, values);
     }
 
-    public static Course geditTextCourse(Context context, long courseId) {
+    public static Course getCourse(Context context, long courseId) {
         Cursor cursor = context.getContentResolver().query(DataProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS,
                 DatabaseHelper.COURSES_TABLE_ID + " = " + courseId, null, null);
         assert cursor != null;
@@ -117,7 +117,7 @@ public class DatabaseManager {
     }
 
 //    Retieves notes from Database
-    public static CourseNote geditTextCourseNote(Context context, long courseNoteId) {
+    public static CourseNote getCourseNote(Context context, long courseNoteId) {
         Cursor cursor = context.getContentResolver().query(DataProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_COLUMNS,
                 DatabaseHelper.COURSE_NOTES_TABLE_ID + " = " + courseNoteId, null, null);
         assert cursor != null;

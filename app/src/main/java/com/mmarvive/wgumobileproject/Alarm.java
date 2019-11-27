@@ -52,7 +52,7 @@ public class Alarm extends BroadcastReceiver {
 
         switch (destination) {
             case "course":
-                Course course = DatabaseManager.geditTextCourse(context, id);
+                Course course = DatabaseManager.getCourse(context, id);
                 if (course != null && course.notifications == 1) {
                     resultIntent = new Intent(context, CourseViewerActivity.class);
                     uri = Uri.parse(DataProvider.COURSES_URI + "/" + id);

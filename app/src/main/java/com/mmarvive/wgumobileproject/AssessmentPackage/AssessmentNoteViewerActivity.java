@@ -31,13 +31,16 @@ import androidx.core.view.MenuItemCompat;
 
 public class AssessmentNoteViewerActivity extends AppCompatActivity {
 
+//    Constants
     private static final int ASSESSMENT_NOTE_EDITOR_ACTIVITY_CODE = 11111;
     private static final int CAMERA_ACTIVITY_CODE = 22222;
 
+//    Variables
     private long assessmentNoteId;
     private Uri assessmentNoteUri;
     private TextView textViewAssessmentNoteText;
 
+//    Methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +53,11 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
         if (assessmentNoteUri != null) {
             assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
             setTitle(getString(R.string.view_assessment_note));
-            loadNote();
+            pullNote();
         }
     }
 
-    private void loadNote() {
+    private void pullNote() {
         AssessmentNote assessmentNote = DatabaseManager.getAssessmentNote(this, assessmentNoteId);
         textViewAssessmentNoteText.setText(assessmentNote.text);
         textViewAssessmentNoteText.setMovementMethod(new ScrollingMovementMethod());
@@ -64,7 +67,7 @@ public class AssessmentNoteViewerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            loadNote();
+            pullNote();
         }
     }
 

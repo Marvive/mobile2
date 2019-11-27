@@ -55,12 +55,13 @@ public class CourseViewerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
         courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
-        course = DatabaseManager.geditTextCourse(this, courseId);
+        course = DatabaseManager.getCourse(this, courseId);
 
         setStatusLabel();
         findElements();
     }
 
+//    Changes status string
     private void setStatusLabel() {
         TextView textViewStatus = findViewById(R.id.textViewStatus);
         String status = "";
@@ -91,7 +92,7 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void updateElements() {
-        course = DatabaseManager.geditTextCourse(this, courseId);
+        course = DatabaseManager.getCourse(this, courseId);
         textViewCourseName.setText(course.name);
         textViewStartDate.setText(course.start);
         textViewEndDate.setText(course.end);

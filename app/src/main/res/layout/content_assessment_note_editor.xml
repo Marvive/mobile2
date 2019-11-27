@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/etAssessmentNoteText"
+            android:id="@+id/editTextAssessmentNoteText"
             android:hint="@string/note_text_hint"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"

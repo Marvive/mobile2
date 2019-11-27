@@ -46,7 +46,7 @@
                 android:layout_column="1"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/etAssessmentCode"
+                android:id="@+id/editTextAssessmentCode"
                 tools:ignore="Autofill,LabelFor"/>
 
         <TextView
@@ -66,7 +66,7 @@
                 android:inputType="text"
                 android:ems="10"
                 android:maxLines="1"
-                android:id="@+id/etAssessmentName"
+                android:id="@+id/editTextAssessmentName"
                 tools:ignore="Autofill,LabelFor"/>
 
         <TextView
@@ -86,7 +86,7 @@
                 android:inputType="text"
                 android:maxLines="3"
                 android:ems="10"
-                android:id="@+id/etAssessmentDatetime"
+                android:id="@+id/editTextAssessmentDatetime"
                 tools:ignore="Autofill,LabelFor"/>
 
         <TextView
@@ -106,7 +106,7 @@
                 android:inputType="text"
                 android:maxLines="3"
                 android:ems="10"
-                android:id="@+id/etAssessmentDescription"
+                android:id="@+id/editTextAssessmentDescription"
                 tools:ignore="Autofill,LabelFor"/>
 
     </GridLayout>

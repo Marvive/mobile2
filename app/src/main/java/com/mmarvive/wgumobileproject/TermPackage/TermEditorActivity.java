@@ -59,7 +59,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         Uri uri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
 
         if (uri == null) {
-            action = intent.ACTION_INSERT;
+            action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.add_new_term));
         } else {
             action = Intent.ACTION_EDIT;

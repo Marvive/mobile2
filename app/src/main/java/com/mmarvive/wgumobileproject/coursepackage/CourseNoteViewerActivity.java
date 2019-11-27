@@ -51,12 +51,13 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         if (courseNoteUri != null) {
             courseNoteId = Long.parseLong(Objects.requireNonNull(courseNoteUri.getLastPathSegment()));
             setTitle(getString(R.string.view_course_note));
-            loadNote();
+            pullNote();
         }
     }
 
-    private void loadNote() {
-        CourseNote courseNote = DatabaseManager.geditTextCourseNote(this, courseNoteId);
+//    Loads note into view
+    private void pullNote() {
+        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
         textViewCourseNoteText.setText(courseNote.text);
         textViewCourseNoteText.setMovementMethod(new ScrollingMovementMethod());
     }
@@ -65,7 +66,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            loadNote();
+            pullNote();
         }
     }
 
@@ -74,8 +75,8 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_course_note_viewer, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
         ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-        CourseNote courseNote = DatabaseManager.geditTextCourseNote(this, courseNoteId);
-        Course course = DatabaseManager.geditTextCourse(this, courseNote.courseId);
+        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
+        Course course = DatabaseManager.getCourse(this, courseNote.courseId);
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
@@ -100,6 +101,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         }
     }
 
+//    Removes note from view and database
     private boolean deleteCourseNote() {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -120,6 +122,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    Adds photo to note
     private boolean addPicture() {
         Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra("PARENT_URI", courseNoteUri);

@@ -40,7 +40,7 @@ public class CourseNoteEditorActivity extends AppCompatActivity {
         } else {
             setTitle(getString(R.string.edit_note));
             long courseNoteId = Long.parseLong(Objects.requireNonNull(courseNoteUri.getLastPathSegment()));
-            courseNote = DatabaseManager.geditTextCourseNote(this, courseNoteId);
+            courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
             courseId = courseNote.courseId;
             noteTextField.setText(courseNote.text);
             action = Intent.ACTION_EDIT;

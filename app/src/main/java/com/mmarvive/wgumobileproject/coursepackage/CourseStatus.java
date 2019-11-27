@@ -1,7 +1,7 @@
 package com.mmarvive.wgumobileproject.coursepackage;
 
 /**
- * Enumeration for Course Status TODO
+ * Enumeration for Course Status
  * */
 
 public enum  CourseStatus {

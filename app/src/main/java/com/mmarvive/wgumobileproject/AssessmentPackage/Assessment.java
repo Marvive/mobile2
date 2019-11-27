@@ -8,7 +8,7 @@ import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
 
 
 /**
- * Assessment Class
+ * Base Assessment Class
  * */
 
 public class Assessment {
@@ -20,6 +20,7 @@ public class Assessment {
     public String datetime;
     public int notifications;
 
+//    Saves changes to Database
     public void saveChanges(Context context) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.ASSESSMENT_COURSE_ID, courseId);

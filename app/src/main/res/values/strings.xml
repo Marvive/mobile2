@@ -114,8 +114,8 @@
     <string name="start_date_no_colon">Start Date</string>
     <string name="end_date_no_colon">End Date</string>
     <string name="courses_photo">Courses Photo</string>
-    <string name="sample_date_1">2020–01–01</string>
-    <string name="sample_date_2">2020–06–30</string>
+    <string name="sample_date_1">01–01–2020</string>
+    <string name="sample_date_2">06–30–2020</string>
     <string name="course_name_no_dash">Course Name</string>
     <string name="assessments_no_dash">Assessments</string>
     <string name="assessment_image">Assessment Image</string>
@@ -139,4 +139,5 @@
 
     <string name="example_alarm">Example Alarm</string>
     <string name="example_alarm_message">This is a an example of an alarm.</string>
+    <string name="colon_space">:</string>
 </resources>

@@ -26,13 +26,16 @@ import androidx.appcompat.widget.Toolbar;
 
 public class AssessmentListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
+//    Constants
     private static final int ASSESSMENT_VIEWER_ACTIVITY_CODE = 11111;
     private static final int ASSESSMENT_EDITOR_ACTIVITY_CODE = 22222;
 
+//    Variables
     private CursorAdapter cursorAdapter;
     private long courseId;
     private Uri courseUri;
 
+//    Methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +62,6 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
         String[] from = {DatabaseHelper.ASSESSMENT_CODE, DatabaseHelper.ASSESSMENT_NAME, DatabaseHelper.ASSESSMENT_DATETIME};
         int[] to = {R.id.textViewAssessmentCode, R.id.textViewAssessmentName, R.id.textViewAssessmentDatetime};
         cursorAdapter = new SimpleCursorAdapter(this, R.layout.assessment_list_item, null, from, to, 0);
-//        DataProvider database = new DataProvider();
         ListView list = findViewById(R.id.assessmentListView);
         list.setAdapter(cursorAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

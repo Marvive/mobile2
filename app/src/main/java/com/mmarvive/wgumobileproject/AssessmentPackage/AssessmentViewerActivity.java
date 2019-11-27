@@ -130,15 +130,13 @@ public class AssessmentViewerActivity extends AppCompatActivity {
         long now = DateUtility.todayLong();
 
         Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, System.currentTimeMillis()
-                + 1000, "Assessment is today!", assessment.name + " takes place on " + assessment.datetime);
+                + 1000, "Assessment is set for today", assessment.name + " takes will occur at " + assessment.datetime);
         if (now <= DateUtility.getDateTimestamp(assessment.datetime)) {
-            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime), "Assessment is today!", assessment.name + " takes place on " + assessment.datetime);
-        }
-        if (now <= DateUtility.getDateTimestamp(assessment.datetime) - 3 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime) - 3 * 24 * 60 * 60 * 1000, "Assessment is in three days!", assessment.name + " takes place on " + assessment.datetime);
-        }
-        if (now <= DateUtility.getDateTimestamp(assessment.datetime) - 21 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime) - 21 * 24 * 60 * 60 * 1000, "Assessment is in three weeks!", assessment.name + " takes place on " + assessment.datetime);
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime), "Assessment is today.", assessment.name + " takes will occur at " + assessment.datetime);
+        } else if (now <= DateUtility.getDateTimestamp(assessment.datetime) - 5 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime) - 5 * 24 * 60 * 60 * 1000, "Assessment set in five days.", assessment.name + " takes will occur at " + assessment.datetime);
+        } else if (now <= DateUtility.getDateTimestamp(assessment.datetime) - 14 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, DateUtility.getDateTimestamp(assessment.datetime) - 14 * 24 * 60 * 60 * 1000, "Assessment set in two weeks.", assessment.name + " takes will occur at " + assessment.datetime);
         }
 
         assessment.notifications = 1;
@@ -160,8 +158,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
 
         if (assessment.notifications == 1) {
             menu.findItem(R.id.action_enable_notifications).setVisible(false);
-        }
-        else {
+        } else {
             menu.findItem(R.id.action_disable_notifications).setVisible(false);
         }
     }

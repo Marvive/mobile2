@@ -120,22 +120,22 @@ public class DataProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             case TERMS:
                 id = database.insert(DatabaseHelper.TABLE_TERMS, null, values);
-                return uri.parse(TERMS_PATH + "/" + id);
+                return Uri.parse(TERMS_PATH + "/" + id);
             case COURSES:
                 id = database.insert(DatabaseHelper.TABLE_COURSES, null, values);
-                return uri.parse(COURSES_PATH + "/" + id);
+                return Uri.parse(COURSES_PATH + "/" + id);
             case COURSE_NOTES:
                 id = database.insert(DatabaseHelper.TABLE_COURSE_NOTES, null, values);
-                return uri.parse(COURSE_NOTES_PATH + "/" + id);
+                return Uri.parse(COURSE_NOTES_PATH + "/" + id);
             case ASSESSMENTS:
                 id = database.insert(DatabaseHelper.TABLE_ASSESSMENTS, null, values);
-                return uri.parse(ASSESSMENTS_PATH + "/" + id);
+                return Uri.parse(ASSESSMENTS_PATH + "/" + id);
             case ASSESSMENT_NOTES:
                 id = database.insert(DatabaseHelper.TABLE_ASSESSMENT_NOTES, null, values);
-                return uri.parse(ASSESSMENT_NOTES_PATH + "/" + id);
+                return Uri.parse(ASSESSMENT_NOTES_PATH + "/" + id);
             case IMAGES:
                 id = database.insert(DatabaseHelper.TABLE_IMAGES, null, values);
-                return uri.parse(IMAGES_PATH + "/" + id);
+                return Uri.parse(IMAGES_PATH + "/" + id);
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }

@@ -29,15 +29,14 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        assessmentNoteTextField = findViewById(R.id.etAssessmentNoteText);
+        assessmentNoteTextField = findViewById(R.id.editTextAssessmentNoteText);
         Uri assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri == null) {
             setTitle(R.string.enter_new_note);
             Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
             assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
             action = Intent.ACTION_INSERT;
-        }
-        else {
+        } else {
             setTitle(R.string.edit_note);
             long assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
             assessmentNote = DatabaseManager.getAssessmentNote(this, assessmentNoteId);
@@ -52,8 +51,7 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
             DatabaseManager.insertAssessmentNote(this, assessmentId, assessmentNoteTextField.getText().toString().trim());
             setResult(RESULT_OK);
             finish();
-        }
-        if (action.equals(Intent.ACTION_EDIT)) {
+        } else if (action.equals(Intent.ACTION_EDIT)) {
             assessmentNote.text = assessmentNoteTextField.getText().toString().trim();
             assessmentNote.saveChanges(this);
             setResult(RESULT_OK);
