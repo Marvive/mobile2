@@ -14,16 +14,19 @@
 
 
     <TextView
-            android:id="@+id/textViewTerm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="4dp"
-            android:layout_toEndOf="@+id/imageDocIcon"
-            android:maxLines="1"
-            android:text="@string/test_term_name"
-            android:textColor="@color/list_item_text"
-            android:textSize="@dimen/standard_text" />
+        android:id="@+id/textViewTerm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toEndOf="@+id/imageDocIcon"
+        android:maxLines="1"
+        android:text="@string/test_term_name"
+        android:textColor="@color/list_item_text"
+        android:textSize="@dimen/standard_text" />
 
 
     <LinearLayout
@@ -33,15 +36,15 @@
             android:layout_below="@+id/textViewTerm"
             android:layout_toEndOf="@+id/imageDocIcon">
 
-            <TextView
-                android:id="@+id/textViewTermStartDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:text="@string/startdate_test" />
+        <TextView
+            android:id="@+id/textViewTermStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/startdate_test" />
 
             <TextView
                 android:layout_width="wrap_content"
