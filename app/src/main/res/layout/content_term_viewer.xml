@@ -21,14 +21,12 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/text_size_large"
                         android:layout_alignParentTop="true"
-                        android:layout_alignLeft="@+id/textView3"
                         android:layout_alignStart="@+id/textView3" />
 
                 <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_below="@+id/textViewTermViewTermTitle"
                         android:layout_margin="2dp"
@@ -39,7 +37,6 @@
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_below="@+id/textView3"
                         android:layout_margin="2dp"
@@ -53,8 +50,7 @@
                         android:layout_below="@+id/textViewTermViewTermTitle"
                         android:layout_margin="2dp"
                         android:layout_toEndOf="@+id/textView3"
-                        android:layout_toRightOf="@+id/textView3"
-                        android:text="2020-01-01"
+                        android:text="@string/sample_date_1"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -64,38 +60,33 @@
                         android:layout_below="@+id/textView3"
                         android:layout_margin="2dp"
                         android:layout_toEndOf="@+id/textView3"
-                        android:layout_toRightOf="@+id/textView3"
-                        android:text="2020-06-30"
+                        android:text="@string/sample_date_2"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <GridLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/textView4"
-                        android:layout_alignLeft="@+id/textView4"
-                        android:layout_alignStart="@+id/textView4"
-                        android:layout_marginTop="44dp">
+    <LinearLayout
+        android:layout_width="366dp"
+        android:layout_height="510dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/courses_photo"
+            android:onClick="openClassList"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_courses_photo" />
 
-                        <ImageButton
-                                android:id="@+id/imageButton3"
-                                android:layout_width="107dp"
-                                android:layout_height="100dp"
-                                android:layout_row="0"
-                                android:src="@drawable/ic_calendar_multiple_black_48dp"
-                                android:onClick="openClassList"
-                                android:layout_column="0" />
-
-                        <TextView
-                                android:id="@+id/textView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/courses"
-                                android:layout_row="1"
-                                android:textSize="16sp"
-                                android:layout_marginLeft="8dp"
-                                android:onClick="openClassList"
-                                android:layout_column="0" />
-                </GridLayout>
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:onClick="openClassList"
+            android:text="@string/courses"
+            android:textAlignment="center"
+            android:textSize="@dimen/standard_text" />
+    </LinearLayout>
 
 </RelativeLayout>
