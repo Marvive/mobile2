@@ -134,10 +134,10 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         DatabaseManager.insertCourseNote(this, Long.parseLong(course1Uri.getLastPathSegment()),
                 getString(R.string.long_example_note));
 
-        Uri ass1Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "CLP1", "Mobile Application Development",
+        Uri ass1Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "A001", getString(R.string.course_1),
                 getString(R.string.assessment_description), "10-01-2020 2:30 PM");
 
-        Uri ass2Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "ABC3", "Second Assessment, although this one has a name that won't fit on the grid",
+        Uri ass2Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "B002", getString(R.string.course_2),
                 getString(R.string.assessment_description),  "10-01-2020 10:30 AM");
 
         DatabaseManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass1Uri.getLastPathSegment())),
@@ -157,6 +157,12 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
 
         restartLoader();
         return true;
+    }
+
+//        Takes you to new term screen
+    public void openNewTermEditor(View view) {
+        Intent intent = new Intent(this, TermEditorActivity.class);
+        startActivityForResult(intent, TERM_EDITOR_ACTIVITY_CODE);
     }
 
     private boolean deleteAllTerms() {
@@ -196,11 +202,6 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_ONE_SHOT));
         Toast.makeText(this, getString(R.string.test_alarm), Toast.LENGTH_SHORT).show();
         return true;
-    }
-
-    public void openNewTermEditor(View view) {
-        Intent intent = new Intent(this, TermEditorActivity.class);
-        startActivityForResult(intent, TERM_EDITOR_ACTIVITY_CODE);
     }
 
     private void restartLoader() {
