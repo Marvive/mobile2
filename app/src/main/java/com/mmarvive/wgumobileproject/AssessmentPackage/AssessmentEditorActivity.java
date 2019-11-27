@@ -95,8 +95,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
                         String AM_PM;
                         if (hourOfDay < 12) {
                             AM_PM = "AM";
-                        }
-                        else {
+                        } else {
                             AM_PM = "PM";
                         }
                         if (hourOfDay > 12) {

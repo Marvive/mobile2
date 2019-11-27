@@ -29,12 +29,12 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
     private Uri termUri;
     private Course course;
 
-    private EditText etCourseName;
-    private EditText etCourseStart;
-    private EditText etCourseEnd;
-    private EditText etCourseMentor;
-    private EditText etCourseMentorPhone;
-    private EditText etCourseMentorEmail;
+    private EditText editTextCourseName;
+    private EditText editTextCourseStart;
+    private EditText editTextCourseEnd;
+    private EditText editTextCourseMentor;
+    private EditText editTextCourseMentorPhone;
+    private EditText editTextCourseMentorEmail;
     private DatePickerDialog courseStartDateDialog;
     private DatePickerDialog courseEndDateDialog;
 
@@ -53,38 +53,37 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         if (courseUri == null) {
             action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.add_new_course));
-        }
-        else {
+        } else {
             action = Intent.ACTION_EDIT;
             setTitle(getString(R.string.edit_course_title));
             long classId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
-            course = DatabaseManager.getCourse(this, classId);
+            course = DatabaseManager.geditTextCourse(this, classId);
             fillCourseForm(course);
         }
         datePickerSet();
     }
 
     private void findViews() {
-        etCourseName = findViewById(R.id.etCourseName);
-        etCourseStart = findViewById(R.id.etCourseStart);
-        etCourseEnd = findViewById(R.id.etCourseEnd);
-        etCourseMentor = findViewById(R.id.etCourseMentor);
-        etCourseMentorPhone = findViewById(R.id.etCourseMentorPhone);
-        etCourseMentorEmail = findViewById(R.id.etCourseMentorEmail);
+        editTextCourseName = findViewById(R.id.editTextCourseName);
+        editTextCourseStart = findViewById(R.id.editTextCourseStart);
+        editTextCourseEnd = findViewById(R.id.editTextCourseEnd);
+        editTextCourseMentor = findViewById(R.id.editTextCourseMentor);
+        editTextCourseMentorPhone = findViewById(R.id.editTextCourseMentorPhone);
+        editTextCourseMentorEmail = findViewById(R.id.editTextCourseMentorEmail);
     }
 
     private void fillCourseForm(Course course) {
-        etCourseName.setText(course.name);
-        etCourseStart.setText(course.start);
-        etCourseEnd.setText(course.end);
-        etCourseMentor.setText(course.mentor);
-        etCourseMentorPhone.setText(course.mentorPhone);
-        etCourseMentorEmail.setText(course.mentorEmail);
+        editTextCourseName.setText(course.name);
+        editTextCourseStart.setText(course.start);
+        editTextCourseEnd.setText(course.end);
+        editTextCourseMentor.setText(course.mentor);
+        editTextCourseMentorPhone.setText(course.mentorPhone);
+        editTextCourseMentorEmail.setText(course.mentorEmail);
     }
 
     private void datePickerSet() {
-        etCourseStart.setOnClickListener(this);
-        etCourseEnd.setOnClickListener(this);
+        editTextCourseStart.setOnClickListener(this);
+        editTextCourseEnd.setOnClickListener(this);
 
         Calendar calendar = Calendar.getInstance();
         courseStartDateDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -92,7 +91,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, month, dayOfMonth);
-                etCourseStart.setText(DateUtility.dateFormat.format(newDate.getTime()));
+                editTextCourseStart.setText(DateUtility.dateFormat.format(newDate.getTime()));
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
@@ -101,11 +100,11 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, month, dayOfMonth);
-                etCourseEnd.setText(DateUtility.dateFormat.format(newDate.getTime()));
+                editTextCourseEnd.setText(DateUtility.dateFormat.format(newDate.getTime()));
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-        etCourseStart.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        editTextCourseStart.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (hasFocus) {
@@ -114,7 +113,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        etCourseEnd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        editTextCourseEnd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (hasFocus) {
@@ -128,21 +127,21 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         if (action.equals(Intent.ACTION_INSERT)) {
             long termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
             DatabaseManager.insertCourse(this, termId,
-                    etCourseName.getText().toString().trim(),
-                    etCourseStart.getText().toString().trim(),
-                    etCourseEnd.getText().toString().trim(),
-                    etCourseMentor.getText().toString().trim(),
-                    etCourseMentorPhone.getText().toString().trim(),
-                    etCourseMentorEmail.getText().toString().trim(),
+                    editTextCourseName.getText().toString().trim(),
+                    editTextCourseStart.getText().toString().trim(),
+                    editTextCourseEnd.getText().toString().trim(),
+                    editTextCourseMentor.getText().toString().trim(),
+                    editTextCourseMentorPhone.getText().toString().trim(),
+                    editTextCourseMentorEmail.getText().toString().trim(),
                     CourseStatus.PLANNED);
         }
         else if (action.equals(Intent.ACTION_EDIT)) {
-            course.name = etCourseName.getText().toString().trim();
-            course.start = etCourseStart.getText().toString().trim();
-            course.end = etCourseEnd.getText().toString().trim();
-            course.mentor = etCourseMentor.getText().toString().trim();
-            course.mentorPhone = etCourseMentorPhone.getText().toString().trim();
-            course.mentorEmail = etCourseMentorEmail.getText().toString().trim();
+            course.name = editTextCourseName.getText().toString().trim();
+            course.start = editTextCourseStart.getText().toString().trim();
+            course.end = editTextCourseEnd.getText().toString().trim();
+            course.mentor = editTextCourseMentor.getText().toString().trim();
+            course.mentorPhone = editTextCourseMentorPhone.getText().toString().trim();
+            course.mentorEmail = editTextCourseMentorEmail.getText().toString().trim();
             course.saveChanges(this);
             setResult(RESULT_OK);
         }
@@ -151,10 +150,9 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        if (view == etCourseStart) {
+        if (view == editTextCourseStart) {
             courseStartDateDialog.show();
-        }
-        if (view == etCourseEnd) {
+        } else if (view == editTextCourseEnd) {
             courseEndDateDialog.show();
         }
     }

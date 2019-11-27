@@ -30,9 +30,11 @@ import androidx.appcompat.widget.Toolbar;
 
 public class TermViewerActivity extends AppCompatActivity {
 
+//    Constants for Class
     private static final int TERM_EDITOR_ACTIVITY_CODE = 11111;
     private static final int COURSE_LIST_ACTIVITY_CODE = 22222;
 
+//    Private Variables
     private Uri termUri;
     private Term term;
     private TextView textView_title;
@@ -65,8 +67,7 @@ public class TermViewerActivity extends AppCompatActivity {
         if (termUri == null) {
             setResult(RESULT_CANCELED);
             finish();
-        }
-        else {
+        } else {
             termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
             term = DatabaseManager.getTerm(this, termId);
 
@@ -81,7 +82,7 @@ public class TermViewerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_term_viewer, menu);
         this.menu = menu;
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
@@ -105,6 +106,8 @@ public class TermViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    Changes the active value
+
     private boolean markTermActive() {
         Cursor cursor = getContentResolver().query(DataProvider.TERMS_URI, null, null, null, null);
         ArrayList<Term> termList = new ArrayList<>();
@@ -118,11 +121,13 @@ public class TermViewerActivity extends AppCompatActivity {
         }
 
         this.term.activate(this);
-        showAppropriateMenuOptions();
+        showMenuOptions();
 
         Toast.makeText(TermViewerActivity.this, getString(R.string.term_marked_active), Toast.LENGTH_SHORT).show();
         return true;
     }
+
+//    Completely deletes the term unless there are courses present inside of it
 
     private boolean deleteTerm() {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -136,8 +141,7 @@ public class TermViewerActivity extends AppCompatActivity {
                         Toast.makeText(TermViewerActivity.this, getString(R.string.term_deleted), Toast.LENGTH_SHORT).show();
                         setResult(RESULT_OK);
                         finish();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(TermViewerActivity.this, getString(R.string.need_to_remove_courses), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -152,7 +156,7 @@ public class TermViewerActivity extends AppCompatActivity {
         return true;
     }
 
-    public void showAppropriateMenuOptions() {
+    public void showMenuOptions() {
         if (term.active == 1) {
             menu.findItem(R.id.action_mark_term_active).setVisible(false);
         }

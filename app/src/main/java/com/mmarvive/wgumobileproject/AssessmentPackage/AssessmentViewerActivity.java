@@ -87,7 +87,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_assessment_viewer, menu);
         this.menu = menu;
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
@@ -143,18 +143,18 @@ public class AssessmentViewerActivity extends AppCompatActivity {
 
         assessment.notifications = 1;
         assessment.saveChanges(this);
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
     private boolean disableNotifications() {
         assessment.notifications = 0;
         assessment.saveChanges(this);
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
-    private void showAppropriateMenuOptions() {
+    private void showMenuOptions() {
         menu.findItem(R.id.action_enable_notifications).setVisible(true);
         menu.findItem(R.id.action_disable_notifications).setVisible(true);
 

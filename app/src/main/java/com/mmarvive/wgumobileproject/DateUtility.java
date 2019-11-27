@@ -15,8 +15,6 @@ public class DateUtility {
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault());
     public static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy h:mm a z", Locale.getDefault());
 
-    public static SimpleDateFormat dateFormatView = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault());
-
     public static long getDateTimestamp(String dateInput) {
         try {
             Date date = DateUtility.dateFormat.parse(dateInput + TimeZone.getDefault().getDisplayName());

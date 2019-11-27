@@ -29,14 +29,17 @@ import androidx.appcompat.widget.Toolbar;
 
 public class CourseViewerActivity extends AppCompatActivity {
 
+//      Constants...
     private static final int COURSE_NOTE_LIST_ACTIVITY_CODE = 11111;
     private static final int ASSESSMENT_LIST_ACTIVITY_CODE = 22222;
     private static final int COURSE_EDITOR_ACTIVITY_CODE = 33333;
 
+//    Variables
     private Menu menu;
     private long courseId;
     private Course course;
 
+//    Classes
     private TextView textViewCourseName;
     private TextView textViewStartDate;
     private TextView textViewEndDate;
@@ -52,7 +55,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
         courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
-        course = DatabaseManager.getCourse(this, courseId);
+        course = DatabaseManager.geditTextCourse(this, courseId);
 
         setStatusLabel();
         findElements();
@@ -88,7 +91,7 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     private void updateElements() {
-        course = DatabaseManager.getCourse(this, courseId);
+        course = DatabaseManager.geditTextCourse(this, courseId);
         textViewCourseName.setText(course.name);
         textViewStartDate.setText(course.start);
         textViewEndDate.setText(course.end);
@@ -122,8 +125,7 @@ public class CourseViewerActivity extends AppCompatActivity {
 
         if (course.notifications == 1) {
             menu.findItem(R.id.action_enable_notifications).setVisible(false);
-        }
-        else {
+        } else {
             menu.findItem(R.id.action_disable_notifications).setVisible(false);
         }
 
@@ -175,6 +177,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         }
     }
 
+//    Takes you to course editor
     private boolean editCourse() {
         Intent intent = new Intent(this, CourseEditorActivity.class);
         Uri uri = Uri.parse(DataProvider.COURSES_URI + "/" + course.courseId);
@@ -183,6 +186,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    Deletes Course
     private boolean deleteCourse() {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -204,6 +208,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    Creates alarms/notifications
     private boolean enableNotifications() {
         long now = DateUtility.todayLong();
 
@@ -232,6 +237,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    Disables notifications
     private boolean disableNotifications() {
         course.notifications = 0;
         course.saveChanges(this);
@@ -239,6 +245,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    Sets status of course to DROPPED
     private boolean dropCourse() {
         course.status = CourseStatus.DROPPED;
         course.saveChanges(this);
@@ -246,7 +253,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         showMenuOptions();
         return true;
     }
-
+//    Sets status of course to IN_PROGRESS
     private boolean startCourse() {
         course.status = CourseStatus.IN_PROGRESS;
         course.saveChanges(this);
@@ -255,6 +262,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    Sets status of course to COMPLETED
     private boolean markCourseCompleted() {
         course.status = CourseStatus.COMPLETED;
         course.saveChanges(this);
@@ -263,6 +271,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         return true;
     }
 
+//    updates the status if confirmed
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {

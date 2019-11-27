@@ -56,7 +56,7 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
     }
 
     private void loadNote() {
-        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
+        CourseNote courseNote = DatabaseManager.geditTextCourseNote(this, courseNoteId);
         textViewCourseNoteText.setText(courseNote.text);
         textViewCourseNoteText.setMovementMethod(new ScrollingMovementMethod());
     }
@@ -74,8 +74,8 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_course_note_viewer, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
         ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
-        Course course = DatabaseManager.getCourse(this, courseNote.courseId);
+        CourseNote courseNote = DatabaseManager.geditTextCourseNote(this, courseNoteId);
+        Course course = DatabaseManager.geditTextCourse(this, courseNote.courseId);
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");

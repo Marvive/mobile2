@@ -24,6 +24,7 @@ public class Course {
     public String mentorEmail;
     public int notifications;
 
+//    Saves changes to database after being created
     public void saveChanges(Context context) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COURSE_TERM_ID, termId);

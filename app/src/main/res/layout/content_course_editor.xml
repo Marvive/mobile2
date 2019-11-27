@@ -31,7 +31,7 @@
                 android:text="@string/course_name" />
 
         <EditText
-                android:id="@+id/etCourseName"
+                android:id="@+id/editTextCourseName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -52,7 +52,7 @@
                 android:text="@string/course_start" />
 
         <EditText
-                android:id="@+id/etCourseStart"
+                android:id="@+id/editTextCourseStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -72,7 +72,7 @@
                 android:text="@string/course_end" />
 
         <EditText
-                android:id="@+id/etCourseEnd"
+                android:id="@+id/editTextCourseEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -92,7 +92,7 @@
                 android:text="@string/course_mentor" />
 
         <EditText
-                android:id="@+id/etCourseMentor"
+                android:id="@+id/editTextCourseMentor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -112,7 +112,7 @@
                 android:text="@string/course_mentor_phone" />
 
         <EditText
-                android:id="@+id/etCourseMentorPhone"
+                android:id="@+id/editTextCourseMentorPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -132,7 +132,7 @@
                 android:text="@string/course_mentor_email" />
 
         <EditText
-                android:id="@+id/etCourseMentorEmail"
+                android:id="@+id/editTextCourseMentorEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
