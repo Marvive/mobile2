@@ -112,11 +112,11 @@ public class CourseViewerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_course_viewer, menu);
         this.menu = menu;
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
-    private void showAppropriateMenuOptions() {
+    private void showMenuOptions() {
         menu.findItem(R.id.action_enable_notifications).setVisible(true);
         menu.findItem(R.id.action_disable_notifications).setVisible(true);
 
@@ -228,14 +228,14 @@ public class CourseViewerActivity extends AppCompatActivity {
         }
         course.notifications = 1;
         course.saveChanges(this);
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
     private boolean disableNotifications() {
         course.notifications = 0;
         course.saveChanges(this);
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
@@ -243,7 +243,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         course.status = CourseStatus.DROPPED;
         course.saveChanges(this);
         setStatusLabel();
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
@@ -251,7 +251,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         course.status = CourseStatus.IN_PROGRESS;
         course.saveChanges(this);
         setStatusLabel();
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 
@@ -259,7 +259,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         course.status = CourseStatus.COMPLETED;
         course.saveChanges(this);
         setStatusLabel();
-        showAppropriateMenuOptions();
+        showMenuOptions();
         return true;
     }
 

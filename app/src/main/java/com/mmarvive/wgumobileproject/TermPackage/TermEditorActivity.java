@@ -53,7 +53,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         termEndDateField = findViewById(R.id.termEndDateEditText);
         termEndDateField.setInputType(InputType.TYPE_NULL);
 
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        dateFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
 
         Intent intent = getIntent();
         Uri uri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
@@ -68,7 +68,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
             term = DatabaseManager.getTerm(this, termId);
             fillTermForm(term);
         }
-        setupDatePickers();
+        datePickerSet();
     }
 
     private void fillTermForm(Term term) {
@@ -83,7 +83,8 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         term.end = termEndDateField.getText().toString().trim();
     }
 
-    private void setupDatePickers() {
+// Utilizes datePicker to grab a proper date format
+    private void datePickerSet() {
         termStartDateField.setOnClickListener(this);
         termEndDateField.setOnClickListener(this);
 
@@ -115,6 +116,8 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
+//    Saves changes to Database
+
     public void saveTermChanges(View view) {
         if (action.equals(Intent.ACTION_INSERT)) {
             term = new Term();
@@ -123,8 +126,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
             DatabaseManager.insertTerm(this, term.name, term.start, term.end, term.active);
             Toast.makeText(this, getString(R.string.term_saved), Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
-        }
-        else if (action.equals(Intent.ACTION_EDIT)) {
+        } else if (action.equals(Intent.ACTION_EDIT)) {
             getTermFromForm();
             term.saveChanges(this);
             Toast.makeText(this, getString(R.string.term_updated), Toast.LENGTH_SHORT).show();

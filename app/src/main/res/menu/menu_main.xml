@@ -8,9 +8,9 @@
         android:title="@string/generate_sample_terms"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_create_test_alarm"
+        android:id="@+id/action_generate_example_alarm"
         android:orderInCategory="100"
-        android:title="@string/create_test_alarm"
+        android:title="@string/generate_example_alarm"
         app:showAsAction="never" />
 
     <item

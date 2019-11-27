@@ -7,7 +7,7 @@
     <string name="classes">Classes</string>
     <string name="view_term">View Term</string>
     <string name="generate_sample_terms">Generate Sample Terms</string>
-    <string name="create_test_alarm">Create Test Alarm</string>
+    <string name="generate_example_alarm">Generate Alarm Example</string>
     <string name="delete_all_terms">Delete All Terms</string>
     <string name="mark_term_active">Mark Term Active</string>
     <string name="edit_term">Edit Term</string>

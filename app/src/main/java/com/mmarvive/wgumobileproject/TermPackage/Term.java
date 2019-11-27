@@ -18,6 +18,7 @@ public class Term {
     public String end;
     public int active;
 
+//    Pushes saved information to database
     public void saveChanges(Context context) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.TERM_NAME, name);
@@ -28,6 +29,7 @@ public class Term {
                 + " = " + termId, null);
     }
 
+//    Grabs classes from database
     public long getClassCount(Context context) {
         Cursor cursor = context.getContentResolver().query(DataProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS,
                 DatabaseHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
@@ -35,11 +37,13 @@ public class Term {
         return cursor.getCount();
     }
 
+//    Deactivates courses. Basically sets it as a true/false value 0 and 1
     public void deactivate(Context context) {
         this.active = 0;
         saveChanges(context);
     }
 
+//    Activates courses. Basically sets it as a true/false value 0 and 1
     public void activate(Context context) {
         this.active = 1;
         saveChanges(context);

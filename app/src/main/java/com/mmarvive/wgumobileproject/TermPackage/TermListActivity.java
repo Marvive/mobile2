@@ -92,37 +92,40 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         int id = item.getItemId();
         switch (id) {
             case R.id.action_create_sample:
-                return createSampleData();
+                return generateSamples();
             case R.id.action_delete_all_terms:
                 return deleteAllTerms();
-            case R.id.action_create_test_alarm:
-                return createTestAlarm();
+            case R.id.action_generate_example_alarm:
+                return createExampleAlarm();
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private boolean createSampleData() {
-        Uri term1Uri = DatabaseManager.insertTerm(this, "Spring 2020", "2020-01-01", "2020-06-30", 1);
-        Uri term2Uri = DatabaseManager.insertTerm(this, "Fall 2020", "2020-07-01", "2020-12-31", 0);
-        Uri term3Uri = DatabaseManager.insertTerm(this, "Spring 2021", "2021-01-01", "2021-06-30", 0);
-        Uri term4Uri = DatabaseManager.insertTerm(this, "Fall 2021", "2021-07-01", "2021-12-31", 0);
-        Uri term5Uri = DatabaseManager.insertTerm(this, "Spring 2022", "2022-01-01", "2022-06-30", 0);
-        Uri term6Uri = DatabaseManager.insertTerm(this, "Fall 2022", "2022-07-01", "2022-12-31", 0);
+/*
+* This is to generate sample classes that get pushed to the database then retrieved to show on screen
+* */
+    private boolean generateSamples() {
+        Uri term1Uri = DatabaseManager.insertTerm(this, "Summer 2020", "01-01-2020", "2020-06-30", 1);
+        Uri term2Uri = DatabaseManager.insertTerm(this, "Winter 2020", "07-01-2020", "12-31-2020", 0);
+        Uri term3Uri = DatabaseManager.insertTerm(this, "Summer 2021", "01-01-2021", "06-30-2021", 0);
+        Uri term4Uri = DatabaseManager.insertTerm(this, "Winter 2021", "07-01-2021", "12-31-2021", 0);
+        Uri term5Uri = DatabaseManager.insertTerm(this, "Summer 2022", "01-01-2022", "06-30-2022", 0);
+        Uri term6Uri = DatabaseManager.insertTerm(this, "Winter 2022", "07-01-2022", "12-31-2022", 0);
 
         Uri course1Uri = DatabaseManager.insertCourse(this, Long.parseLong(Objects.requireNonNull(term1Uri.getLastPathSegment())),
-                "C196: Mobile Application Development", "2020-01-01", "2020-02-01",
-                "Nolan Townshend", "(510) 555-5555", "nolan.townshend@wgu.edu",
+                getString(R.string.course_1), "01-01-2020", "02-01-2020",
+                getString(R.string.mentor_1), "(510) 555-5555", getString(R.string.mentor_email_1),
                 CourseStatus.IN_PROGRESS);
 
         DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
-                "C193: Client-Server Application Development", "2020-02-01", "2020-03-01",
-                "Bruce Banner", "(808) 555-5555", "bruce.banner@wgu.edu",
+                getString(R.string.course_2), "02-01-2020", "03-01-2020",
+                getString(R.string.mentor_2), "(808) 555-5555", getString(R.string.mentor_email_2),
                 CourseStatus.PLANNED);
 
         DatabaseManager.insertCourse(this, Long.parseLong(term1Uri.getLastPathSegment()),
-                "C195: Software II - Advanced Java Concepts", "2020-03-01", "2020-06-30",
-                "Luke Skywalker", "(911) 555-5555", "luke.skywalker@wgu.edu",
+                getString(R.string.course_3), "03-01-2020", "06-30-2020",
+                getString(R.string.mentor_3), "(911) 555-5555", getString(R.string.mentor_email_3),
                 CourseStatus.DROPPED);
 
         DatabaseManager.insertCourseNote(this, Long.parseLong(Objects.requireNonNull(course1Uri.getLastPathSegment())),
@@ -132,25 +135,25 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
                 getString(R.string.long_example_note));
 
         Uri ass1Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "CLP1", "Mobile Application Development",
-                "@string/long_test_note", "2020-10-01 2:30 PM");
+                getString(R.string.assessment_description), "10-01-2020 2:30 PM");
 
         Uri ass2Uri = DatabaseManager.insertAssessment(this, Long.parseLong(course1Uri.getLastPathSegment()), "ABC3", "Second Assessment, although this one has a name that won't fit on the grid",
-                "Assessment Description",  "2020-10-01 10:30 AM");
+                getString(R.string.assessment_description),  "10-01-2020 10:30 AM");
 
         DatabaseManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass1Uri.getLastPathSegment())),
-                "Assessment #1 Note #1");
+                getString(R.string.short_example_note));
 
         DatabaseManager.insertAssessmentNote(this, Long.parseLong(ass1Uri.getLastPathSegment()),
-                "Assessment #1 Note #2");
+                getString(R.string.short_example_note));
 
         DatabaseManager.insertAssessmentNote(this, Long.parseLong(Objects.requireNonNull(ass2Uri.getLastPathSegment())),
-                "Assessment #2 Note #1");
+                getString(R.string.short_example_note));
 
         DatabaseManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),
-                "Assessment #2 Note #2");
+                getString(R.string.short_example_note));
 
         DatabaseManager.insertAssessmentNote(this, Long.parseLong(ass2Uri.getLastPathSegment()),
-                "Assessment #2 Note #3");
+                getString(R.string.short_example_note));
 
         restartLoader();
         return true;
@@ -180,13 +183,13 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         return true;
     }
 
-    private boolean createTestAlarm() {
+    private boolean createExampleAlarm() {
 //         Sets alarm for 5 seconds into the future
         Long time = new GregorianCalendar().getTimeInMillis() + 5000;
 
         Intent intent = new Intent(this, Alarm.class);
-        intent.putExtra("title", "Test Alarm");
-        intent.putExtra("text", "This is a test alarm.");
+        intent.putExtra("title", getString(R.string.example_alarm));
+        intent.putExtra("text", getString(R.string.example_alarm_message));
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
