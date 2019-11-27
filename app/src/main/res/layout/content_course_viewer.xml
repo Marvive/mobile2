@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textViewCourseName"
+            android:textSize="@dimen/small_text"
             android:text="@string/start_date_no_colon" />
 
     <TextView
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/textViewCourseStart"
+            android:textSize="@dimen/small_text"
             android:text="@string/dash_test" />
 
     <TextView
@@ -43,64 +45,57 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewCourseName"
             android:layout_toEndOf="@+id/textView11"
-            android:text="@string/end_date_no_colon" />
+            android:text="@string/end_date_no_colon"
+            android:textSize="@dimen/small_text"/>
 
     <TextView
             android:id="@+id/textViewStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewCourseStart"
-            android:text="Planned" />
+            android:text="@string/planned_string" />
 
-    <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/textViewStatus">
-
-
-        <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="134dp"
-                android:layout_height="125dp"
-                android:layout_column="0"
-                android:layout_row="0"
-                android:onClick="openClassNotesList"
-                android:padding="18dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_notes_photo" />
-
-        <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="8dp"
-                android:layout_row="1"
-                android:onClick="openClassNotesList"
-                android:text="@string/notes"
-                android:textSize="16sp" />
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="601dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageButton
-                android:layout_width="133dp"
-                android:layout_height="124dp"
-                android:layout_column="1"
-                android:layout_row="0"
-                android:onClick="openAssessments"
-                android:padding="18dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_exam_photo"
-                android:contentDescription="@string/assessment_image" />
+            android:id="@+id/imageButton3"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:contentDescription="@string/note_image"
+            android:onClick="openClassNotesList"
+            android:padding="18dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_notes_photo" />
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_marginStart="8dp"
-                android:layout_row="1"
-                android:onClick="openAssessments"
-                android:text="@string/assessments_no_dash"
-                android:textSize="16sp" />
-    </GridLayout>
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:onClick="openClassNotesList"
+            android:text="@string/notes"
+            android:textSize="@dimen/standard_text" />
+
+        <ImageButton
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:contentDescription="@string/assessment_image"
+            android:onClick="openAssessments"
+            android:padding="18dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_exam_photo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:onClick="openAssessments"
+            android:text="@string/assessments_no_dash"
+            android:textSize="@dimen/standard_text" />
+    </LinearLayout>
 
 </RelativeLayout>

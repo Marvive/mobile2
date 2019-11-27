@@ -120,4 +120,5 @@
     <string name="course_name_no_dash">Course Name</string>
     <string name="assessments_no_dash">Assessments</string>
     <string name="assessment_image">Assessment Image</string>
+    <string name="planned_string">Planned</string>
 </resources>

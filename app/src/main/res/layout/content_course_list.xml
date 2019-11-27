@@ -15,9 +15,6 @@
     <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/android:list"
-            android:layout_below="@+id/textView6"
-            android:layout_alignLeft="@+id/textView6"
-            android:layout_alignStart="@+id/textView6" />
+            android:id="@+id/android:list"/>
 
 </RelativeLayout>

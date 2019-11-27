@@ -13,64 +13,71 @@
 
 
     <TextView
-            android:id="@+id/textViewCourseName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="4dp"
-            android:layout_toEndOf="@+id/imageDocIcon"
-            android:singleLine="true"
-            android:text="@string/test_class_name"
-            android:textColor="@color/list_item_text"
-            android:textSize="@dimen/standard_text" />
+        android:id="@+id/textViewCourseName"
+        android:layout_width="352dp"
+        android:layout_height="28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toEndOf="@+id/imageDocIcon"
+        android:singleLine="true"
+        android:text="@string/test_class_name"
+        android:textColor="@color/list_item_text"
+        android:textSize="@dimen/standard_text" />
 
 
     <LinearLayout
-            android:id="@+id/datesLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/textViewCourseName"
-            android:layout_toEndOf="@+id/imageDocIcon"
-            android:orientation="horizontal">
+        android:id="@+id/datesLayout"
+        android:layout_width="376dp"
+        android:layout_height="707dp"
+        android:layout_below="@+id/textViewCourseName"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-7dp"
+        android:layout_toEndOf="@+id/imageDocIcon"
+        android:orientation="horizontal">
 
         <TextView
-                android:id="@+id/textViewCourseStartDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginStart="19dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/start_date" />
+            android:id="@+id/textViewCourseStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/start_date" />
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/dash_test" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/dash_test" />
 
         <TextView
-                android:id="@+id/textViewCourseEndDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/end_date" />
+            android:id="@+id/textViewCourseEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/end_date" />
 
     </LinearLayout>
 
     <TextView
-            android:id="@+id/textViewCourseStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageDocIcon"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/status_example_test" />
+        android:id="@+id/textViewCourseStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageDocIcon"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/status_example_test" />
 </RelativeLayout>

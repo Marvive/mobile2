@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:lineSpacingExtra="2dp"
                 android:text="New Text"
-                android:textSize="14sp" />
+                android:textSize="@dimen/small_text" />
     </RelativeLayout>
 
 
