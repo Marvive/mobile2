@@ -30,10 +30,12 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
 
     private Assessment assessment;
     private long courseId;
+
     private EditText editTextAssessmentCode;
     private EditText editTextAssessmentName;
     private EditText editTextAssessmentDescription;
     private EditText editTextAssessmentDatetime;
+
     private DatePickerDialog assessmentDateDialog;
     private TimePickerDialog assessmentTimeDialog;
     private String action;
@@ -41,41 +43,48 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println(getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES));
+        System.out.println("Editor");
         setContentView(R.layout.activity_assessment_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        editTextAssessmentCode = findViewById(R.id.editTextAssessmentCode);
-        editTextAssessmentName = findViewById(R.id.editTextAssessmentName);
-        editTextAssessmentDescription = findViewById(R.id.editTextAssessmentDescription);
-        editTextAssessmentDatetime = findViewById(R.id.editTextAssessmentDatetime);
+        findViews();
 
-        Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
+        Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
+//        AssessmentUri is null always
         if (assessmentUri == null) {
+
             setTitle(getString(R.string.new_assessment));
             action = Intent.ACTION_INSERT;
             Uri courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
             courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
             assessment = new Assessment();
-        }
-        else {
+        } else {
             setTitle(getString(R.string.edit_assessment));
             action = Intent.ACTION_EDIT;
-            Long assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
+            long assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
             assessment = DatabaseManager.getAssessment(this, assessmentId);
             courseId = assessment.courseId;
-            fillAssessmentForm();
+            fillAssessmentForm(assessment);
         }
         setupDateAndTimePickers();
     }
 
-    private void fillAssessmentForm() {
-        if (assessment != null) {
+    private void findViews() {
+        editTextAssessmentCode = findViewById(R.id.editTextAssessmentCode);
+        editTextAssessmentName = findViewById(R.id.editTextAssessmentName);
+        editTextAssessmentDescription = findViewById(R.id.editTextAssessmentDescription);
+        editTextAssessmentDatetime = findViewById(R.id.editTextAssessmentDatetime);
+    }
+
+    private void fillAssessmentForm(Assessment assessment) {
+//        if (assessment != null) {
             editTextAssessmentCode.setText(assessment.code);
             editTextAssessmentName.setText(assessment.name);
             editTextAssessmentDescription.setText(assessment.description);
             editTextAssessmentDatetime.setText(assessment.datetime);
-        }
+//        }
     }
 
     private void setupDateAndTimePickers() {

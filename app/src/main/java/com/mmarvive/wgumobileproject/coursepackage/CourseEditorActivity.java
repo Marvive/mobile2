@@ -47,6 +47,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         findViews();
         Intent intent = getIntent();
+
         Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
         termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
 
@@ -134,8 +135,7 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
                     editTextCourseMentorPhone.getText().toString().trim(),
                     editTextCourseMentorEmail.getText().toString().trim(),
                     CourseStatus.PLANNED);
-        }
-        else if (action.equals(Intent.ACTION_EDIT)) {
+        } else if (action.equals(Intent.ACTION_EDIT)) {
             course.name = editTextCourseName.getText().toString().trim();
             course.start = editTextCourseStart.getText().toString().trim();
             course.end = editTextCourseEnd.getText().toString().trim();

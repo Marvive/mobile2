@@ -38,6 +38,8 @@ public class AssessmentViewerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        System.out.println(getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES));
+//        System.out.println("BEFORE");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_viewer);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -48,7 +50,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AssessmentViewerActivity.this, AssessmentEditorActivity.class);
                 Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + assessmentId);
-                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPE, uri);
+                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
                 startActivityForResult(intent, ASSESSMENT_EDITOR_ACTIVITY_CODE);
             }
         });
@@ -57,7 +59,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     }
 
     private void loadAssessment() {
-        Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
+        Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
         assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
         assessment = DatabaseManager.getAssessment(this, assessmentId);
         TextView textViewAssessmentTitle = findViewById(R.id.textViewAssessmentTitle);
@@ -79,7 +81,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     public void openAssessmentNotesList(View view) {
         Intent intent = new Intent(AssessmentViewerActivity.this, AssessmentNoteListActivity.class);
         Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + assessmentId);
-        intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPE, uri);
+        intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
         startActivityForResult(intent, ASSESSMENT_NOTE_LIST_ACTIVITY_CODE);
     }
 
@@ -125,6 +127,17 @@ public class AssessmentViewerActivity extends AppCompatActivity {
                 .show();
         return true;
     }
+
+    private boolean editAssessment() {
+        Intent intent = new Intent(this, AssessmentEditorActivity.class);
+        Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + assessment.courseId);
+        intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, uri);
+        startActivityForResult(intent, ASSESSMENT_EDITOR_ACTIVITY_CODE);
+        return true;
+    }
+
+
+
 
     private boolean enableNotifications() {
         long now = DateUtility.todayLong();

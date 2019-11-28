@@ -33,7 +33,7 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
         Uri assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri == null) {
             setTitle(R.string.enter_new_note);
-            Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
+            Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
             assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
             action = Intent.ACTION_INSERT;
         } else {

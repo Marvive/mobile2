@@ -46,7 +46,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPE);
+        assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
         assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
         bindAssessmentNoteList();
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -54,7 +54,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AssessmentNoteListActivity.this, AssessmentNoteEditorActivity.class);
-                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPE, assessmentUri);
+                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, assessmentUri);
                 startActivityForResult(intent, ASSESSMENT_NOTE_EDITOR_ACTIVITY_CODE);
             }
         });

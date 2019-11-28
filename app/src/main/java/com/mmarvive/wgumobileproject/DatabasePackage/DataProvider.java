@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 
 /**
  * Grabs information from database
- * TODO change texts
  * */
 
 public class DataProvider extends ContentProvider {
@@ -64,10 +63,11 @@ public class DataProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, IMAGES_PATH + "/#", IMAGES_ID);
     }
 
+//    Some constants for the path...
     public static final String TERM_CONTENT_TYPE = "term";
     public static final String COURSE_CONTENT_TYPE = "course";
     public static final String COURSE_NOTE_CONTENT_TYPE = "courseNote";
-    public static final String ASSESSMENT_CONTENT_TYPE = "assessment";
+    public static final String ASSESSMENT_CONTENT_TYPES = "assessment";
     public static final String ASSESSMENT_NOTE_CONTENT_TYPE = "assessmentNote";
 
     private SQLiteDatabase database;

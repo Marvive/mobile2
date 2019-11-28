@@ -69,7 +69,7 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AssessmentListActivity.this, AssessmentViewerActivity.class);
                 Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + id);
-                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPE, uri);
+                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
                 startActivityForResult(intent, ASSESSMENT_VIEWER_ACTIVITY_CODE);
             }
         });

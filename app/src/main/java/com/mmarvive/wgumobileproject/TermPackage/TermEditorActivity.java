@@ -56,15 +56,15 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         dateFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
 
         Intent intent = getIntent();
-        Uri uri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
+        Uri termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
 
-        if (uri == null) {
+        if (termUri == null) {
             action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.add_new_term));
         } else {
             action = Intent.ACTION_EDIT;
             setTitle(getString(R.string.edit_term_title));
-            long termId = Long.parseLong(Objects.requireNonNull(uri.getLastPathSegment()));
+            long termId = Long.parseLong(Objects.requireNonNull(termUri.getLastPathSegment()));
             term = DatabaseManager.getTerm(this, termId);
             fillTermForm(term);
         }

@@ -86,7 +86,7 @@
     <string name="course_note_viewer">Course Note Viewer</string>
     <string name="assessment_note_list">Assessment Note List</string>
     <string name="assessment_note_viewer">Assessment Note Viewer</string>
-    <string name="assessment_editor">Assessment Editor</string>
+    <string name="assessment_editor">Edit Assessment</string>
     <string name="course_note_editor">Course Note Editor</string>
     <string name="assessment_note_editor">Assessment Note Editor</string>
     <string name="camera_activity">Camera Activity</string>
@@ -140,4 +140,5 @@
     <string name="example_alarm">Example Alarm</string>
     <string name="example_alarm_message">This is a an example of an alarm.</string>
     <string name="colon_space">:</string>
+    <string name="assessment_edited">Editing Assessment</string>
 </resources>

@@ -67,7 +67,7 @@ public class Alarm extends BroadcastReceiver {
                 if (assessment != null && assessment.notifications == 1) {
                     resultIntent = new Intent(context, AssessmentViewerActivity.class);
                     uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + id);
-                    resultIntent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPE, uri);
+                    resultIntent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
                 }
                 else {
                     return;

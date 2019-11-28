@@ -106,12 +106,12 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
 * This is to generate sample classes that get pushed to the database then retrieved to show on screen
 * */
     private boolean generateSamples() {
-        Uri term1Uri = DatabaseManager.insertTerm(this, "Summer 2020", "01-01-2020", "2020-06-30", 1);
-        Uri term2Uri = DatabaseManager.insertTerm(this, "Winter 2020", "07-01-2020", "12-31-2020", 0);
-        Uri term3Uri = DatabaseManager.insertTerm(this, "Summer 2021", "01-01-2021", "06-30-2021", 0);
-        Uri term4Uri = DatabaseManager.insertTerm(this, "Winter 2021", "07-01-2021", "12-31-2021", 0);
-        Uri term5Uri = DatabaseManager.insertTerm(this, "Summer 2022", "01-01-2022", "06-30-2022", 0);
-        Uri term6Uri = DatabaseManager.insertTerm(this, "Winter 2022", "07-01-2022", "12-31-2022", 0);
+        Uri term1Uri = DatabaseManager.insertTerm(this, "Term 1 2020", "01-01-2020", "06-30-2020", 1);
+        Uri term2Uri = DatabaseManager.insertTerm(this, "Term 2 2020", "07-01-2020", "12-31-2020", 0);
+        Uri term3Uri = DatabaseManager.insertTerm(this, "Term 3 2021", "01-01-2021", "06-30-2021", 0);
+        Uri term4Uri = DatabaseManager.insertTerm(this, "Term 4 2021", "07-01-2021", "12-31-2021", 0);
+        Uri term5Uri = DatabaseManager.insertTerm(this, "Term 5 2022", "01-01-2022", "06-30-2022", 0);
+        Uri term6Uri = DatabaseManager.insertTerm(this, "Term 6 2022", "07-01-2022", "12-31-2022", 0);
 
         Uri course1Uri = DatabaseManager.insertCourse(this, Long.parseLong(Objects.requireNonNull(term1Uri.getLastPathSegment())),
                 getString(R.string.course_1), "01-01-2020", "02-01-2020",

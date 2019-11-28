@@ -8,6 +8,7 @@
             android:orderInCategory="100"
             android:title="@string/delete_assessment"
             app:showAsAction="never" />
+
     <item
             android:id="@+id/action_enable_notifications"
             android:orderInCategory="101"
