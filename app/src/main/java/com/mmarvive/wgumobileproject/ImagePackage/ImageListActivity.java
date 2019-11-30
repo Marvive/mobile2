@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -83,7 +83,7 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.IMAGES_URI, DatabaseHelper.IMAGES_COLUMNS,
+        return new CursorLoader(this, DatabaseProvider.IMAGES_URI, DatabaseHelper.IMAGES_COLUMNS,
                 DatabaseHelper.IMAGE_PARENT_URI + " = " + "'" + parentUri + "'", null, null);
     }
 
@@ -103,7 +103,7 @@ public class ImageListActivity extends AppCompatActivity implements LoaderManage
 
     public class MySimpleCursorAdapter extends SimpleCursorAdapter {
 
-        public MySimpleCursorAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to) {
+        MySimpleCursorAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to) {
             super(context, layout, cursor, from, to);
         }
 

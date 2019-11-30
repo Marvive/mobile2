@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mmarvive.wgumobileproject.Alarm;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -27,7 +27,7 @@ import androidx.appcompat.widget.Toolbar;
  * Class to track activity on the AssessmentViewer
  * */
 
-public class AssessmentViewerActivity extends AppCompatActivity {
+public class AssessmentViewActivity extends AppCompatActivity {
 
     private static final int ASSESSMENT_EDITOR_ACTIVITY_CODE = 11111;
     private static final int ASSESSMENT_NOTE_LIST_ACTIVITY_CODE = 22222;
@@ -38,7 +38,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        System.out.println(getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES));
+//        System.out.println(getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES));
 //        System.out.println("BEFORE");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_viewer);
@@ -48,9 +48,9 @@ public class AssessmentViewerActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AssessmentViewerActivity.this, AssessmentEditorActivity.class);
-                Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + assessmentId);
-                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
+                Intent intent = new Intent(AssessmentViewActivity.this, AssessmentEditorActivity.class);
+                Uri uri = Uri.parse(DatabaseProvider.ASSESSMENTS_URI + "/" + assessmentId);
+                intent.putExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES, uri);
                 startActivityForResult(intent, ASSESSMENT_EDITOR_ACTIVITY_CODE);
             }
         });
@@ -59,7 +59,7 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     }
 
     private void loadAssessment() {
-        Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
+        Uri assessmentUri = getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES);
         assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
         assessment = DatabaseManager.getAssessment(this, assessmentId);
         TextView textViewAssessmentTitle = findViewById(R.id.textViewAssessmentTitle);
@@ -79,9 +79,9 @@ public class AssessmentViewerActivity extends AppCompatActivity {
     }
 
     public void openAssessmentNotesList(View view) {
-        Intent intent = new Intent(AssessmentViewerActivity.this, AssessmentNoteListActivity.class);
-        Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + assessmentId);
-        intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
+        Intent intent = new Intent(AssessmentViewActivity.this, AssessmentNotesListActivity.class);
+        Uri uri = Uri.parse(DatabaseProvider.ASSESSMENTS_URI + "/" + assessmentId);
+        intent.putExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES, uri);
         startActivityForResult(intent, ASSESSMENT_NOTE_LIST_ACTIVITY_CODE);
     }
 
@@ -113,10 +113,10 @@ public class AssessmentViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    DatabaseManager.deleteAssessment(AssessmentViewerActivity.this, assessmentId);
+                    DatabaseManager.deleteAssessment(AssessmentViewActivity.this, assessmentId);
                     setResult(RESULT_OK);
                     finish();
-                    Toast.makeText(AssessmentViewerActivity.this, getString(R.string.assessment_deleted), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AssessmentViewActivity.this, getString(R.string.assessment_deleted), Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -130,8 +130,8 @@ public class AssessmentViewerActivity extends AppCompatActivity {
 
     private boolean editAssessment() {
         Intent intent = new Intent(this, AssessmentEditorActivity.class);
-        Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + assessment.courseId);
-        intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, uri);
+        Uri uri = Uri.parse(DatabaseProvider.ASSESSMENTS_URI + "/" + assessment.courseId);
+        intent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, uri);
         startActivityForResult(intent, ASSESSMENT_EDITOR_ACTIVITY_CODE);
         return true;
     }

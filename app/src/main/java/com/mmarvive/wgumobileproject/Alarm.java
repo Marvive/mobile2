@@ -11,10 +11,10 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 
 import com.mmarvive.wgumobileproject.assessmentpackage.Assessment;
-import com.mmarvive.wgumobileproject.assessmentpackage.AssessmentViewerActivity;
+import com.mmarvive.wgumobileproject.assessmentpackage.AssessmentViewActivity;
 import com.mmarvive.wgumobileproject.coursepackage.Course;
-import com.mmarvive.wgumobileproject.coursepackage.CourseViewerActivity;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.coursepackage.CourseViewActivity;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
 
 import androidx.core.app.NotificationCompat;
@@ -54,9 +54,9 @@ public class Alarm extends BroadcastReceiver {
             case "course":
                 Course course = DatabaseManager.getCourse(context, id);
                 if (course != null && course.notifications == 1) {
-                    resultIntent = new Intent(context, CourseViewerActivity.class);
-                    uri = Uri.parse(DataProvider.COURSES_URI + "/" + id);
-                    resultIntent.putExtra(DataProvider.COURSE_CONTENT_TYPE, uri);
+                    resultIntent = new Intent(context, CourseViewActivity.class);
+                    uri = Uri.parse(DatabaseProvider.COURSES_URI + "/" + id);
+                    resultIntent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, uri);
                 }
                 else {
                     return;
@@ -65,9 +65,9 @@ public class Alarm extends BroadcastReceiver {
             case "assessment":
                 Assessment assessment = DatabaseManager.getAssessment(context, id);
                 if (assessment != null && assessment.notifications == 1) {
-                    resultIntent = new Intent(context, AssessmentViewerActivity.class);
-                    uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + id);
-                    resultIntent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
+                    resultIntent = new Intent(context, AssessmentViewActivity.class);
+                    uri = Uri.parse(DatabaseProvider.ASSESSMENTS_URI + "/" + id);
+                    resultIntent.putExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES, uri);
                 }
                 else {
                     return;

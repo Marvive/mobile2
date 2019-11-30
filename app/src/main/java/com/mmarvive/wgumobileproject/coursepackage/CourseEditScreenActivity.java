@@ -9,7 +9,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -23,7 +23,7 @@ import androidx.appcompat.widget.Toolbar;
  * Class for Tracking Course editor activity
  * */
 
-public class CourseEditorActivity extends AppCompatActivity implements View.OnClickListener {
+public class CourseEditScreenActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String action;
     private Uri termUri;
@@ -48,8 +48,8 @@ public class CourseEditorActivity extends AppCompatActivity implements View.OnCl
         findViews();
         Intent intent = getIntent();
 
-        Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
-        termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
+        Uri courseUri = intent.getParcelableExtra(DatabaseProvider.COURSE_CONTENT_TYPE);
+        termUri = intent.getParcelableExtra(DatabaseProvider.TERM_CONTENT_TYPE);
 
         if (courseUri == null) {
             action = Intent.ACTION_INSERT;

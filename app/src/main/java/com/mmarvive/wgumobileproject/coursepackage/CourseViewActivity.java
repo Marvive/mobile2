@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.mmarvive.wgumobileproject.Alarm;
 import com.mmarvive.wgumobileproject.assessmentpackage.AssessmentListActivity;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
 
@@ -27,7 +27,7 @@ import androidx.appcompat.widget.Toolbar;
  * Activity for Course Viewer
  * */
 
-public class CourseViewerActivity extends AppCompatActivity {
+public class CourseViewActivity extends AppCompatActivity {
 
 //      Constants...
     private static final int COURSE_NOTE_LIST_ACTIVITY_CODE = 11111;
@@ -53,7 +53,7 @@ public class CourseViewerActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        Uri courseUri = intent.getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
+        Uri courseUri = intent.getParcelableExtra(DatabaseProvider.COURSE_CONTENT_TYPE);
         courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
         course = DatabaseManager.getCourse(this, courseId);
 
@@ -99,16 +99,16 @@ public class CourseViewerActivity extends AppCompatActivity {
     }
 
     public void openClassNotesList(View view) {
-        Intent intent = new Intent(CourseViewerActivity.this, CourseNoteListActivity.class);
-        Uri uri = Uri.parse(DataProvider.COURSES_URI + "/" + courseId);
-        intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, uri);
+        Intent intent = new Intent(CourseViewActivity.this, CourseNotesListActivity.class);
+        Uri uri = Uri.parse(DatabaseProvider.COURSES_URI + "/" + courseId);
+        intent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, uri);
         startActivityForResult(intent, COURSE_NOTE_LIST_ACTIVITY_CODE);
     }
 
     public void openAssessments(View view) {
-        Intent intent = new Intent(CourseViewerActivity.this, AssessmentListActivity.class);
-        Uri uri = Uri.parse(DataProvider.COURSES_URI + "/" + courseId);
-        intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, uri);
+        Intent intent = new Intent(CourseViewActivity.this, AssessmentListActivity.class);
+        Uri uri = Uri.parse(DatabaseProvider.COURSES_URI + "/" + courseId);
+        intent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, uri);
         startActivityForResult(intent, ASSESSMENT_LIST_ACTIVITY_CODE);
     }
 
@@ -180,9 +180,9 @@ public class CourseViewerActivity extends AppCompatActivity {
 
 //    Takes you to course editor
     private boolean editCourse() {
-        Intent intent = new Intent(this, CourseEditorActivity.class);
-        Uri uri = Uri.parse(DataProvider.COURSES_URI + "/" + course.courseId);
-        intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, uri);
+        Intent intent = new Intent(this, CourseEditScreenActivity.class);
+        Uri uri = Uri.parse(DatabaseProvider.COURSES_URI + "/" + course.courseId);
+        intent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, uri);
         startActivityForResult(intent, COURSE_EDITOR_ACTIVITY_CODE);
         return true;
     }
@@ -193,10 +193,10 @@ public class CourseViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    DatabaseManager.deleteCourse(CourseViewerActivity.this, courseId);
+                    DatabaseManager.deleteCourse(CourseViewActivity.this, courseId);
                     setResult(RESULT_OK);
                     finish();
-                    Toast.makeText(CourseViewerActivity.this, getString(R.string.course_deleted), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CourseViewActivity.this, getString(R.string.course_deleted), Toast.LENGTH_SHORT).show();
                 }
             }
         };

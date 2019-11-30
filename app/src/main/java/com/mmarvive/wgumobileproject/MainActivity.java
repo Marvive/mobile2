@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
 import com.mmarvive.wgumobileproject.termpackage.TermListActivity;
-import com.mmarvive.wgumobileproject.termpackage.TermViewerActivity;
+import com.mmarvive.wgumobileproject.termpackage.TermViewActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,14 +33,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCurrentTerm(View view) {
-        Cursor c = getContentResolver().query(DataProvider.TERMS_URI, null, DatabaseHelper.TERM_ACTIVE
+        Cursor c = getContentResolver().query(DatabaseProvider.TERMS_URI, null, DatabaseHelper.TERM_ACTIVE
                 + " =1", null, null);
         assert c != null;
         while (c.moveToNext()) {
-            Intent intent = new Intent(this, TermViewerActivity.class);
+            Intent intent = new Intent(this, TermViewActivity.class);
             long id = c.getLong(c.getColumnIndex(DatabaseHelper.TERMS_TABLE_ID));
-            Uri uri = Uri.parse(DataProvider.TERMS_URI + "/" + id);
-            intent.putExtra(DataProvider.TERM_CONTENT_TYPE, uri);
+            Uri uri = Uri.parse(DatabaseProvider.TERMS_URI + "/" + id);
+            intent.putExtra(DatabaseProvider.TERM_CONTENT_TYPE, uri);
             startActivityForResult(intent, TERM_VIEWER_ACTIVITY_CODE);
             return;
         }

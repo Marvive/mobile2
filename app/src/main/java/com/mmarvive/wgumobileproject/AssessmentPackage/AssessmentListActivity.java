@@ -15,7 +15,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -43,14 +43,14 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
+        courseUri = getIntent().getParcelableExtra(DatabaseProvider.COURSE_CONTENT_TYPE);
         courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AssessmentListActivity.this, AssessmentEditorActivity.class);
-                intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, courseUri);
+                intent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, courseUri);
                 startActivityForResult(intent, ASSESSMENT_EDITOR_ACTIVITY_CODE);
             }
         });
@@ -67,9 +67,9 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(AssessmentListActivity.this, AssessmentViewerActivity.class);
-                Uri uri = Uri.parse(DataProvider.ASSESSMENTS_URI + "/" + id);
-                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, uri);
+                Intent intent = new Intent(AssessmentListActivity.this, AssessmentViewActivity.class);
+                Uri uri = Uri.parse(DatabaseProvider.ASSESSMENTS_URI + "/" + id);
+                intent.putExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES, uri);
                 startActivityForResult(intent, ASSESSMENT_VIEWER_ACTIVITY_CODE);
             }
         });
@@ -77,7 +77,7 @@ public class AssessmentListActivity extends AppCompatActivity implements LoaderM
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_COLUMNS,
+        return new CursorLoader(this, DatabaseProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_COLUMNS,
                 DatabaseHelper.ASSESSMENT_COURSE_ID + " = " + this.courseId, null, null);
     }
 

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.mmarvive.wgumobileproject.assessmentpackage.AssessmentNoteViewerActivity">
+      tools:context="com.mmarvive.wgumobileproject.assessmentpackage.AssessmentNoteViewActivity">
     <item
             android:id="@+id/action_add_photo"
             android:orderInCategory="100"

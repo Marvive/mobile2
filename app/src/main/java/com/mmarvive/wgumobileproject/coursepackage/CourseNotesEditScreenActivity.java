@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -15,7 +15,7 @@ import java.util.Objects;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class CourseNoteEditorActivity extends AppCompatActivity {
+public class CourseNotesEditScreenActivity extends AppCompatActivity {
 
     private long courseId;
     private CourseNote courseNote;
@@ -30,11 +30,11 @@ public class CourseNoteEditorActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         noteTextField = findViewById(R.id.editTextCourseNoteText);
-        Uri courseNoteUri = getIntent().getParcelableExtra(DataProvider.COURSE_NOTE_CONTENT_TYPE);
+        Uri courseNoteUri = getIntent().getParcelableExtra(DatabaseProvider.COURSE_NOTE_CONTENT_TYPE);
 
         if (courseNoteUri == null) {
             setTitle(getString(R.string.enter_new_note));
-            Uri courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
+            Uri courseUri = getIntent().getParcelableExtra(DatabaseProvider.COURSE_CONTENT_TYPE);
             courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
             action = Intent.ACTION_INSERT;
         } else {

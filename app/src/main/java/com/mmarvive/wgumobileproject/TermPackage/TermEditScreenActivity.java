@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +26,7 @@ import androidx.appcompat.widget.Toolbar;
  * Activity for Term Edit
  * */
 
-public class TermEditorActivity extends AppCompatActivity implements View.OnClickListener {
+public class TermEditScreenActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String action;
     private Term term;
@@ -56,7 +56,7 @@ public class TermEditorActivity extends AppCompatActivity implements View.OnClic
         dateFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
 
         Intent intent = getIntent();
-        Uri termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
+        Uri termUri = intent.getParcelableExtra(DatabaseProvider.TERM_CONTENT_TYPE);
 
         if (termUri == null) {
             action = Intent.ACTION_INSERT;

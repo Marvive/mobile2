@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.mmarvive.wgumobileproject.coursepackage.CourseListActivity;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import androidx.appcompat.widget.Toolbar;
  * Activity for Term View
  * */
 
-public class TermViewerActivity extends AppCompatActivity {
+public class TermViewActivity extends AppCompatActivity {
 
 //    Constants for Class
     private static final int TERM_EDITOR_ACTIVITY_CODE = 11111;
@@ -52,7 +52,7 @@ public class TermViewerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
+        termUri = intent.getParcelableExtra(DatabaseProvider.TERM_CONTENT_TYPE);
         findElements();
         loadTermData();
     }
@@ -93,9 +93,9 @@ public class TermViewerActivity extends AppCompatActivity {
             case R.id.action_mark_term_active:
                 return markTermActive();
             case R.id.action_edit_term:
-                Intent intent = new Intent(this, TermEditorActivity.class);
-                Uri uri = Uri.parse(DataProvider.TERMS_URI + "/" + term.termId);
-                intent.putExtra(DataProvider.TERM_CONTENT_TYPE, uri);
+                Intent intent = new Intent(this, TermEditScreenActivity.class);
+                Uri uri = Uri.parse(DatabaseProvider.TERMS_URI + "/" + term.termId);
+                intent.putExtra(DatabaseProvider.TERM_CONTENT_TYPE, uri);
                 startActivityForResult(intent, TERM_EDITOR_ACTIVITY_CODE);
                 break;
             case R.id.action_delete_term:
@@ -109,7 +109,7 @@ public class TermViewerActivity extends AppCompatActivity {
 //    Changes the active value
 
     private boolean markTermActive() {
-        Cursor cursor = getContentResolver().query(DataProvider.TERMS_URI, null, null, null, null);
+        Cursor cursor = getContentResolver().query(DatabaseProvider.TERMS_URI, null, null, null, null);
         ArrayList<Term> termList = new ArrayList<>();
         assert cursor != null;
         while (cursor.moveToNext()) {
@@ -123,7 +123,7 @@ public class TermViewerActivity extends AppCompatActivity {
         this.term.activate(this);
         showMenuOptions();
 
-        Toast.makeText(TermViewerActivity.this, getString(R.string.term_marked_active), Toast.LENGTH_SHORT).show();
+        Toast.makeText(TermViewActivity.this, getString(R.string.term_marked_active), Toast.LENGTH_SHORT).show();
         return true;
     }
 
@@ -134,15 +134,15 @@ public class TermViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    long classCount = term.getClassCount(TermViewerActivity.this);
+                    long classCount = term.getClassCount(TermViewActivity.this);
                     if (classCount == 0) {
-                        getContentResolver().delete(DataProvider.TERMS_URI, DatabaseHelper.TERMS_TABLE_ID + " = " + termId, null);
+                        getContentResolver().delete(DatabaseProvider.TERMS_URI, DatabaseHelper.TERMS_TABLE_ID + " = " + termId, null);
 
-                        Toast.makeText(TermViewerActivity.this, getString(R.string.term_deleted), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermViewActivity.this, getString(R.string.term_deleted), Toast.LENGTH_SHORT).show();
                         setResult(RESULT_OK);
                         finish();
                     } else {
-                        Toast.makeText(TermViewerActivity.this, getString(R.string.need_to_remove_courses), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermViewActivity.this, getString(R.string.need_to_remove_courses), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -164,7 +164,7 @@ public class TermViewerActivity extends AppCompatActivity {
 
     public void openClassList(View view) {
         Intent intent = new Intent(this, CourseListActivity.class);
-        intent.putExtra(DataProvider.TERM_CONTENT_TYPE, termUri);
+        intent.putExtra(DatabaseProvider.TERM_CONTENT_TYPE, termUri);
         startActivityForResult(intent, COURSE_LIST_ACTIVITY_CODE);
     }
 }

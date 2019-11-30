@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -15,7 +15,7 @@ import java.util.Objects;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class AssessmentNoteEditorActivity extends AppCompatActivity {
+public class AssessmentNotesEditorActivity extends AppCompatActivity {
 
     private AssessmentNote assessmentNote;
     private long assessmentId;
@@ -30,10 +30,10 @@ public class AssessmentNoteEditorActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         assessmentNoteTextField = findViewById(R.id.editTextAssessmentNoteText);
-        Uri assessmentNoteUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
+        Uri assessmentNoteUri = getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
         if (assessmentNoteUri == null) {
             setTitle(R.string.enter_new_note);
-            Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
+            Uri assessmentUri = getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES);
             assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
             action = Intent.ACTION_INSERT;
         } else {

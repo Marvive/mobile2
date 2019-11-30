@@ -25,7 +25,7 @@ import com.mmarvive.wgumobileproject.Alarm;
 import com.mmarvive.wgumobileproject.coursepackage.CourseStatus;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.GregorianCalendar;
@@ -64,9 +64,9 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TermListActivity.this, TermViewerActivity.class);
-                Uri uri = Uri.parse(DataProvider.TERMS_URI + "/" + id);
-                intent.putExtra(DataProvider.TERM_CONTENT_TYPE, uri);
+                Intent intent = new Intent(TermListActivity.this, TermViewActivity.class);
+                Uri uri = Uri.parse(DatabaseProvider.TERMS_URI + "/" + id);
+                intent.putExtra(DatabaseProvider.TERM_CONTENT_TYPE, uri);
                 startActivityForResult(intent, TERM_VIEWER_ACTIVITY_CODE);
             }
         });
@@ -161,7 +161,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
 
 //        Takes you to new term screen
     public void openNewTermEditor(View view) {
-        Intent intent = new Intent(this, TermEditorActivity.class);
+        Intent intent = new Intent(this, TermEditScreenActivity.class);
         startActivityForResult(intent, TERM_EDITOR_ACTIVITY_CODE);
     }
 
@@ -170,11 +170,11 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    getContentResolver().delete(DataProvider.TERMS_URI, null, null);
-                    getContentResolver().delete(DataProvider.COURSES_URI, null, null);
-                    getContentResolver().delete(DataProvider.COURSE_NOTES_URI, null, null);
-                    getContentResolver().delete(DataProvider.ASSESSMENTS_URI, null, null);
-                    getContentResolver().delete(DataProvider.ASSESSMENT_NOTES_URI, null, null);
+                    getContentResolver().delete(DatabaseProvider.TERMS_URI, null, null);
+                    getContentResolver().delete(DatabaseProvider.COURSES_URI, null, null);
+                    getContentResolver().delete(DatabaseProvider.COURSE_NOTES_URI, null, null);
+                    getContentResolver().delete(DatabaseProvider.ASSESSMENTS_URI, null, null);
+                    getContentResolver().delete(DatabaseProvider.ASSESSMENT_NOTES_URI, null, null);
                     restartLoader();
                     Toast.makeText(TermListActivity.this, getString(R.string.all_terms_deleted), Toast.LENGTH_SHORT).show();
                 }
@@ -210,7 +210,7 @@ public class TermListActivity extends AppCompatActivity implements LoaderManager
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.TERMS_URI, null, null, null, null);
+        return new CursorLoader(this, DatabaseProvider.TERMS_URI, null, null, null, null);
     }
 
     @Override

@@ -13,7 +13,7 @@ import android.widget.TimePicker;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
 import com.mmarvive.wgumobileproject.DateUtility;
 import com.mmarvive.wgumobileproject.R;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -43,7 +43,7 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println(getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES));
+        System.out.println(getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES));
         System.out.println("Editor");
         setContentView(R.layout.activity_assessment_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -51,13 +51,12 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         findViews();
 
-        Uri assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
-//        AssessmentUri is null always
+        Uri assessmentUri = getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES);
         if (assessmentUri == null) {
 
             setTitle(getString(R.string.new_assessment));
             action = Intent.ACTION_INSERT;
-            Uri courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
+            Uri courseUri = getIntent().getParcelableExtra(DatabaseProvider.COURSE_CONTENT_TYPE);
             courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
             assessment = new Assessment();
         } else {
@@ -79,12 +78,10 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
     }
 
     private void fillAssessmentForm(Assessment assessment) {
-//        if (assessment != null) {
             editTextAssessmentCode.setText(assessment.code);
             editTextAssessmentName.setText(assessment.name);
             editTextAssessmentDescription.setText(assessment.description);
             editTextAssessmentDatetime.setText(assessment.datetime);
-//        }
     }
 
     private void setupDateAndTimePickers() {
@@ -100,25 +97,25 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
                 editTextAssessmentDatetime.setText(DateUtility.dateFormat.format(newDate.getTime()));
                 assessmentTimeDialog = new TimePickerDialog(AssessmentEditorActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    public void onTimeSet(TimePicker view, int hourOfTheDay, int min) {
 //                       Changes format from military time to regular
-                        String AM_PM;
-                        if (hourOfDay < 12) {
-                            AM_PM = "AM";
+                        String AMPM;
+                        if (hourOfTheDay < 12) {
+                            AMPM = "AM";
                         } else {
-                            AM_PM = "PM";
+                            AMPM = "PM";
                         }
-                        if (hourOfDay > 12) {
-                            hourOfDay = hourOfDay - 12;
-                        } else if (hourOfDay == 0) {
-                            hourOfDay = 12;
+                        if (hourOfTheDay > 12) {
+                            hourOfTheDay = hourOfTheDay - 12;
+                        } else if (hourOfTheDay == 0) {
+                            hourOfTheDay = 12;
                         }
-                        String minuteString = Integer.toString(minute);
-                        if (minute < 10) {
-                            minuteString = "0" + minuteString;
+                        String minString = Integer.toString(min);
+                        if (min < 10) {
+                            minString = "0" + minString;
                         }
-                        String datetime = editTextAssessmentDatetime.getText().toString() + " " + hourOfDay + ":" + minuteString
-                                + " " + AM_PM + " " + TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT);
+                        String datetime = editTextAssessmentDatetime.getText().toString() + " " + hourOfTheDay + ":" + minString
+                                + " " + AMPM + " " + TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT);
                         editTextAssessmentDatetime.setText(datetime);
                     }
                 }, calendar2.get(Calendar.HOUR_OF_DAY), calendar2.get(Calendar.MINUTE), false);

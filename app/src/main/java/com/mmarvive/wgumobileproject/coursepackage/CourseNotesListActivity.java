@@ -15,7 +15,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -27,7 +27,7 @@ import androidx.appcompat.widget.Toolbar;
  * Activity Class for course notes
  * */
 
-public class CourseNoteListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class CourseNotesListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int COURSE_NOTE_EDITOR_ACTIVITY_CODE = 11111;
     private static final int COURSE_NOTE_VIEWER_ACTIVITY_CODE = 22222;
@@ -44,7 +44,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        courseUri = getIntent().getParcelableExtra(DataProvider.COURSE_CONTENT_TYPE);
+        courseUri = getIntent().getParcelableExtra(DatabaseProvider.COURSE_CONTENT_TYPE);
         courseId = Long.parseLong(Objects.requireNonNull(courseUri.getLastPathSegment()));
         bindCourseNoteList();
 
@@ -52,8 +52,8 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CourseNoteListActivity.this, CourseNoteEditorActivity.class);
-                intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, courseUri);
+                Intent intent = new Intent(CourseNotesListActivity.this, CourseNotesEditScreenActivity.class);
+                intent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, courseUri);
                 startActivityForResult(intent, COURSE_NOTE_EDITOR_ACTIVITY_CODE);
             }
         });
@@ -70,9 +70,9 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(CourseNoteListActivity.this, CourseNoteViewerActivity.class);
-                Uri uri = Uri.parse(DataProvider.COURSE_NOTES_URI + "/" + id);
-                intent.putExtra(DataProvider.COURSE_NOTE_CONTENT_TYPE, uri);
+                Intent intent = new Intent(CourseNotesListActivity.this, CourseNotesViewActivity.class);
+                Uri uri = Uri.parse(DatabaseProvider.COURSE_NOTES_URI + "/" + id);
+                intent.putExtra(DatabaseProvider.COURSE_NOTE_CONTENT_TYPE, uri);
                 startActivityForResult(intent, COURSE_NOTE_VIEWER_ACTIVITY_CODE);
             }
         });
@@ -81,7 +81,7 @@ public class CourseNoteListActivity extends AppCompatActivity implements LoaderM
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_COLUMNS, DatabaseHelper.COURSE_NOTE_COURSE_ID + " = " + this.courseId, null, null);
+        return new CursorLoader(this, DatabaseProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_COLUMNS, DatabaseHelper.COURSE_NOTE_COURSE_ID + " = " + this.courseId, null, null);
     }
 
     @Override

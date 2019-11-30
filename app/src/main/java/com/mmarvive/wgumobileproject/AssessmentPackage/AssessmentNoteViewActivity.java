@@ -1,4 +1,4 @@
-package com.mmarvive.wgumobileproject.coursepackage;
+package com.mmarvive.wgumobileproject.assessmentpackage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.mmarvive.wgumobileproject.CameraActivity;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseManager;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.imagepackage.ImageListActivity;
 import com.mmarvive.wgumobileproject.R;
 
@@ -26,40 +26,41 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
 /**
- * Activity for Course Notes View
+ * Class to show activity on the assessment notes
  * */
 
-public class CourseNoteViewerActivity extends AppCompatActivity {
+public class AssessmentNoteViewActivity extends AppCompatActivity {
 
-    private static final int COURSE_NOTE_EDITOR_ACTIVITY_CODE = 11111;
+//    Constants
+    private static final int ASSESSMENT_NOTE_EDITOR_ACTIVITY_CODE = 11111;
     private static final int CAMERA_ACTIVITY_CODE = 22222;
 
-    private long courseNoteId;
-    private Uri courseNoteUri;
-    private TextView textViewCourseNoteText;
+//    Variables
+    private long assessmentNoteId;
+    private Uri assessmentNoteUri;
+    private TextView textViewAssessmentNoteText;
 
+//    Methods
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_note_viewer);
+        setContentView(R.layout.activity_assessment_note_viewer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        textViewCourseNoteText = findViewById(R.id.textViewCourseNoteText);
-        courseNoteUri = getIntent().getParcelableExtra(DataProvider.COURSE_NOTE_CONTENT_TYPE);
-
-        if (courseNoteUri != null) {
-            courseNoteId = Long.parseLong(Objects.requireNonNull(courseNoteUri.getLastPathSegment()));
-            setTitle(getString(R.string.view_course_note));
+        textViewAssessmentNoteText = findViewById(R.id.textViewAssessmentNoteText);
+        assessmentNoteUri = getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_NOTE_CONTENT_TYPE);
+        if (assessmentNoteUri != null) {
+            assessmentNoteId = Long.parseLong(Objects.requireNonNull(assessmentNoteUri.getLastPathSegment()));
+            setTitle(getString(R.string.view_assessment_note));
             pullNote();
         }
     }
 
-//    Loads note into view
     private void pullNote() {
-        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
-        textViewCourseNoteText.setText(courseNote.text);
-        textViewCourseNoteText.setMovementMethod(new ScrollingMovementMethod());
+        AssessmentNote assessmentNote = DatabaseManager.getAssessmentNote(this, assessmentNoteId);
+        textViewAssessmentNoteText.setText(assessmentNote.text);
+        textViewAssessmentNoteText.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override
@@ -72,16 +73,15 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_course_note_viewer, menu);
+        getMenuInflater().inflate(R.menu.menu_assessment_note_viewer, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
         ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-        CourseNote courseNote = DatabaseManager.getCourseNote(this, courseNoteId);
-        Course course = DatabaseManager.getCourse(this, courseNote.courseId);
-
+        AssessmentNote assessmentNote = DatabaseManager.getAssessmentNote(this, assessmentNoteId);
+        Assessment assessment = DatabaseManager.getAssessment(this, assessmentNote.assessmentId);
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        String shareSubject = course.name + ": Course Note";
-        String shareBody = courseNote.text;
+        String shareSubject = assessment.code + " " + assessment.name + ": Assessment Note";
+        String shareBody = assessmentNote.text;
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSubject);
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
         shareActionProvider.setShareIntent(shareIntent);
@@ -91,26 +91,21 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.action_delete_course_note:
-                return deleteCourseNote();
-            case R.id.action_add_photo:
-                return addPicture();
-            default:
-                return super.onOptionsItemSelected(item);
+        if (id == R.id.action_delete_assessment_note) {
+            return deleteAssessmentNote();
         }
+        return super.onOptionsItemSelected(item);
     }
 
-//    Removes note from view and database
-    private boolean deleteCourseNote() {
+    private boolean deleteAssessmentNote() {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int button) {
                 if (button == DialogInterface.BUTTON_POSITIVE) {
-                    DatabaseManager.deleteCourseNote(CourseNoteViewerActivity.this, courseNoteId);
+                    DatabaseManager.deleteAssessmentNote(AssessmentNoteViewActivity.this, assessmentNoteId);
                     setResult(RESULT_OK);
                     finish();
-                    Toast.makeText(CourseNoteViewerActivity.this, getString(R.string.note_deleted), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AssessmentNoteViewActivity.this, getString(R.string.note_deleted), Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -122,23 +117,21 @@ public class CourseNoteViewerActivity extends AppCompatActivity {
         return true;
     }
 
-//    Adds photo to note
-    private boolean addPicture() {
+    private void addPicture() {
         Intent intent = new Intent(this, CameraActivity.class);
-        intent.putExtra("PARENT_URI", courseNoteUri);
+        intent.putExtra("PARENT_URI", assessmentNoteUri);
         startActivityForResult(intent, CAMERA_ACTIVITY_CODE);
-        return true;
     }
 
     public void handleEditNote(View view) {
-        Intent intent = new Intent(this, CourseNoteEditorActivity.class);
-        intent.putExtra(DataProvider.COURSE_NOTE_CONTENT_TYPE, courseNoteUri);
-        startActivityForResult(intent, COURSE_NOTE_EDITOR_ACTIVITY_CODE);
+        Intent intent = new Intent(this, AssessmentNotesEditorActivity.class);
+        intent.putExtra(DatabaseProvider.ASSESSMENT_NOTE_CONTENT_TYPE, assessmentNoteUri);
+        startActivityForResult(intent, ASSESSMENT_NOTE_EDITOR_ACTIVITY_CODE);
     }
 
     public void handleViewImages(View view) {
         Intent intent = new Intent(this, ImageListActivity.class);
-        intent.putExtra("ParentUri", courseNoteUri);
+        intent.putExtra("ParentUri", assessmentNoteUri);
         startActivityForResult(intent, 0);
     }
 

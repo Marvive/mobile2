@@ -4,11 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 
 
 /**
- * Base Assessment Class
+ * Base Assessment Class Object
  * */
 
 public class Assessment {
@@ -29,7 +29,7 @@ public class Assessment {
         values.put(DatabaseHelper.ASSESSMENT_DESCRIPTION, description);
         values.put(DatabaseHelper.ASSESSMENT_DATETIME, datetime);
         values.put(DatabaseHelper.ASSESSMENT_NOTIFICATIONS, notifications);
-        context.getContentResolver().update(DataProvider.ASSESSMENTS_URI, values, DatabaseHelper.ASSESSMENTS_TABLE_ID
+        context.getContentResolver().update(DatabaseProvider.ASSESSMENTS_URI, values, DatabaseHelper.ASSESSMENTS_TABLE_ID
                 + " = " + assessmentId, null);
     }
 }

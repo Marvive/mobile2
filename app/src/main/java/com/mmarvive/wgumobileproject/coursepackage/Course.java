@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 
 
 /**
@@ -37,7 +37,7 @@ public class Course {
         values.put(DatabaseHelper.COURSE_MENTOR_PHONE, mentorPhone);
         values.put(DatabaseHelper.COURSE_MENTOR_EMAIL, mentorEmail);
         values.put(DatabaseHelper.COURSE_NOTIFICATIONS, notifications);
-        context.getContentResolver().update(DataProvider.COURSES_URI, values, DatabaseHelper.COURSES_TABLE_ID
+        context.getContentResolver().update(DatabaseProvider.COURSES_URI, values, DatabaseHelper.COURSES_TABLE_ID
                 + " = " + courseId, null);
     }
 }

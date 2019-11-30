@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -46,15 +46,15 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CourseListActivity.this, CourseEditorActivity.class);
-                intent.putExtra(DataProvider.TERM_CONTENT_TYPE, termUri);
+                Intent intent = new Intent(CourseListActivity.this, CourseEditScreenActivity.class);
+                intent.putExtra(DatabaseProvider.TERM_CONTENT_TYPE, termUri);
                 startActivityForResult(intent, COURSE_EDITOR_ACTIVITY_CODE);
             }
         });
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        termUri = intent.getParcelableExtra(DataProvider.TERM_CONTENT_TYPE);
+        termUri = intent.getParcelableExtra(DatabaseProvider.TERM_CONTENT_TYPE);
         loadTermData();
         bindClassList();
         getLoaderManager().initLoader(0, null, this);
@@ -82,9 +82,9 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(CourseListActivity.this, CourseViewerActivity.class);
-                Uri uri = Uri.parse(DataProvider.COURSES_URI + "/" + id);
-                intent.putExtra(DataProvider.COURSE_CONTENT_TYPE, uri);
+                Intent intent = new Intent(CourseListActivity.this, CourseViewActivity.class);
+                Uri uri = Uri.parse(DatabaseProvider.COURSES_URI + "/" + id);
+                intent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, uri);
                 startActivityForResult(intent, COURSE_VIEWER_ACTIVITY_CODE);
             }
         });
@@ -92,7 +92,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS, DatabaseHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
+        return new CursorLoader(this, DatabaseProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS, DatabaseHelper.COURSE_TERM_ID + " = " + this.termId, null, null);
     }
 
     @Override

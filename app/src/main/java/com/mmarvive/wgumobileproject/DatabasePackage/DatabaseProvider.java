@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
  * Grabs information from database
  * */
 
-public class DataProvider extends ContentProvider {
+public class DatabaseProvider extends ContentProvider {
 
 //     Authority and path strings
     private static final String AUTHORITY = "com.mmarvive.wgumobileproject.dataprovider";

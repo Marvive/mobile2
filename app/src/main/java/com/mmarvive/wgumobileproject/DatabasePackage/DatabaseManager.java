@@ -27,11 +27,11 @@ public class DatabaseManager {
         values.put(DatabaseHelper.TERM_START, termStart);
         values.put(DatabaseHelper.TERM_END, termEnd);
         values.put(DatabaseHelper.TERM_ACTIVE, termActive);
-        return context.getContentResolver().insert(DataProvider.TERMS_URI, values);
+        return context.getContentResolver().insert(DatabaseProvider.TERMS_URI, values);
     }
 
     public static Term getTerm(Context context, long termId) {
-        Cursor cursor = context.getContentResolver().query(DataProvider.TERMS_URI, DatabaseHelper.TERMS_COLUMNS,
+        Cursor cursor = context.getContentResolver().query(DatabaseProvider.TERMS_URI, DatabaseHelper.TERMS_COLUMNS,
                 DatabaseHelper.TERMS_TABLE_ID + " = " + termId, null, null);
         assert cursor != null;
         cursor.moveToFirst();
@@ -61,11 +61,11 @@ public class DatabaseManager {
         values.put(DatabaseHelper.COURSE_MENTOR_PHONE, courseMentorPhone);
         values.put(DatabaseHelper.COURSE_MENTOR_EMAIL, courseMentorEmail);
         values.put(DatabaseHelper.COURSE_STATUS, status.toString());
-        return context.getContentResolver().insert(DataProvider.COURSES_URI, values);
+        return context.getContentResolver().insert(DatabaseProvider.COURSES_URI, values);
     }
 
     public static Course getCourse(Context context, long courseId) {
-        Cursor cursor = context.getContentResolver().query(DataProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS,
+        Cursor cursor = context.getContentResolver().query(DatabaseProvider.COURSES_URI, DatabaseHelper.COURSES_COLUMNS,
                 DatabaseHelper.COURSES_TABLE_ID + " = " + courseId, null, null);
         assert cursor != null;
         cursor.moveToFirst();
@@ -97,14 +97,14 @@ public class DatabaseManager {
 
 //    Delete course from the database
     public static void deleteCourse(Context context, long courseId) {
-        Cursor notesCursor = context.getContentResolver().query(DataProvider.COURSE_NOTES_URI,
+        Cursor notesCursor = context.getContentResolver().query(DatabaseProvider.COURSE_NOTES_URI,
                 DatabaseHelper.COURSE_NOTES_COLUMNS, DatabaseHelper.COURSE_NOTE_COURSE_ID + " = " + courseId,
                 null, null);
         assert notesCursor != null;
         while (notesCursor.moveToNext()) {
             deleteCourseNote(context, notesCursor.getLong(notesCursor.getColumnIndex(DatabaseHelper.COURSE_NOTES_TABLE_ID)));
         }
-        context.getContentResolver().delete(DataProvider.COURSES_URI, DatabaseHelper.COURSES_TABLE_ID + " = "
+        context.getContentResolver().delete(DatabaseProvider.COURSES_URI, DatabaseHelper.COURSES_TABLE_ID + " = "
                 + courseId, null);
     }
 
@@ -113,12 +113,12 @@ public class DatabaseManager {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COURSE_NOTE_COURSE_ID, courseId);
         values.put(DatabaseHelper.COURSE_NOTE_TEXT, text);
-        context.getContentResolver().insert(DataProvider.COURSE_NOTES_URI, values);
+        context.getContentResolver().insert(DatabaseProvider.COURSE_NOTES_URI, values);
     }
 
 //    Retieves notes from Database
     public static CourseNote getCourseNote(Context context, long courseNoteId) {
-        Cursor cursor = context.getContentResolver().query(DataProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_COLUMNS,
+        Cursor cursor = context.getContentResolver().query(DatabaseProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_COLUMNS,
                 DatabaseHelper.COURSE_NOTES_TABLE_ID + " = " + courseNoteId, null, null);
         assert cursor != null;
         cursor.moveToFirst();
@@ -134,7 +134,7 @@ public class DatabaseManager {
 
 //    Deletes courses from database
     public static void deleteCourseNote(Context context, long courseNoteId) {
-        context.getContentResolver().delete(DataProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_TABLE_ID + " = " + courseNoteId, null);
+        context.getContentResolver().delete(DatabaseProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_TABLE_ID + " = " + courseNoteId, null);
     }
 
 //     Assessments
@@ -145,11 +145,11 @@ public class DatabaseManager {
         values.put(DatabaseHelper.ASSESSMENT_NAME, name);
         values.put(DatabaseHelper.ASSESSMENT_DESCRIPTION, description);
         values.put(DatabaseHelper.ASSESSMENT_DATETIME, datetime);
-        return context.getContentResolver().insert(DataProvider.ASSESSMENTS_URI, values);
+        return context.getContentResolver().insert(DatabaseProvider.ASSESSMENTS_URI, values);
     }
 
     public static Assessment getAssessment(Context context, long assessmentId) {
-        Cursor cursor = context.getContentResolver().query(DataProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_COLUMNS,
+        Cursor cursor = context.getContentResolver().query(DatabaseProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_COLUMNS,
                 DatabaseHelper.ASSESSMENTS_TABLE_ID + " = " + assessmentId, null, null);
         assert cursor != null;
         cursor.moveToFirst();
@@ -172,14 +172,14 @@ public class DatabaseManager {
     }
 
     public static void deleteAssessment(Context context, long assessmentId) {
-        Cursor notesCursor = context.getContentResolver().query(DataProvider.ASSESSMENT_NOTES_URI,
+        Cursor notesCursor = context.getContentResolver().query(DatabaseProvider.ASSESSMENT_NOTES_URI,
                 DatabaseHelper.ASSESSMENT_NOTES_COLUMNS, DatabaseHelper.ASSESSMENT_NOTE_ASSESSMENT_ID + " = " +
                         assessmentId, null, null);
         assert notesCursor != null;
         while (notesCursor.moveToNext()) {
             deleteAssessmentNote(context, notesCursor.getLong(notesCursor.getColumnIndex(DatabaseHelper.ASSESSMENT_NOTES_TABLE_ID)));
         }
-        context.getContentResolver().delete(DataProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_TABLE_ID
+        context.getContentResolver().delete(DatabaseProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_TABLE_ID
                 + " = " + assessmentId, null);
     }
 
@@ -188,11 +188,11 @@ public class DatabaseManager {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.ASSESSMENT_NOTE_ASSESSMENT_ID, assessmentId);
         values.put(DatabaseHelper.ASSESSMENT_NOTE_TEXT, text);
-        context.getContentResolver().insert(DataProvider.ASSESSMENT_NOTES_URI, values);
+        context.getContentResolver().insert(DatabaseProvider.ASSESSMENT_NOTES_URI, values);
     }
 
     public static AssessmentNote getAssessmentNote(Context context, long assessmentNoteId) {
-        Cursor cursor = context.getContentResolver().query(DataProvider.ASSESSMENT_NOTES_URI,
+        Cursor cursor = context.getContentResolver().query(DatabaseProvider.ASSESSMENT_NOTES_URI,
                 DatabaseHelper.ASSESSMENT_NOTES_COLUMNS, DatabaseHelper.ASSESSMENT_NOTES_TABLE_ID + " = "
                         + assessmentNoteId, null, null);
         assert cursor != null;
@@ -208,7 +208,7 @@ public class DatabaseManager {
     }
 
     public static void deleteAssessmentNote(Context context, long assessmentNoteId) {
-        context.getContentResolver().delete(DataProvider.ASSESSMENT_NOTES_URI, DatabaseHelper.ASSESSMENT_NOTES_TABLE_ID
+        context.getContentResolver().delete(DatabaseProvider.ASSESSMENT_NOTES_URI, DatabaseHelper.ASSESSMENT_NOTES_TABLE_ID
                 + " = " + assessmentNoteId, null);
     }
 
@@ -217,11 +217,11 @@ public class DatabaseManager {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.IMAGE_PARENT_URI, parentUri.toString());
         values.put(DatabaseHelper.IMAGE_TIMESTAMP, timestamp);
-        context.getContentResolver().insert(DataProvider.IMAGES_URI, values);
+        context.getContentResolver().insert(DatabaseProvider.IMAGES_URI, values);
     }
 
     public static Image getImage(Context context, long imageId) {
-        @SuppressLint("Recycle") Cursor cursor = context.getContentResolver().query(DataProvider.IMAGES_URI, DatabaseHelper.IMAGES_COLUMNS, DatabaseHelper.IMAGES_TABLE_ID + " = " + imageId, null, null);
+        @SuppressLint("Recycle") Cursor cursor = context.getContentResolver().query(DatabaseProvider.IMAGES_URI, DatabaseHelper.IMAGES_COLUMNS, DatabaseHelper.IMAGES_TABLE_ID + " = " + imageId, null, null);
         assert cursor != null;
         cursor.moveToFirst();
         Uri parentUri = Uri.parse(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IMAGE_PARENT_URI)));

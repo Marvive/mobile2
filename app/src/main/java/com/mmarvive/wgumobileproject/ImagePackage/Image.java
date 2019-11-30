@@ -3,7 +3,7 @@ package com.mmarvive.wgumobileproject.imagepackage;
 import android.net.Uri;
 
 /**
- * Class to manage images TODO Needed?
+ * Class to manage images
  * */
 
 public class Image {

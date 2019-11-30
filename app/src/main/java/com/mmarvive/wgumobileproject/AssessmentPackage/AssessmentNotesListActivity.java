@@ -15,7 +15,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mmarvive.wgumobileproject.databasepackage.DatabaseHelper;
-import com.mmarvive.wgumobileproject.databasepackage.DataProvider;
+import com.mmarvive.wgumobileproject.databasepackage.DatabaseProvider;
 import com.mmarvive.wgumobileproject.R;
 
 import java.util.Objects;
@@ -27,7 +27,7 @@ import androidx.appcompat.widget.Toolbar;
  * Class for the button used to create notes
  * */
 
-public class AssessmentNoteListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class AssessmentNotesListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 //    Constants
     private static final int ASSESSMENT_NOTE_EDITOR_ACTIVITY_CODE = 11111;
@@ -46,15 +46,15 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        assessmentUri = getIntent().getParcelableExtra(DataProvider.ASSESSMENT_CONTENT_TYPES);
+        assessmentUri = getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES);
         assessmentId = Long.parseLong(Objects.requireNonNull(assessmentUri.getLastPathSegment()));
         bindAssessmentNoteList();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AssessmentNoteListActivity.this, AssessmentNoteEditorActivity.class);
-                intent.putExtra(DataProvider.ASSESSMENT_CONTENT_TYPES, assessmentUri);
+                Intent intent = new Intent(AssessmentNotesListActivity.this, AssessmentNotesEditorActivity.class);
+                intent.putExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES, assessmentUri);
                 startActivityForResult(intent, ASSESSMENT_NOTE_EDITOR_ACTIVITY_CODE);
             }
         });
@@ -70,9 +70,9 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(AssessmentNoteListActivity.this, AssessmentNoteViewerActivity.class);
-                Uri uri = Uri.parse(DataProvider.ASSESSMENT_NOTES_URI + "/" + id);
-                intent.putExtra(DataProvider.ASSESSMENT_NOTE_CONTENT_TYPE, uri);
+                Intent intent = new Intent(AssessmentNotesListActivity.this, AssessmentNoteViewActivity.class);
+                Uri uri = Uri.parse(DatabaseProvider.ASSESSMENT_NOTES_URI + "/" + id);
+                intent.putExtra(DatabaseProvider.ASSESSMENT_NOTE_CONTENT_TYPE, uri);
                 startActivityForResult(intent, ASSESSMENT_NOTE_VIEWER_ACTIVITY_CODE);
             }
         });
@@ -80,7 +80,7 @@ public class AssessmentNoteListActivity extends AppCompatActivity implements Loa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(this, DataProvider.ASSESSMENT_NOTES_URI, DatabaseHelper.ASSESSMENT_NOTES_COLUMNS, DatabaseHelper.ASSESSMENT_NOTE_ASSESSMENT_ID + " = " + this.assessmentId, null, null);
+        return new CursorLoader(this, DatabaseProvider.ASSESSMENT_NOTES_URI, DatabaseHelper.ASSESSMENT_NOTES_COLUMNS, DatabaseHelper.ASSESSMENT_NOTE_ASSESSMENT_ID + " = " + this.assessmentId, null, null);
     }
 
     @Override
