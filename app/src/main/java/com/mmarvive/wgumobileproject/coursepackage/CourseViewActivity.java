@@ -224,7 +224,7 @@ public class CourseViewActivity extends AppCompatActivity {
         if (now <= courseStart) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts today!", course.name + " begins on " + course.start);
-            System.out.println("Course Starts Today!");
+//            System.out.println("Course Starts Today!");
         }
 
         if (now <= courseStart - 3 * DateUtility.millisecondMultiplier) {

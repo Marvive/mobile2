@@ -1,6 +1,5 @@
 package com.mmarvive.wgumobileproject.databasepackage;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -46,6 +45,7 @@ public class DatabaseManager {
         t.start = termStartDate;
         t.end = termEndDate;
         t.active = termActive;
+        cursor.close();
         return t;
     }
 
@@ -92,6 +92,7 @@ public class DatabaseManager {
         c.mentorPhone = courseMentorPhone;
         c.mentorEmail = courseMentorEmail;
         c.notifications = courseNotifications;
+        cursor.close();
         return c;
     }
 
@@ -106,6 +107,7 @@ public class DatabaseManager {
         }
         context.getContentResolver().delete(DatabaseProvider.COURSES_URI, DatabaseHelper.COURSES_TABLE_ID + " = "
                 + courseId, null);
+        notesCursor.close();
     }
 
 //     Course Notes Section
@@ -129,6 +131,7 @@ public class DatabaseManager {
         c.courseNoteId = courseNoteId;
         c.courseId = courseId;
         c.text = text;
+        cursor.close();
         return c;
     }
 
@@ -168,6 +171,7 @@ public class DatabaseManager {
         a.code = code;
         a.datetime = datetime;
         a.notifications = notifications;
+        cursor.close();
         return a;
     }
 
@@ -181,6 +185,7 @@ public class DatabaseManager {
         }
         context.getContentResolver().delete(DatabaseProvider.ASSESSMENTS_URI, DatabaseHelper.ASSESSMENTS_TABLE_ID
                 + " = " + assessmentId, null);
+        notesCursor.close();
     }
 
 //     Assessment Notes
@@ -204,6 +209,7 @@ public class DatabaseManager {
         a.assessmentNoteId = assessmentNoteId;
         a.assessmentId = assessmentId;
         a.text = text;
+        cursor.close();
         return a;
     }
 
@@ -221,7 +227,7 @@ public class DatabaseManager {
     }
 
     public static Image getImage(Context context, long imageId) {
-        @SuppressLint("Recycle") Cursor cursor = context.getContentResolver().query(DatabaseProvider.IMAGES_URI, DatabaseHelper.IMAGES_COLUMNS, DatabaseHelper.IMAGES_TABLE_ID + " = " + imageId, null, null);
+        Cursor cursor = context.getContentResolver().query(DatabaseProvider.IMAGES_URI, DatabaseHelper.IMAGES_COLUMNS, DatabaseHelper.IMAGES_TABLE_ID + " = " + imageId, null, null);
         assert cursor != null;
         cursor.moveToFirst();
         Uri parentUri = Uri.parse(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IMAGE_PARENT_URI)));
@@ -231,6 +237,7 @@ public class DatabaseManager {
         i.imageId = imageId;
         i.parentUri = parentUri;
         i.timestamp = timestamp;
+        cursor.close();
         return i;
     }
 }
