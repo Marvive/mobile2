@@ -212,34 +212,45 @@ public class CourseViewActivity extends AppCompatActivity {
 //    Creates alarms/notifications. Had to cast it back to ints due to id requiring a long
 /*    Math: x * hoursInADay * minutesInAnHour * secondsInAMinute * millisecondsInASecond
 *       When enableNotifications is called, checks to see if "now" is earlier than the course.start time
-*
+*       If it's earlier, then it will create a notification for several different dates
 * */
     private boolean enableNotifications() {
         long now = DateUtility.todayLong();
         long courseStart = DateUtility.getDateTimestamp(course.start);
         long courseEnd = DateUtility.getDateTimestamp(course.end);
-        if (now >= courseStart) {
+//        24 * 60 * 60 * 1000
+        final long millisecondMultiplier = 86400000;
+
+        if (now <= courseStart) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts today!", course.name + " begins on " + course.start);
             System.out.println("Course Starts Today!");
-        } else if (now == courseStart - 3 * 24 * 60 * 60 * 1000) {
+        }
+
+        if (now <= courseStart - 3 * millisecondMultiplier) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts in three days!", course.name + " begins on " + course.start);
             System.out.println("Course starts in Three Days!");
-        } else if (now == courseStart - 21 * 24 * 60 * 60 * 1000) {
+        }
+
+        if (now <= courseStart - 21 * millisecondMultiplier) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts in three weeks!", course.name + " begins on " + course.start);
             System.out.println("Course starts in Three Weeks!");
         }
 
-        if (now == courseEnd) {
+        if (now <= courseEnd) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
                     "Course Ends Today!", course.name + " ends on " + course.end);
             System.out.println("Course Ends Today!");
-        } else if (now == courseEnd - 3 * 24 * 60 * 60 * 1000) {
+        }
+
+        if (now <= courseEnd - 3 * millisecondMultiplier) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
                     "Course ends in three days!", course.name + " ends on " + course.end);
-        } else if (now == courseEnd - 21 * 24 * 60 * 60 * 1000) {
+        }
+
+        if (now <= courseEnd - 21 * millisecondMultiplier) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
                     "Course ends in three weeks!", course.name + " ends on " + course.end);
         }

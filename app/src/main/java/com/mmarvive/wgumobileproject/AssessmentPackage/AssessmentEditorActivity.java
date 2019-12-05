@@ -43,8 +43,6 @@ public class AssessmentEditorActivity extends AppCompatActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println(getIntent().getParcelableExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES));
-        System.out.println("Editor");
         setContentView(R.layout.activity_assessment_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
