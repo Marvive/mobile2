@@ -211,30 +211,51 @@ public class CourseViewActivity extends AppCompatActivity {
 
 //    Creates alarms/notifications. Had to cast it back to ints due to id requiring a long
 /*    Math: x * hoursInADay * minutesInAnHour * secondsInAMinute * millisecondsInASecond
-*       When enableNotifications is called, system gets
+*       When enableNotifications is called, checks to see if "now" is earlier than the course.start time
 *
 * */
     private boolean enableNotifications() {
         long now = DateUtility.todayLong();
-        if (now <= DateUtility.getDateTimestamp(course.start)) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.start),
+        long courseStart = DateUtility.getDateTimestamp(course.start);
+        long courseEnd = DateUtility.getDateTimestamp(course.end);
+        if (now >= courseStart) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts today!", course.name + " begins on " + course.start);
-        } else if (now <= DateUtility.getDateTimestamp(course.start) - 3 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.start),
+            System.out.println("Course Starts Today!");
+        } else if (now == courseStart - 3 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts in three days!", course.name + " begins on " + course.start);
-        } else if (now <= DateUtility.getDateTimestamp(course.start) - 21 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.start),
+            System.out.println("Course starts in Three Days!");
+        } else if (now == courseStart - 21 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts in three weeks!", course.name + " begins on " + course.start);
-        } else if (now <= DateUtility.getDateTimestamp(course.end)) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.end),
-                    "Course ends today!", course.name + " ends on " + course.end);
-        } else if (now <= DateUtility.getDateTimestamp(course.end) - 3 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.end),
+            System.out.println("Course starts in Three Weeks!");
+        }
+
+        if (now == courseEnd) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
+                    "Course Ends Today!", course.name + " ends on " + course.end);
+            System.out.println("Course Ends Today!");
+        } else if (now == courseEnd - 3 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
                     "Course ends in three days!", course.name + " ends on " + course.end);
-        } else if (now <= DateUtility.getDateTimestamp(course.end) - 21 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.end),
+        } else if (now == courseEnd - 21 * 24 * 60 * 60 * 1000) {
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
                     "Course ends in three weeks!", course.name + " ends on " + course.end);
         }
+
+        System.out.println();
+        System.out.println("Course Starts: " + courseStart);
+        System.out.println("Now:" + now);
+
+        if (courseStart > now) {
+            System.out.println("Course Date is later than now");
+            System.out.println(courseStart - now);
+        } else {
+            System.out.println("Course is today or earlier");
+            System.out.println(now - courseStart);
+        }
+
         course.notifications = 1;
         course.saveChanges(this);
         showMenuOptions();

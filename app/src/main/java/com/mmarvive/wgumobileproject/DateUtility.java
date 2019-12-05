@@ -18,6 +18,7 @@ public class DateUtility {
     public static long getDateTimestamp(String dateInput) {
         try {
             Date date = DateUtility.dateFormat.parse(dateInput + TimeZone.getDefault().getDisplayName());
+//            System.out.println(date.getTime());
             return date.getTime();
         } catch (ParseException e) {
             return 0;
@@ -26,6 +27,7 @@ public class DateUtility {
 
     public static long todayLong() {
         String currentDate = DateUtility.dateFormat.format(new Date());
+//        System.out.println("today = " + getDateTimestamp(currentDate));
         return getDateTimestamp(currentDate);
     }
 
