@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Michael\'s Term Creator</string>
     <string name="title_activity_main">Michael\'s Term Creator</string>
-    <string name="no_active_term_set">No active term has been set. Set an active term from any term page.</string>
+    <string name="no_active_term_set">"There is no active term set. Activate a term or generate sample Data"</string>
     <string name="start_date">Start Date:  </string>
     <string name="end_date">End Date: </string>
     <string name="classes">Classes</string>
@@ -32,7 +32,7 @@
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</string>
     <string name="all_terms_deleted">All terms have been deleted</string>
     <string name="confirm_delete_all_terms">WARNING: Are you sure you want to delete all terms? \n\nThis will also delete terms with courses</string>
-    <string name="test_alarm">Test alarm has been set for 5 seconds from now</string>
+    <string name="test_alarm">Test alarm has been set for 5 seconds from now.</string>
     <string name="notes">Notes</string>
     <string name="edit_course">Edit Course</string>
     <string name="delete_course">Delete Course</string>
@@ -95,7 +95,6 @@
     <string name="name">Name</string>
     <string name="date_time"><![CDATA[Date & Time]]></string>
     <string name="description">Description</string>
-    <string name="title_activity_image_viewer">ImageViewerActivity</string>
     <string name="course_status_indicator">Course Status Indicator</string>
     <string name="test_course_number">C001</string>
     <string name="test_assessment_name">Test Assessment Name</string>

@@ -116,7 +116,7 @@ public class DatabaseManager {
         context.getContentResolver().insert(DatabaseProvider.COURSE_NOTES_URI, values);
     }
 
-//    Retieves notes from Database
+//    Retrieves notes from Database
     public static CourseNote getCourseNote(Context context, long courseNoteId) {
         Cursor cursor = context.getContentResolver().query(DatabaseProvider.COURSE_NOTES_URI, DatabaseHelper.COURSE_NOTES_COLUMNS,
                 DatabaseHelper.COURSE_NOTES_TABLE_ID + " = " + courseNoteId, null, null);

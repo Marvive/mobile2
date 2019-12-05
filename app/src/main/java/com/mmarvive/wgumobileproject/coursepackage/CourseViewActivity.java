@@ -209,28 +209,31 @@ public class CourseViewActivity extends AppCompatActivity {
         return true;
     }
 
-//    Creates alarms/notifications
+//    Creates alarms/notifications. Had to cast it back to ints due to id requiring a long
+/*    Math: x * hoursInADay * minutesInAnHour * secondsInAMinute * millisecondsInASecond
+*       When enableNotifications is called, system gets
+*
+* */
     private boolean enableNotifications() {
         long now = DateUtility.todayLong();
-
         if (now <= DateUtility.getDateTimestamp(course.start)) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.start),
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.start),
                     "Course starts today!", course.name + " begins on " + course.start);
         } else if (now <= DateUtility.getDateTimestamp(course.start) - 3 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.start),
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.start),
                     "Course starts in three days!", course.name + " begins on " + course.start);
         } else if (now <= DateUtility.getDateTimestamp(course.start) - 21 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.start),
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.start),
                     "Course starts in three weeks!", course.name + " begins on " + course.start);
         } else if (now <= DateUtility.getDateTimestamp(course.end)) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.end),
-                    "Course ends today!", course.name + " ends on " + course.start);
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.end),
+                    "Course ends today!", course.name + " ends on " + course.end);
         } else if (now <= DateUtility.getDateTimestamp(course.end) - 3 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.end),
-                    "Course ends in three days!", course.name + " ends on " + course.start);
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.end),
+                    "Course ends in three days!", course.name + " ends on " + course.end);
         } else if (now <= DateUtility.getDateTimestamp(course.end) - 21 * 24 * 60 * 60 * 1000) {
-            Alarm.scheduleCourseAlarm(getApplicationContext(), courseId, DateUtility.getDateTimestamp(course.end),
-                    "Course ends in three weeks!", course.name + " ends on " + course.start);
+            Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, DateUtility.getDateTimestamp(course.end),
+                    "Course ends in three weeks!", course.name + " ends on " + course.end);
         }
         course.notifications = 1;
         course.saveChanges(this);

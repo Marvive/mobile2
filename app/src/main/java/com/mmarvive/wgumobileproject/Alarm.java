@@ -57,8 +57,7 @@ public class Alarm extends BroadcastReceiver {
                     resultIntent = new Intent(context, CourseViewActivity.class);
                     uri = Uri.parse(DatabaseProvider.COURSES_URI + "/" + id);
                     resultIntent.putExtra(DatabaseProvider.COURSE_CONTENT_TYPE, uri);
-                }
-                else {
+                } else {
                     return;
                 }
                 break;
@@ -68,8 +67,7 @@ public class Alarm extends BroadcastReceiver {
                     resultIntent = new Intent(context, AssessmentViewActivity.class);
                     uri = Uri.parse(DatabaseProvider.ASSESSMENTS_URI + "/" + id);
                     resultIntent.putExtra(DatabaseProvider.ASSESSMENT_CONTENT_TYPES, uri);
-                }
-                else {
+                } else {
                     return;
                 }
                 break;
@@ -87,7 +85,7 @@ public class Alarm extends BroadcastReceiver {
         notificationManager.notify(nextAlarmId, builder.build());
     }
 
-    public static void scheduleCourseAlarm(Context context, long id, long time, String title, String text) {
+    public static void scheduleCourseAlarm(Context context, int id, long time, String title, String text) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         int nextAlarmId = getNextAlarmId(context);
         Intent intentAlarm = new Intent(context, Alarm.class);
