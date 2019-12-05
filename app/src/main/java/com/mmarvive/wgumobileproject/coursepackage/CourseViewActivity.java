@@ -23,6 +23,8 @@ import java.util.Objects;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import static com.mmarvive.wgumobileproject.DateUtility.millisecondMultiplier;
+
 /**
  * Activity for Course Viewer
  * */
@@ -218,8 +220,6 @@ public class CourseViewActivity extends AppCompatActivity {
         long now = DateUtility.todayLong();
         long courseStart = DateUtility.getDateTimestamp(course.start);
         long courseEnd = DateUtility.getDateTimestamp(course.end);
-//        24 * 60 * 60 * 1000
-        final long millisecondMultiplier = 86400000;
 
         if (now <= courseStart) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
@@ -227,22 +227,19 @@ public class CourseViewActivity extends AppCompatActivity {
             System.out.println("Course Starts Today!");
         }
 
-        if (now <= courseStart - 3 * millisecondMultiplier) {
+        if (now <= courseStart - 3 * DateUtility.millisecondMultiplier) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts in three days!", course.name + " begins on " + course.start);
-            System.out.println("Course starts in Three Days!");
         }
 
-        if (now <= courseStart - 21 * millisecondMultiplier) {
+        if (now <= courseStart - 21 * DateUtility.millisecondMultiplier) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseStart,
                     "Course starts in three weeks!", course.name + " begins on " + course.start);
-            System.out.println("Course starts in Three Weeks!");
         }
 
         if (now <= courseEnd) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
                     "Course Ends Today!", course.name + " ends on " + course.end);
-            System.out.println("Course Ends Today!");
         }
 
         if (now <= courseEnd - 3 * millisecondMultiplier) {
@@ -253,18 +250,6 @@ public class CourseViewActivity extends AppCompatActivity {
         if (now <= courseEnd - 21 * millisecondMultiplier) {
             Alarm.scheduleCourseAlarm(getApplicationContext(), (int) courseId, courseEnd,
                     "Course ends in three weeks!", course.name + " ends on " + course.end);
-        }
-
-        System.out.println();
-        System.out.println("Course Starts: " + courseStart);
-        System.out.println("Now:" + now);
-
-        if (courseStart > now) {
-            System.out.println("Course Date is later than now");
-            System.out.println(courseStart - now);
-        } else {
-            System.out.println("Course is today or earlier");
-            System.out.println(now - courseStart);
         }
 
         course.notifications = 1;

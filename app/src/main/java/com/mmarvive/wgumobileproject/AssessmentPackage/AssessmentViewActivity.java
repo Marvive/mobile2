@@ -23,6 +23,8 @@ import java.util.Objects;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import static com.mmarvive.wgumobileproject.DateUtility.millisecondMultiplier;
+
 /**
  * Class to track activity on the AssessmentViewer
  * */
@@ -138,7 +140,6 @@ public class AssessmentViewActivity extends AppCompatActivity {
 
 
     private boolean enableNotifications() {
-        final long millisecondMultiplier = 86400000;
         long now = DateUtility.todayLong();
 
         long assessmentDateTime = DateUtility.getDateTimestamp(assessment.datetime);
@@ -149,12 +150,12 @@ public class AssessmentViewActivity extends AppCompatActivity {
             Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, assessmentDateTime, "Assessment is today.", assessment.name + " takes will occur at " + assessment.datetime);
         }
 
-        if (now <= assessmentDateTime - 5 * millisecondMultiplier) {
-            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, assessmentDateTime - 5 * millisecondMultiplier, "Assessment set in five days.", assessment.name + " takes will occur at " + assessment.datetime);
+        if (now <= assessmentDateTime - 5 * DateUtility.millisecondMultiplier) {
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, assessmentDateTime - 5 * DateUtility.millisecondMultiplier, "Assessment set in five days.", assessment.name + " takes will occur at " + assessment.datetime);
         }
 
-        if (now <= assessmentDateTime - 14 * millisecondMultiplier) {
-            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, assessmentDateTime - 14 * millisecondMultiplier, "Assessment set in two weeks.", assessment.name + " takes will occur at " + assessment.datetime);
+        if (now <= assessmentDateTime - 14 * DateUtility.millisecondMultiplier) {
+            Alarm.scheduleAssessmentAlarm(getApplicationContext(), (int) assessmentId, assessmentDateTime - 14 * DateUtility.millisecondMultiplier, "Assessment set in two weeks.", assessment.name + " takes will occur at " + assessment.datetime);
         }
 
         assessment.notifications = 1;
